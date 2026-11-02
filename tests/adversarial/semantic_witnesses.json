@@ -1,0 +1,494 @@
+[
+  {
+    "name": "dead_computation_can_error",
+    "data": {
+      "t": {
+        "columns": [
+          {
+            "name": "x",
+            "type": "INT"
+          }
+        ],
+        "rows": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      }
+    },
+    "variants": [
+      {
+        "name": "original",
+        "program": "LOAD x,t.x\nDIV dead,x,0\nOUT x\n",
+        "status": 1,
+        "error": "division by zero"
+      },
+      {
+        "name": "unsafe_removal",
+        "program": "LOAD x,t.x\nOUT x\n",
+        "status": 0,
+        "ncols": 1,
+        "rows": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "topk_skips_discarded_group_type_error",
+    "data": {
+      "t": {
+        "columns": [
+          {
+            "name": "x",
+            "type": "INT"
+          }
+        ],
+        "rows": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      }
+    },
+    "variants": [
+      {
+        "name": "original",
+        "program": "LOAD x,t.x\nEQ c,x,1\nIF y,c,1,'s'\nEQ f,x,0\nIF a,f,0,1\nSORT p,a ASC NF,y ASC NF\nSLICE z,p,1\nOUT z\n",
+        "status": 1,
+        "error": "expected a number, got STR"
+      },
+      {
+        "name": "unsafe_topk",
+        "program": "LOAD x,t.x\nEQ c,x,1\nIF y,c,1,'s'\nEQ f,x,0\nIF a,f,0,1\nTOPK z,1,a ASC NF,y ASC NF\nOUT z\n",
+        "status": 0,
+        "ncols": 1,
+        "rows": [
+          [
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "cse_must_preserve_reaching_definition",
+    "data": {
+      "t": {
+        "columns": [
+          {
+            "name": "a",
+            "type": "INT"
+          },
+          {
+            "name": "b",
+            "type": "INT"
+          }
+        ],
+        "rows": [
+          [
+            1,
+            20
+          ],
+          [
+            2,
+            10
+          ]
+        ]
+      }
+    },
+    "variants": [
+      {
+        "name": "original",
+        "program": "LOAD a,t.a\nLOAD b,t.a\nLOAD a,t.b\nOUT b\n",
+        "status": 0,
+        "ncols": 1,
+        "rows": [
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      {
+        "name": "unsafe_alias",
+        "program": "LOAD a,t.a\nLOAD a,t.b\nOUT a\n",
+        "status": 0,
+        "ncols": 1,
+        "rows": [
+          [
+            20
+          ],
+          [
+            10
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "sorted_suffix_is_not_sorted",
+    "data": {
+      "t": {
+        "columns": [
+          {
+            "name": "a",
+            "type": "INT"
+          },
+          {
+            "name": "b",
+            "type": "INT"
+          }
+        ],
+        "sorted": [
+          "a",
+          "b"
+        ],
+        "rows": [
+          [
+            null,
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      }
+    },
+    "variants": [
+      {
+        "name": "original",
+        "program": "LOAD b,t.b\nSORT i,b ASC NF\nGATHER z,b,i\nOUT z\n",
+        "status": 0,
+        "ncols": 1,
+        "rows": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ]
+      },
+      {
+        "name": "unsafe_iota",
+        "program": "LOAD b,t.b\nIOTA i,b\nGATHER z,b,i\nOUT z\n",
+        "status": 0,
+        "ncols": 1,
+        "rows": [
+          [
+            2
+          ],
+          [
+            1
+          ],
+          [
+            3
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "check_does_not_exclude_null",
+    "data": {
+      "t": {
+        "columns": [
+          {
+            "name": "x",
+            "type": "INT"
+          }
+        ],
+        "check": {
+          "x": [
+            1,
+            5
+          ]
+        },
+        "rows": [
+          [
+            null
+          ],
+          [
+            1
+          ],
+          [
+            5
+          ]
+        ]
+      }
+    },
+    "variants": [
+      {
+        "name": "original",
+        "program": "LOAD x,t.x\nGE m,x,1\nIDX i,m\nGATHER z,x,i\nOUT z\n",
+        "status": 0,
+        "ncols": 1,
+        "rows": [
+          [
+            1
+          ],
+          [
+            5
+          ]
+        ]
+      },
+      {
+        "name": "unsafe_filter_removal",
+        "program": "LOAD x,t.x\nOUT x\n",
+        "status": 0,
+        "ncols": 1,
+        "rows": [
+          [
+            null
+          ],
+          [
+            1
+          ],
+          [
+            5
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "null_self_equality_is_null",
+    "data": {
+      "t": {
+        "columns": [
+          {
+            "name": "x",
+            "type": "INT"
+          }
+        ],
+        "rows": [
+          [
+            null
+          ],
+          [
+            1
+          ]
+        ]
+      }
+    },
+    "variants": [
+      {
+        "name": "original",
+        "program": "LOAD x,t.x\nEQ y,x,x\nOUT y\n",
+        "status": 0,
+        "ncols": 1,
+        "rows": [
+          [
+            null
+          ],
+          [
+            true
+          ]
+        ]
+      },
+      {
+        "name": "unsafe_constant",
+        "program": "LOAD x,t.x\nFILL y,TRUE,x\nOUT y\n",
+        "status": 0,
+        "ncols": 1,
+        "rows": [
+          [
+            true
+          ],
+          [
+            true
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "numeric_reassociation_can_suppress_overflow",
+    "data": {
+      "t": {
+        "columns": [
+          {
+            "name": "x",
+            "type": "NUM"
+          }
+        ],
+        "rows": [
+          [
+            "9999999999999999999999999999"
+          ]
+        ]
+      }
+    },
+    "variants": [
+      {
+        "name": "original",
+        "program": "LOAD x,t.x\nADD a,x,1\nSUB z,a,1\nOUT z\n",
+        "status": 1,
+        "error": "numeric overflow"
+      },
+      {
+        "name": "unsafe_cancellation",
+        "program": "LOAD x,t.x\nOUT x\n",
+        "status": 0,
+        "ncols": 1,
+        "rows": [
+          [
+            "9999999999999999999999999999"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "join_duplicates_nulls_and_pair_order",
+    "data": {
+      "l": {
+        "columns": [
+          {
+            "name": "k",
+            "type": "INT"
+          }
+        ],
+        "rows": [
+          [
+            2
+          ],
+          [
+            null
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      "r": {
+        "columns": [
+          {
+            "name": "k",
+            "type": "INT"
+          }
+        ],
+        "rows": [
+          [
+            null
+          ],
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ]
+      }
+    },
+    "variants": [
+      {
+        "name": "nested_loop",
+        "program": "LOAD l,l.k\nLOAD r,r.k\nNLJOIN a,b,l,r\nOUT a,b\n",
+        "status": 0,
+        "ncols": 2,
+        "rows": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      {
+        "name": "hash_same",
+        "program": "LOAD l,l.k\nLOAD r,r.k\nHJOIN a,b,l,r\nOUT a,b\n",
+        "status": 0,
+        "ncols": 2,
+        "rows": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      {
+        "name": "null_equal_flag",
+        "program": "LOAD l,l.k\nLOAD r,r.k\nHJOIN a,b,l,r,NULLEQ\nOUT a,b\n",
+        "status": 0,
+        "ncols": 2,
+        "rows": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      }
+    ]
+  }
+]
