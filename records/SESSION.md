@@ -121,6 +121,59 @@
   unchanged. Output emission must replace only the opcode token, preserving all
   remaining source bytes, including comments, CRLF and trailing newline state.
 
+## Join milestone implementation and verification
+
+- Added `optimizer.py` and changed the optimize wrapper. Only recognized NLJOIN
+  or HJOIN opcode spans can change. All operands, optional NULLEQ, register names,
+  comments, literals, other instructions, CRLF and final-newline state survive.
+- Single-pass estimates: direct LOAD rows/type/NDV/mean bytes, shape-preserving
+  operations, 50% IDX selectivity, uniform-NDV join-size estimates where possible.
+  Group/aggregate cardinalities and unknown estimates stay unmodeled. These facts
+  guide costs only; they never justify dropping pairs or changing operands.
+- Independent reviewer found a confirmed correctness failure before the fix:
+  Python splitlines exposed fake join text inside valid string literals with
+  Unicode/control separators. Coordinator reproduced four failing subtests in
+  an actual 12-test run before editing the lexer. Reviewer confirmed five more
+  separators. Fixed by splitting only on LF. All nine retained variants pass.
+- Reviewer also flagged a quadratic schema-column stats lookup as a suspected
+  scaling risk, without reproducing a timeout. Replaced it with one case-folded
+  map per table. No timeout failure or isolated speedup is claimed for that change.
+- Evaluator specialist independently reproduced an existing harness false
+  rejection: correct identity with 300000 stderr bytes became Defect. Coordinator
+  authorized a narrow fix: truncate captured stderr while draining excess under
+  the original deadline; stdout over 4 MiB remains fatal. Both specialists tested
+  it. Coordinator did not independently execute the pre-fix stderr reproduction.
+  Separate commit `11df850` records the reviewed harness fix and regressions.
+- Coordinator reran all existing and new checks: evaluator 46 tests passed in
+  9.300 seconds; adversarial 31 tests passed in 5.200 seconds. Raw output is in
+  `join-selection/tests-evaluator.txt` and `tests-adversarial.txt`.
+- Public CLI demonstration now uses an explicit independent identity fixture
+  and separately tests the current optimizer. Both pass the unchanged default
+  26-case/70-dataset corpus; all five retained defective optimizers exit 1 with
+  witnesses. Join-specific drop-NULLEQ and swapped-pair mutants are also rejected
+  in specialist tests and explicit specialist CLI probes.
+- Fixed eight-example comparison: 60,363 -> 60,167 cycles, saving 196 (0.3247%).
+  q0001 line31 changes HJOIN to NLJOIN; every other supplied example is byte
+  identical. No example regressions. Exact rows/representations/order and source
+  differences (opcode only) are audited by the benchmark.
+- Eleven targeted workloads: 6 improve, 2 unchanged, 3 regress. Preserve rather
+  than hide stale-stat regressions 28->48 and 1040->4368, and matching-statistics
+  skewed-string regression 22180->28852. All ordered pairs remain identical.
+- Recorded example optimizer wall time: about 79.6-80.5 ms per invocation.
+  Public current-optimizer evaluation: 4.304 s external wall / 4.195 s internal,
+  optimizer subprocess sum 2.075 s, VM execution sum 1.217 s. Identity in this run
+  takes 2.660 s external wall. Startup is included; timings are noisy. No claim of
+  end-to-end wall-time improvement is made from the small cycle reduction.
+- Optimizer-only scale probe: 20,000 instructions and 20,000 schema columns
+  processed in 0.243 seconds; all 19,997 choices match expectation. This uses
+  synthetic estimates and is not a worst-case proof or a VM-equivalence test.
+- Commands, exact reports and reproducible scripts are retained under
+  `join-selection/`, `tools/`, and both specialist JOIN reports. Original
+  baseline snapshots remain unchanged. No second optimizer rewrite was added.
+- Final remote check still reports `Could not resolve host: github.com`.
+  Baseline publication remains user-confirmed; new agent commits stay local for
+  the user's pushes. No force push or remote-history replacement was attempted.
+
 ## Baseline implementation progress
 
 - `python3 tools/benchmark.py ./optimize --output records/benchmark-baseline.json`

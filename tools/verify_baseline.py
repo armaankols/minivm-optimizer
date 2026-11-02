@@ -32,7 +32,11 @@ def main():
     }
     with tempfile.TemporaryDirectory(prefix="minivm-baseline-cli-") as directory:
         directory = Path(directory)
-        commands = [("supplied_identity", ROOT / "optimize", None, 0)]
+        identity = directory / "independent_identity"
+        identity.write_text("#!" + sys.executable + "\nimport sys\nsys.stdout.buffer.write(open(sys.argv[1], 'rb').read())\n")
+        identity.chmod(0o755)
+        commands = [("independent_identity", identity, None, 0),
+                    ("current_optimizer", ROOT / "optimize", None, 0)]
         for name, source in MUTANTS.items():
             optimizer = directory / name
             # This is a deliberate defective optimizer, independent of evaluator

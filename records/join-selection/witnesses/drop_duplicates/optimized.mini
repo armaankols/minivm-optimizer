@@ -1,0 +1,8 @@
+LOAD x,t.x
+LOAD s,t.s
+GROUP g,x,s
+GFIRST i,g
+GATHER x,x,i
+GATHER s,s,i
+OUT x,s
+

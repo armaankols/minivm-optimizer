@@ -1,7 +1,9 @@
 # MiniVM optimizer assignment
 
-The first milestone retains the supplied identity optimizer and builds an
-independent evaluator. No optimization rewrites are included yet.
+The optimizer chooses between NLJOIN and HJOIN using estimated cost, preserving
+every other source byte. This is the only optimizer rewrite. The independent
+evaluator compares original/candidate MiniVM execution under frozen schemas.
+The starter identity baseline remains preserved in Git.
 
 Python 3.9+, a POSIX system (macOS/Linux), and the supplied MiniVM interpreter are
 needed. The entire `bin/`
@@ -13,15 +15,26 @@ assignment's matching interpreter bundle locally at `bin/minivm` to run checks.
 ./evaluate ./optimize
 python3 -m unittest discover -s tests/evaluator -v
 python3 -m unittest discover -s tests/adversarial -v
-python3 tools/verify_baseline.py --output records/cli-baseline.json
-python3 tools/benchmark.py ./optimize --output records/benchmark-baseline.json
+```
+
+To retain historical baseline measurements, use new result paths for this
+milestone:
+
+```sh
+python3 tools/verify_baseline.py --output records/join-selection/cli-checks.json
+python3 tools/benchmark.py ./optimize --output records/join-selection/examples.json
+python3 tools/benchmark_joins.py ./optimize --output records/join-selection/workloads.json
+python3 tools/probe_join_scale.py --output records/join-selection/scale.json
 ```
 
 The original text starter is preserved in commit `b8e7f8a` and checksummed in
 `STARTER.sha256`. Original interpreter documentation starts at
 [docs/README.md](docs/README.md). Development decisions and known limitations are
-in [records/SESSION.md](records/SESSION.md). Verified first-milestone results and
-the proposed first optimization are in [records/MILESTONE_1.md](records/MILESTONE_1.md).
+in [records/SESSION.md](records/SESSION.md). The historical first-milestone results
+are in [records/MILESTONE_1.md](records/MILESTONE_1.md).
+The implemented join rule, preconditions and cost-model limitations are in
+[docs/optimizer.md](docs/optimizer.md). Current results are in
+[records/join-selection/RESULTS.md](records/join-selection/RESULTS.md).
 
 The benchmark runs the eight fixed supplied programs through the public optimizer
 interface. It reports every case, including unchanged cases and regressions, and

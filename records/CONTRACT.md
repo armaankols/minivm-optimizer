@@ -65,7 +65,7 @@ retain text fixtures and captured output (hex when not UTF-8) in the ignored
 `.evaluation-failures/` directory. Semantic errors and resource-limit errors are
 distinct concerns; assignment equivalence for erroring originals is unspecified.
 
-## First optimization recommendation (not implemented)
+## First optimization: join algorithm selection
 
 Select the cheaper join algorithm while preserving operands, both destinations,
 and NULLEQ exactly. `docs/instructions/joins.md` explicitly guarantees HJOIN and
@@ -78,3 +78,9 @@ blindly replace every NLJOIN. Unknown estimates can leave the opcode unchanged.
 Boundary tests should include empty sides, duplicates, NULL/NULLEQ, mixed INT/NUM,
 incompatible types, aliased destinations and reassigned inputs. Resource-limit
 behavior remains an explicit caveat because the work accounting differs.
+
+The user subsequently authorized this rule. It is implemented in `optimizer.py`;
+the exact source-preserving conditions, heuristic propagation and limitations
+are described in `docs/optimizer.md`. No second rewrite is included. The baseline
+identity executable used for evaluator validation is now a separate independent
+fixture rather than the evolving `optimize` command.

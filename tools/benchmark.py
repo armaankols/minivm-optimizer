@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """Measure the fixed supplied examples through the public optimizer interface.
 
-This small benchmark is separate from the evaluator. It checks exact results
-because the current baseline optimizer is identity. Broader semantic comparison
-and adversarial cases belong to the independent evaluator.
+This small benchmark is separate from the evaluator. It checks exact results;
+opcode-only join selection preserves numeric representations and row order.
+Broader semantic comparison and adversarial cases belong to the evaluator.
 """
 
 import argparse
 import json
 import platform
 from pathlib import Path
+import re
 import subprocess
 import sys
 import tempfile
@@ -27,6 +28,24 @@ def run(command):
 
 def result_rows(value):
     return {key: value[key] for key in ("ncols", "rows")}
+
+
+def join_changes(original, candidate):
+    before, after = original.split(b'\n'), candidate.split(b'\n')
+    if len(before) != len(after):
+        raise ValueError('join-only optimizer changed physical line count')
+    changes = []
+    for number, (left, right) in enumerate(zip(before, after), 1):
+        if left == right:
+            continue
+        match = re.match(rb'[ \t]*(NLJOIN|HJOIN)(?=[ \t])', left, re.IGNORECASE)
+        if not match:
+            raise ValueError('non-join source changed')
+        new = b'HJOIN' if match.group(1).upper() == b'NLJOIN' else b'NLJOIN'
+        if right != left[:match.start(1)] + new + left[match.end(1):]:
+            raise ValueError('join operands or other source bytes changed')
+        changes.append({'line': number, 'from': match.group(1).decode(), 'to': new.decode()})
+    return changes
 
 
 def main():
@@ -56,6 +75,7 @@ def main():
             if not candidate_bytes or len(candidate_bytes) > 4 * 1024 * 1024:
                 raise ValueError(f"invalid candidate size: {program.name}")
             candidate_bytes.decode("utf-8", errors="strict")
+            changes = join_changes(program.read_bytes(), candidate_bytes)
             candidate_path.write_bytes(candidate_bytes)
             candidate_json, candidate_seconds = run(
                 [str(vm), str(candidate_path), str(ROOT / "examples" / "data.json")]
@@ -73,6 +93,7 @@ def main():
                     "baseline_vm_seconds": baseline_seconds,
                     "candidate_vm_seconds": candidate_seconds,
                     "candidate_is_byte_identical": candidate_bytes == program.read_bytes(),
+                    "join_changes": changes,
                 }
             )
     report = {

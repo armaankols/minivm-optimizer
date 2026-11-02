@@ -1,0 +1,51 @@
+test_bag_permutation (test_evaluator.ComparisonTests) ... ok
+test_bool_is_not_int_including_fast_path (test_evaluator.ComparisonTests) ... ok
+test_int_slot_allows_numeric_type_scale_and_relative_tolerance (test_evaluator.ComparisonTests) ... ok
+test_multiplicity (test_evaluator.ComparisonTests) ... ok
+test_null_is_not_false_or_zero (test_evaluator.ComparisonTests) ... ok
+test_numeric_looking_string_is_exact (test_evaluator.ComparisonTests) ... ok
+test_numeric_slot_rejects_noncanonical_string_payloads (test_evaluator.ComparisonTests) ... ok
+test_numeric_tolerance (test_evaluator.ComparisonTests) ... ok
+test_order (test_evaluator.ComparisonTests) ... ok
+test_row_associations (test_evaluator.ComparisonTests) ... ok
+test_shape (test_evaluator.ComparisonTests) ... ok
+test_tolerance_requires_augmenting_path (test_evaluator.ComparisonTests) ... ok
+test_wide_integer_precision (test_evaluator.ComparisonTests) ... ok
+test_actual_public_cli_identity_full_suite (test_evaluator.InterfaceTests) ... ok
+test_actual_public_cli_rejects_known_mutant (test_evaluator.InterfaceTests) ... ok
+test_alternative_cannot_change_constraints (test_evaluator.InterfaceTests) ... ok
+test_exponent_string_mutant_has_retained_witness (test_evaluator.InterfaceTests) ... ok
+test_external_optimizer_numeric_type_change_is_accepted (test_evaluator.InterfaceTests) ... ok
+test_frozen_schema_on_changed_valid_data (test_evaluator.InterfaceTests) ... ok
+test_known_mutants_rejected_with_witnesses (test_evaluator.InterfaceTests) ... ok
+test_noisy_identity_optimizer_is_accepted_with_bounded_diagnostics (test_evaluator.InterfaceTests) ... ok
+test_order_numeric_and_null_mutants (test_evaluator.InterfaceTests) ... ok
+test_overall_deadline_is_incomplete (test_evaluator.InterfaceTests) ... ok
+test_timeout_and_flood_mutants (test_evaluator.InterfaceTests) ... ok
+test_vm_malformed_and_timeout (test_evaluator.InterfaceTests) ... ok
+test_child_process_cleanup (test_evaluator.ProcessTests) ... ok
+test_exit_and_streams (test_evaluator.ProcessTests) ... ok
+test_global_deadline_not_optimizer_defect (test_evaluator.ProcessTests) ... ok
+test_missing_executable (test_evaluator.ProcessTests) ... ok
+test_output_bounds (test_evaluator.ProcessTests) ... ok
+test_timeout (test_evaluator.ProcessTests) ... ok
+test_comment_case_tabs_and_optional_flag_preserved (test_join_optimizer.JoinOptimizerTests) ... ok
+test_derived_wide_int_keys_compare_without_decimal_coercion (test_join_optimizer.JoinOptimizerTests) ... ok
+test_destination_aliases_and_register_reassignment (test_join_optimizer.JoinOptimizerTests) ... ok
+test_empty_side_and_null_only (test_join_optimizer.JoinOptimizerTests) ... ok
+test_frozen_stats_do_not_constrain_runtime_data (test_join_optimizer.JoinOptimizerTests) ... ok
+test_frozen_zero_stats_can_become_nonempty (test_join_optimizer.JoinOptimizerTests) ... ok
+test_large_numeric_nested_to_hash (test_join_optimizer.JoinOptimizerTests) ... ok
+test_long_strings_large_join_favors_hash (test_join_optimizer.JoinOptimizerTests) ... ok
+test_mixed_key_runtime_error_is_preserved (test_join_optimizer.JoinOptimizerTests) ... ok
+test_null_duplicates_and_nulleq (test_join_optimizer.JoinOptimizerTests) ... ok
+test_numeric_cross_type_scale_and_precision (test_join_optimizer.JoinOptimizerTests) ... ok
+test_numeric_overflow_error_is_preserved (test_join_optimizer.JoinOptimizerTests) ... ok
+test_public_evaluator_rejects_join_mutants (test_join_optimizer.JoinOptimizerTests) ... ok
+test_string_bytes_can_favor_nested_at_moderate_row_counts (test_join_optimizer.JoinOptimizerTests) ... ok
+test_tiny_numeric_hash_to_nested (test_join_optimizer.JoinOptimizerTests) ... ok
+
+----------------------------------------------------------------------
+Ran 46 tests in 9.300s
+
+OK

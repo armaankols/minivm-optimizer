@@ -1,0 +1,184 @@
+{
+  "suite": "join-workloads-v1",
+  "python": "3.9.6",
+  "platform": "macOS-15.7.7-arm64-arm-64bit",
+  "policy": "single invocation timings include startup; deterministic datasets; both raw algorithms executed",
+  "measurements": [
+    {
+      "name": "numeric_tiny",
+      "initial": "HJOIN",
+      "selected": "NLJOIN",
+      "baseline_cycles": 55,
+      "candidate_cycles": 31,
+      "cycles_saved": 24,
+      "raw_algorithm_cycles": {
+        "NLJOIN": 31,
+        "HJOIN": 55
+      },
+      "optimizer_seconds": 0.07883074999999999,
+      "original_vm_seconds": 0.00954866700000001,
+      "candidate_vm_seconds": 0.008719625000000009,
+      "estimates": "matching"
+    },
+    {
+      "name": "numeric_large",
+      "initial": "NLJOIN",
+      "selected": "HJOIN",
+      "baseline_cycles": 4368,
+      "candidate_cycles": 1040,
+      "cycles_saved": 3328,
+      "raw_algorithm_cycles": {
+        "NLJOIN": 4368,
+        "HJOIN": 1040
+      },
+      "optimizer_seconds": 0.075887875,
+      "original_vm_seconds": 0.009271166999999969,
+      "candidate_vm_seconds": 0.008802209000000005,
+      "estimates": "matching"
+    },
+    {
+      "name": "numeric_tie",
+      "initial": "HJOIN",
+      "selected": "HJOIN",
+      "baseline_cycles": 208,
+      "candidate_cycles": 208,
+      "cycles_saved": 0,
+      "raw_algorithm_cycles": {
+        "NLJOIN": 208,
+        "HJOIN": 208
+      },
+      "optimizer_seconds": 0.075369291,
+      "original_vm_seconds": 0.009538500000000005,
+      "candidate_vm_seconds": 0.008495291999999988,
+      "estimates": "matching"
+    },
+    {
+      "name": "empty_left",
+      "initial": "HJOIN",
+      "selected": "NLJOIN",
+      "baseline_cycles": 240,
+      "candidate_cycles": 48,
+      "cycles_saved": 192,
+      "raw_algorithm_cycles": {
+        "NLJOIN": 48,
+        "HJOIN": 240
+      },
+      "optimizer_seconds": 0.07672054099999998,
+      "original_vm_seconds": 0.009701542000000063,
+      "candidate_vm_seconds": 0.008706792000000019,
+      "estimates": "matching"
+    },
+    {
+      "name": "duplicates_null_equal",
+      "initial": "HJOIN",
+      "selected": "NLJOIN",
+      "baseline_cycles": 93,
+      "candidate_cycles": 59,
+      "cycles_saved": 34,
+      "raw_algorithm_cycles": {
+        "NLJOIN": 59,
+        "HJOIN": 93
+      },
+      "optimizer_seconds": 0.07684687499999998,
+      "original_vm_seconds": 0.009345165999999905,
+      "candidate_vm_seconds": 0.008801375,
+      "estimates": "matching"
+    },
+    {
+      "name": "string_asymmetric",
+      "initial": "HJOIN",
+      "selected": "NLJOIN",
+      "baseline_cycles": 33264,
+      "candidate_cycles": 2128,
+      "cycles_saved": 31136,
+      "raw_algorithm_cycles": {
+        "NLJOIN": 2128,
+        "HJOIN": 33264
+      },
+      "optimizer_seconds": 0.07673683400000009,
+      "original_vm_seconds": 0.009373709000000008,
+      "candidate_vm_seconds": 0.00889645799999994,
+      "estimates": "matching"
+    },
+    {
+      "name": "string_large",
+      "initial": "NLJOIN",
+      "selected": "HJOIN",
+      "baseline_cycles": 339060,
+      "candidate_cycles": 11516,
+      "cycles_saved": 327544,
+      "raw_algorithm_cycles": {
+        "NLJOIN": 339060,
+        "HJOIN": 11516
+      },
+      "optimizer_seconds": 0.07616770799999995,
+      "original_vm_seconds": 0.009493666999999983,
+      "candidate_vm_seconds": 0.008533041999999935,
+      "estimates": "matching"
+    },
+    {
+      "name": "string_skew_matching_stats",
+      "initial": "NLJOIN",
+      "selected": "HJOIN",
+      "baseline_cycles": 22180,
+      "candidate_cycles": 28852,
+      "cycles_saved": -6672,
+      "raw_algorithm_cycles": {
+        "NLJOIN": 22180,
+        "HJOIN": 28852
+      },
+      "optimizer_seconds": 0.07739424999999989,
+      "original_vm_seconds": 0.010027916999999942,
+      "candidate_vm_seconds": 0.008955333000000065,
+      "estimates": "matching"
+    },
+    {
+      "name": "stale_large_estimate_tiny_actual",
+      "initial": "NLJOIN",
+      "selected": "HJOIN",
+      "baseline_cycles": 28,
+      "candidate_cycles": 48,
+      "cycles_saved": -20,
+      "raw_algorithm_cycles": {
+        "NLJOIN": 28,
+        "HJOIN": 48
+      },
+      "optimizer_seconds": 0.07853866600000003,
+      "original_vm_seconds": 0.009627832999999919,
+      "candidate_vm_seconds": 0.008572499999999872,
+      "estimates": "stale"
+    },
+    {
+      "name": "stale_tiny_estimate_large_actual",
+      "initial": "HJOIN",
+      "selected": "NLJOIN",
+      "baseline_cycles": 1040,
+      "candidate_cycles": 4368,
+      "cycles_saved": -3328,
+      "raw_algorithm_cycles": {
+        "NLJOIN": 4368,
+        "HJOIN": 1040
+      },
+      "optimizer_seconds": 0.07788995799999987,
+      "original_vm_seconds": 0.009554083999999907,
+      "candidate_vm_seconds": 0.00860908299999985,
+      "estimates": "stale"
+    },
+    {
+      "name": "unknown_stats_large",
+      "initial": "NLJOIN",
+      "selected": "NLJOIN",
+      "baseline_cycles": 4368,
+      "candidate_cycles": 4368,
+      "cycles_saved": 0,
+      "raw_algorithm_cycles": {
+        "NLJOIN": 4368,
+        "HJOIN": 1040
+      },
+      "optimizer_seconds": 0.077207625,
+      "original_vm_seconds": 0.009578666000000124,
+      "candidate_vm_seconds": 0.00911216700000006,
+      "estimates": "missing"
+    }
+  ]
+}
