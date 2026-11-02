@@ -4,6 +4,33 @@ These are the task requests and specialist assignments available in the session.
 This does not include hidden model reasoning, unavailable provider telemetry, or
 an automatic export of the application conversation.
 
+## User: join milestone approval and push update
+
+```text
+I was able to push the commits myself, so please update the records to reflect that. If pushing still fails in your environment, keep committing locally and I’ll handle the pushes.
+
+Go ahead with join algorithm selection. Keep this change focused on choosing between NLJOIN and HJOIN while preserving all operands and flags. Have the reviewer check the equivalence assumptions and edge cases independently.
+
+Run the existing checks and compare cycles before and after, including small joins where switching might be worse. Commit the verified change, then show me the results before adding another rewrite.
+```
+
+## Join milestone specialist assignments
+
+- Reviewer: independently reread join/cycle/error documentation and challenge
+  opcode equivalence, operand/flag preservation, NULL/NULLEQ, duplicate/order,
+  exact mixed numeric comparison, errors, aliases/reassignment, lexical cases,
+  unknown/stale estimates and small/large cost choices. Own only
+  `tests/adversarial/**`; no optimizer/evaluator/shared/Git edits or delegation.
+  Return confirmed failures before fixes and retain reproductions and a
+  `JOIN_REVIEW.md` command/results log.
+- Evaluator: own existing evaluator paths; use public optimizer CLI and MiniVM
+  oracles to test join changes independently, retaining baseline identity and
+  defective optimizer checks. Cover frozen/stale stats, aliases, flags, duplicate
+  pairs, errors and small/large numeric/string workloads. Prefer standalone
+  `test_join_optimizer.py` and `JOIN_REPORT.md` to preserve baseline corpus.
+  No optimizer imports, shared/Git edits or delegation. Coordinator owns
+  benchmark/integration helpers and adapts the explicit identity demonstration.
+
 ## User: initial assignment
 
 ```text

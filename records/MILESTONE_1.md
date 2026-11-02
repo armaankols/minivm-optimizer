@@ -60,10 +60,12 @@ Starter commit `b8e7f8a` preserves all 34 original text files with checksums.
 records evaluator and independent review code/tests. Local author metadata is
 `Codex <codex@localhost>`; global Git configuration was preserved.
 
-Remote verification failed with `Could not resolve host: github.com`; GitHub CLI
-also reports its configured token invalid. Remote history and push access remain
-unverified, and no push occurred. Work is safely committed locally; later
-integration must inspect remote history before publishing. No force push.
+At baseline handoff, remote verification failed with `Could not resolve host:
+github.com`; GitHub CLI also reported its configured token invalid. No agent push
+occurred. The user subsequently confirmed that they successfully pushed these
+commits themselves. That publication is user-reported; this environment still
+cannot independently inspect remote history. The user will handle further
+pushes if agent connectivity remains unavailable. No force push.
 
 The whole supplied `bin/` directory, generated binary artifacts, and Python caches
 are excluded. The PDF remains outside the repository. Submitted/tracked files

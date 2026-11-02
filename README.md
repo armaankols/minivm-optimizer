@@ -34,6 +34,7 @@ is ignored by Git. A nonzero exit distinguishes an optimizer defect (1) from an
 incomplete evaluation or infrastructure failure (2). A clean exit means no defect
 was found in the finite suite; it does not prove soundness.
 
-Git origin is configured to the requested repository. At setup, GitHub DNS lookup
-failed and the configured GitHub CLI token was reported invalid. Remote history
-and push access remain unverified; local commits must not be mistaken for pushes.
+Git origin is configured to the requested repository. The user confirmed that
+they pushed the baseline commits themselves. GitHub DNS lookup still fails in
+this environment, so agent push access and remote history are not independently
+verified here. The user will handle further pushes while that restriction remains.

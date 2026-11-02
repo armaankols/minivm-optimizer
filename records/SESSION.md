@@ -30,6 +30,13 @@
   commit before implementation. Supplied binaries are preserved locally.
 - Before any future push: recheck remote access, inspect remote refs/history,
   fetch existing history, and choose an integration branch without replacing it.
+- Subsequent user update: the user successfully pushed the baseline commits
+  themselves. This is user-confirmed publication, not an independently observed
+  push from this environment. The user authorized continued local commits when
+  this environment cannot push and will handle those pushes themselves.
+- At join-milestone start, `git ls-remote origin` still failed with GitHub DNS
+  resolution error. Local history remained at `9a06eab` on `codex/baseline` with
+  no unrelated or uncommitted changes. Do not claim the baseline is unpublished.
 
 ## Planning evidence and decisions
 
@@ -100,6 +107,19 @@
   underspecified. Test metadata and documented policies bound these ambiguities.
 - Broad rewrites and a general constraint solver are deferred.
 - Add no optimizer rewrites until the user reviews baseline results.
+
+## Join milestone authorization
+
+- User approved only join algorithm selection between NLJOIN and HJOIN,
+  preserving every operand and flag. Independently review equivalence and edge
+  cases, run existing checks, measure cycles including small joins where a
+  switch can be worse, commit the verified change, then stop before any other
+  rewrite. Coordinator owns optimizer and integration; existing specialist
+  ownership is unchanged. No nested delegation.
+- Cost estimates are not semantic proofs. Single-pass row, type, distinct-count
+  and byte estimates may guide selection; unsupported estimates leave the join
+  unchanged. Output emission must replace only the opcode token, preserving all
+  remaining source bytes, including comments, CRLF and trailing newline state.
 
 ## Baseline implementation progress
 
