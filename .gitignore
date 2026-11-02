@@ -1,0 +1,14 @@
+# Supplied interpreter builds stay local; no bin files enter the submission.
+/bin/
+__pycache__/
+*.py[cod]
+.DS_Store
+.idea/
+/artifacts/
+/tmp/
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.zip
