@@ -29,8 +29,9 @@ general mixed-type output inference is outside this baseline suite.
   The assignment does not define the denominator; this is a documented choice.
 - Unordered comparisons match complete rows with duplicate multiplicity.
   Maximum matching avoids greedy failures under non-transitive tolerance.
-- Ordered fixtures compare whole rows positionally. Explicit sorts, joins, and
-  index sequences have documented order. Unordered fixture declarations are
+- Ordered fixtures compare whole rows positionally. Explicit SORT/TOPK outputs
+  and directly exposed join position tuples have fixture contracts requiring
+  order. Pure no-sort filter/reassignment outputs are unordered. Annotations are
   authored rather than guessed from an arbitrary program's syntax.
 - Numeric-looking STR values are exact strings. No string-to-number heuristic is
   used without fixture type information. BOOL is distinct from integer 1/0.

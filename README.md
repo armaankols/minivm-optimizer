@@ -13,13 +13,15 @@ assignment's matching interpreter bundle locally at `bin/minivm` to run checks.
 ./evaluate ./optimize
 python3 -m unittest discover -s tests/evaluator -v
 python3 -m unittest discover -s tests/adversarial -v
+python3 tools/verify_baseline.py --output records/cli-baseline.json
 python3 tools/benchmark.py ./optimize --output records/benchmark-baseline.json
 ```
 
 The original text starter is preserved in commit `b8e7f8a` and checksummed in
 `STARTER.sha256`. Original interpreter documentation starts at
 [docs/README.md](docs/README.md). Development decisions and known limitations are
-in [records/SESSION.md](records/SESSION.md).
+in [records/SESSION.md](records/SESSION.md). Verified first-milestone results and
+the proposed first optimization are in [records/MILESTONE_1.md](records/MILESTONE_1.md).
 
 The benchmark runs the eight fixed supplied programs through the public optimizer
 interface. It reports every case, including unchanged cases and regressions, and

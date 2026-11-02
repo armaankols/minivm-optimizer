@@ -1,0 +1,35 @@
+test_bag_permutation (test_evaluator.ComparisonTests) ... ok
+test_bool_is_not_int_including_fast_path (test_evaluator.ComparisonTests) ... ok
+test_int_slot_allows_numeric_type_scale_and_relative_tolerance (test_evaluator.ComparisonTests) ... ok
+test_multiplicity (test_evaluator.ComparisonTests) ... ok
+test_null_is_not_false_or_zero (test_evaluator.ComparisonTests) ... ok
+test_numeric_looking_string_is_exact (test_evaluator.ComparisonTests) ... ok
+test_numeric_slot_rejects_noncanonical_string_payloads (test_evaluator.ComparisonTests) ... ok
+test_numeric_tolerance (test_evaluator.ComparisonTests) ... ok
+test_order (test_evaluator.ComparisonTests) ... ok
+test_row_associations (test_evaluator.ComparisonTests) ... ok
+test_shape (test_evaluator.ComparisonTests) ... ok
+test_tolerance_requires_augmenting_path (test_evaluator.ComparisonTests) ... ok
+test_wide_integer_precision (test_evaluator.ComparisonTests) ... ok
+test_actual_public_cli_identity_full_suite (test_evaluator.InterfaceTests) ... ok
+test_actual_public_cli_rejects_known_mutant (test_evaluator.InterfaceTests) ... ok
+test_alternative_cannot_change_constraints (test_evaluator.InterfaceTests) ... ok
+test_exponent_string_mutant_has_retained_witness (test_evaluator.InterfaceTests) ... ok
+test_external_optimizer_numeric_type_change_is_accepted (test_evaluator.InterfaceTests) ... ok
+test_frozen_schema_on_changed_valid_data (test_evaluator.InterfaceTests) ... ok
+test_known_mutants_rejected_with_witnesses (test_evaluator.InterfaceTests) ... ok
+test_order_numeric_and_null_mutants (test_evaluator.InterfaceTests) ... ok
+test_overall_deadline_is_incomplete (test_evaluator.InterfaceTests) ... ok
+test_timeout_and_flood_mutants (test_evaluator.InterfaceTests) ... ok
+test_vm_malformed_and_timeout (test_evaluator.InterfaceTests) ... ok
+test_child_process_cleanup (test_evaluator.ProcessTests) ... ok
+test_exit_and_streams (test_evaluator.ProcessTests) ... ok
+test_global_deadline_not_optimizer_defect (test_evaluator.ProcessTests) ... ok
+test_missing_executable (test_evaluator.ProcessTests) ... ok
+test_output_bounds (test_evaluator.ProcessTests) ... ok
+test_timeout (test_evaluator.ProcessTests) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 4.777s
+
+OK

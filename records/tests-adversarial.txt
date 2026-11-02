@@ -1,0 +1,22 @@
+test_malformed_vm_output (test_evaluator_contract.ComparatorChallenges) ... ok
+test_non_greedy_matching_against_small_exhaustive_oracle (test_evaluator_contract.ComparatorChallenges) ... ok
+test_non_vm_numeric_strings_are_not_numeric_output (test_evaluator_contract.ComparatorChallenges) ... ok
+test_numeric_contract_allows_int_num_type_and_scale_changes (test_evaluator_contract.ComparatorChallenges) ... ok
+test_numeric_type_metadata_and_zero (test_evaluator_contract.ComparatorChallenges) ... ok
+test_type_multiplicity_associations_and_order (test_evaluator_contract.ComparatorChallenges) ... ok
+test_changed_alternative_constraints_are_incomplete (test_evaluator_contract.ExternalOptimizerChallenges) ... ok
+test_empty_program_nonzero_exit_and_invalid_utf8 (test_evaluator_contract.ExternalOptimizerChallenges) ... ok
+test_exact_int_to_num_rewrite_is_accepted_on_boundaries (test_evaluator_contract.ExternalOptimizerChallenges) ... ok
+test_global_deadline_is_incomplete_not_clean_or_optimizer_defect (test_evaluator_contract.ExternalOptimizerChallenges) ... ok
+test_huge_exponent_string_is_defect_with_witness (test_evaluator_contract.ExternalOptimizerChallenges) ... ok
+test_identity_accepts_alternatives_with_one_frozen_schema (test_evaluator_contract.ExternalOptimizerChallenges) ... ok
+test_stats_based_slice_is_rejected_and_witness_retained (test_evaluator_contract.ExternalOptimizerChallenges) ... ok
+test_unsorted_filter_may_reorder_whole_rows (test_evaluator_contract.ExternalOptimizerChallenges) ... ok
+test_child_holding_pipe_is_killed_on_timeout (test_evaluator_contract.ProcessChallenges) ... ok
+test_stdout_limit (test_evaluator_contract.ProcessChallenges) ... ok
+test_documented_semantic_boundaries (test_semantic_witnesses.SemanticWitnesses) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 1.928s
+
+OK

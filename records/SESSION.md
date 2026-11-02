@@ -121,3 +121,34 @@
 - Coordinator reran the reviewer's 11-test adversarial suite successfully before
   the overflow fix, including 100 exhaustive small matching cross-checks and 17
   semantic VM executions. Passing checks did not exclude the newly found issue.
+- Coordinator then reproduced a false rejection caused by enforcing INT
+  serialization on candidate numeric values. Original `LOAD x,t.x; OUT x` on
+  stored INT values `[1,2,NULL]` and candidate `LOAD x,t.x; ADD y,x,0.1;
+  SUB y,y,0.1; OUT y` produce equal numeric values, but the candidate prints
+  `["1.0","2.0",null]` and was rejected. For stored signed-32-bit INTs this
+  transformation has exact decimal arithmetic and cannot overflow. Assignment
+  numeric tolerance applies to both numeric kinds. Sent reproduction for a fix
+  and independent regression review; no optimizer rewrite was added.
+- Both numeric findings are fixed and independently reviewed. Numeric string
+  spellings are bounded canonical finite decimals, with Decimal exceptions
+  guarded. Expected INT and NUM slots share numeric comparison; BOOL remains
+  distinct and STR exact. Reproduction and acceptance regressions are retained.
+- Final coordinator checks: evaluator suite 30 tests passed in 4.777 seconds;
+  independent adversarial suite 17 tests passed in 1.928 seconds. Full command
+  output is retained in `tests-evaluator.txt` and `tests-adversarial.txt`.
+- `python3 tools/verify_baseline.py --output records/cli-baseline.json` accepted
+  supplied identity (26 cases / 70 dataset executions) and rejected all five
+  deliberate defective optimizers through `./evaluate OPTIMIZER`. Final measured
+  CLI identity wall time was 2.249 seconds; evaluator internal wall time 2.142
+  seconds, optimizer subprocess sum 0.090 seconds, paired VM sum 1.193 seconds.
+  Schema validation/startup explain the remainder; these are single-run timings.
+- Retained all five complete text witnesses under `records/witnesses/` and
+  re-executed both original and candidate programs for each. All ten results
+  exactly reproduced the saved JSON, including cycles.
+- Commit `0a91af9` records the reviewed evaluator and specialist test/report files.
+  Coordinator staged only finalized owned paths; no unfinished agent changes
+  were included. `optimize` remains byte-identical to the starter commit.
+- Final `git ls-remote origin` still failed GitHub DNS resolution; `gh auth status`
+  still reported the configured token invalid. No push was attempted because
+  required remote history verification could not succeed. No remote history was
+  fetched or replaced. These are local commits, not published commits.
