@@ -85,9 +85,12 @@ def run_process(argv, timeout, deadline, stdout_limit=4 * 1024 * 1024,
                 buf = buffers[key.data]
                 available = limits[key.data] - len(buf)
                 buf.extend(chunk[:max(0, available)])
-                if len(chunk) > available:
-                    issue = key.data + ' exceeded byte limit'
+                if len(chunk) > available and key.data == 'stdout':
+                    issue = 'stdout exceeded byte limit'
                     break
+                # stderr is diagnostic, with no size limit in the assignment.
+                # Retain only its bounded prefix and keep draining the pipe so
+                # a correct noisy optimizer can finish under the same deadline.
             if issue:
                 break
         if not issue:

@@ -103,7 +103,8 @@ class ProcessTests(unittest.TestCase):
         self.assertEqual(r.issue, 'stdout exceeded byte limit')
         self.assertEqual(len(r.stdout), 1024)
         r = self.run_code('import sys; sys.stderr.write("x"*100000)', stderr_limit=512)
-        self.assertEqual(r.issue, 'stderr exceeded byte limit')
+        self.assertIsNone(r.issue)
+        self.assertEqual(r.returncode, 0)
         self.assertEqual(len(r.stderr), 512)
 
     def test_global_deadline_not_optimizer_defect(self):
@@ -213,6 +214,13 @@ class InterfaceTests(unittest.TestCase):
         for name,source in choices:
             with self.subTest(name=name), self.assertRaises(ev.Defect):
                 self.run_optimizer(source,[next(c for c in self.cases if c.name==name)])
+
+    def test_noisy_identity_optimizer_is_accepted_with_bounded_diagnostics(self):
+        # Confirmed false rejection: stderr has no assignment size restriction.
+        # Capture remains bounded; excess diagnostics must be drained/discarded.
+        report = self.run_optimizer('import sys;sys.stderr.write("x"*300000);sys.stdout.write(open(sys.argv[1]).read())')
+        self.assertEqual(report['cases'],1)
+        self.assertEqual(report['executions'],len(self.cases[0].datasets))
 
     def test_timeout_and_flood_mutants(self):
         with self.assertRaises(ev.Defect):

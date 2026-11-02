@@ -109,6 +109,10 @@ class ExternalOptimizerChallenges(unittest.TestCase):
         summary = self.evaluate(optimizer)
         self.assertEqual(summary['executions'], 2)
 
+    def test_noisy_identity_stderr_does_not_change_contract(self):
+        optimizer = self.optimizer("import pathlib,sys\nsys.stderr.write('x'*300000)\nprint(pathlib.Path(sys.argv[1]).read_text())\n")
+        self.assertEqual(self.evaluate(optimizer)['executions'], 2)
+
     def test_stats_based_slice_is_rejected_and_witness_retained(self):
         optimizer = self.optimizer("import json,sys\nn=json.load(open(sys.argv[2]))['t']['stats']['rows']\nprint(f'LOAD x,t.x\\nSLICE y,x,{n}\\nOUT y')\n")
         with self.assertRaises(evaluator.Defect):
@@ -163,6 +167,17 @@ class ExternalOptimizerChallenges(unittest.TestCase):
 
 
 class ProcessChallenges(unittest.TestCase):
+    def test_stderr_prefix_is_bounded_but_success_and_exit_failure_survive(self):
+        for status in (0, 7):
+            with self.subTest(status=status):
+                got = evaluator.run_process([sys.executable, '-c',
+                    'import sys;sys.stderr.write("x"*10000);print("ok");sys.exit('+str(status)+')'],
+                    2, time.monotonic() + 3, stderr_limit=20)
+                self.assertIsNone(got.issue)
+                self.assertEqual(got.returncode, status)
+                self.assertEqual(got.stderr, b'x'*20)
+                self.assertEqual(got.stdout, b'ok\n')
+
     def test_child_holding_pipe_is_killed_on_timeout(self):
         command = [sys.executable, '-c',
                    'import os,time; p=os.fork(); time.sleep(10) if p==0 else None']

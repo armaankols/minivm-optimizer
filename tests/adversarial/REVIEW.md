@@ -102,6 +102,12 @@ python3 -m unittest discover -s tests/adversarial -v
   rerun also passed one case/one VM comparison in 0.1605 seconds. No independent
   pre-fix execution of this second failure was captured; coordinator's confirmed
   reproduction triggered the fix.
+- During the join milestone, reviewer independently checked a narrow evaluator
+  fix for unrestricted diagnostic stderr: capture a bounded prefix, drain excess,
+  and preserve stdout/exit status under the same deadline. Added external noisy
+  identity and process-prefix tests. Final combined suite, including join review,
+  passed 31 tests in 4.902 seconds; see `JOIN_REVIEW.md` for the separate optimizer
+  finding, reproduction-before-fix history, and verification.
 
 Temporary failure witnesses produced by the tests are checked before their
 temporary directories are cleaned. Reproducible fixture-generating test code is
