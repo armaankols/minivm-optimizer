@@ -25,7 +25,7 @@ help draft subsequent prompts**. That conversation is **not included in the
 submitted logs**. Its model and reasoning setting were clarified as GPT-6.1 Sol
 with High reasoning.
 
-Available prompts and assignments are retained in [records/PROMPTS.md](records/PROMPTS.md);
+Available prompts and assignments are retained in [records/PROMPTS.md](../../records/PROMPTS.md);
 commands, results, decisions, failures, fixes and available specialist reports are
 retained under records/ and tests/. These are curated development records, not a
 complete provider-exported conversation/tool trace. The omitted brainstorming

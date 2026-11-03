@@ -1,7 +1,7 @@
 # MiniVM submission overview
 
 New optimizations are frozen at `49c7048`. Current HEAD includes the
-[post-review correctness fixes](records/post-review/RESULTS.md). [Reviewer handoff](REVIEW_HANDOFF.md) maps
+[post-review correctness fixes](../../records/post-review/RESULTS.md). [Reviewer handoff](REVIEW_HANDOFF.md) maps
 the source, specification, proofs, checks and known failures. [Setup](SETUP.md)
 provides reproducible commands; [checklist](SUBMISSION_CHECKLIST.md) identifies
 publication status and the disclosed gaps in conversation logs.
@@ -21,8 +21,8 @@ breaking an exact-limit input.
 
 The rules preserve register writes where memory lifetime requires them. Dead
 arithmetic, unchecked indices and potentially failing operations remain. Ordinary
-SQL or algebraic identities are not assumed. See [join proof](docs/optimizer.md),
-[stored-order proof](docs/sorted-order.md) and [DCE proof](docs/dce.md).
+SQL or algebraic identities are not assumed. See [join proof](../optimizer.md),
+[stored-order proof](../sorted-order.md) and [DCE proof](../dce.md).
 
 ## Evaluator
 
@@ -49,7 +49,7 @@ Eight supplied examples decrease from 60,363 to 59,121 instruction cycles (2.06%
 Measured incremental savings are 196 from joins, 276 from DCE and 770 from stored
 order. The final rule improves six of 39 diagnostic cases and leaves 33 unchanged
 relative to the preceding pipeline. Raw per-case results and wall times are in
-[final results](records/sorted-order/RESULTS.md); timings include subprocess startup.
+[final results](../../records/sorted-order/RESULTS.md); timings include subprocess startup.
 
 Join selection can regress: matching-stat string skew takes 28,852 cycles with
 chosen HJOIN versus 22,180 with NLJOIN. Stale statistics also cause losses. An

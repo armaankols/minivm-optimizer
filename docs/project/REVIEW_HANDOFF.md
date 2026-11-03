@@ -1,36 +1,36 @@
 # Fresh reviewer handoff
 
 **New optimizations remain frozen. Review current HEAD**, including the two
-correctness fixes from the [fresh review](records/post-review/supplied-REVIEW.md).
+correctness fixes from the [fresh review](../../records/post-review/supplied-REVIEW.md).
 The original optimization freeze was `49c7048`; `fc300d2` prepared documentation.
 Later fixes preserve the evaluator's pristine oracle and the VM program-size limit.
-See [post-review results](records/post-review/RESULTS.md) for validation and commits.
+See [post-review results](../../records/post-review/RESULTS.md) for validation and commits.
 
 Submission overview: [WRITEUP.md](WRITEUP.md). Remaining items:
 [SUBMISSION_CHECKLIST.md](SUBMISSION_CHECKLIST.md).
 
 ## Contract and implementation map
 
-- Specification: [requirements transcript](docs/assignment.md), original supplied
-  assignment.pdf, and [MiniVM docs](docs/README.md). The PDF and interpreter are
+- Specification: [requirements transcript](../assignment.md), original supplied
+  assignment.pdf, and [MiniVM docs](../README.md). The PDF and interpreter are
   deliberately outside the text-only submission.
 - Required interfaces: `./optimize PROGRAM SCHEMA` prints a program in <=60s;
   `./evaluate OPTIMIZER` exits 0 if no defects found, nonzero otherwise, in <=900s.
   Results must agree for any data satisfying declarations/constraints; stats are
   estimates only. Numeric tolerance is 1e-6 relative; ordering matters when specified.
-- [optimizer.py](optimizer.py): CLI/parser, frozen simple NLJOIN/HJOIN selection,
+- [optimizer.py](../../optimizer.py): CLI/parser, frozen simple NLJOIN/HJOIN selection,
   and a final UTF-8 byte-size guard with original-source fallback.
-- [sorted_order.py](sorted_order.py): current direct LOAD keys, one table, exact
+- [sorted_order.py](../../sorted_order.py): current direct LOAD keys, one table, exact
   leading guaranteed sorted prefix, ASC NF only; preserves the destination write.
-- [dead_code.py](dead_code.py): backward liveness, guaranteed type facts, narrow
+- [dead_code.py](../../dead_code.py): backward liveness, guaranteed type facts, narrow
   totality whitelist, **first textual definitions only**. Unsafe instructions stay.
-- [evaluator.py](evaluator.py): independent VM oracle, typed fixture metadata,
+- [evaluator.py](../../evaluator.py): independent VM oracle, typed fixture metadata,
   full-row multiplicity/order comparison, Decimal tolerance and maximum matching,
   frozen schemas with varied valid data, subprocess bounds and global deadline.
   A separate pristine program is used for the baseline, never the input given to
   the optimizer (which may edit that input in place).
-- [experiments/](experiments/README.md): exact archived profile model, not active.
-  Proofs: [joins](docs/optimizer.md), [sort rule](docs/sorted-order.md), [DCE](docs/dce.md).
+- [experiments/](../../experiments/README.md): exact archived profile model, not active.
+  Proofs: [joins](../optimizer.md), [sort rule](../sorted-order.md), [DCE](../dce.md).
 
 ## Setup and commands
 
@@ -67,8 +67,8 @@ linked results: **162 tests (79+83) pass**, and public 26/70 still passes. Flags
   combined 20 is 122065 simple vs 122689 refined (+624). All 29 instead favor profile:
   341953 vs 328560 (-13393). Neither diagnostic weighting is representative. Simpler
   policy was frozen on scope/complexity grounds, not a general performance claim.
-- Results/raw JSON: [final rule](records/sorted-order/RESULTS.md),
-  [DCE](records/dce/RESULTS.md), [join tradeoff](records/join-costs/RESULTS.md).
+- Results/raw JSON: [final rule](../../records/sorted-order/RESULTS.md),
+  [DCE](../../records/dce/RESULTS.md), [join tradeoff](../../records/join-costs/RESULTS.md).
   Wall times include startup and are noisy; current recorded evaluator ~4.4s,
   optimizer ~89-91ms/example, scale probe ~0.45s. See receipts for exact runs.
 
@@ -103,13 +103,13 @@ large padding is generated locally instead of stored as a fixture.
 
 Finite tests do not prove soundness. Assignment ordering intent, relative-error
 denominator and error/resource-limit equivalence are underspecified; adopted
-policies are in [CONTRACT.md](records/CONTRACT.md). VM output lacks complete type
+policies are in [CONTRACT.md](../../records/CONTRACT.md). VM output lacks complete type
 tags; fixtures have homogeneous output types. General mixed-type output inference,
 arbitrary-schema generation, Windows execution and resource-boundary proofs remain
 limited. Review timeout classification too (optimizer 60s, VM 10s, overall 840s).
 
-Prompts/decisions: [PROMPTS](records/PROMPTS.md), [SESSION](records/SESSION.md),
-specialist reports under tests/, and [final returned review log](records/sorted-order/REVIEW_LOG.md).
+Prompts/decisions: [PROMPTS](../../records/PROMPTS.md), [SESSION](../../records/SESSION.md),
+specialist reports under tests/, and [final returned review log](../../records/sorted-order/REVIEW_LOG.md).
 Logs are curated, not a complete provider conversation export. A separate
 GPT-6.1 Sol / High brainstorming thread helped discuss next steps and draft prompts;
 it is not included in submitted logs. User-reported development/review models and

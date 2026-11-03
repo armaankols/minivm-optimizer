@@ -41,7 +41,7 @@ and contention, and do not demonstrate a speed change. Example optimizer calls
 measured roughly 85–89ms in this run. Per-program cycles remain
 12766, 3527, 8562, 18442, 5518, 6338, 2444, 1524. All join holdouts remain in the
 39-case collection; existing join cost regressions and combined profile tradeoff
-in the [handoff](../../REVIEW_HANDOFF.md) are unchanged.
+in the [handoff](../../docs/project/REVIEW_HANDOFF.md) are unchanged.
 
 ```sh
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests/evaluator -v
@@ -76,5 +76,5 @@ remains a policy concern; the fresh reviewer did not reproduce an equivalent
 candidate exceeding it. Error/resource equivalence, type-tag ambiguity and join
 cost prediction caveats remain. No second-platform or new fresh-clone run was
 performed for these fixes. AI model/reasoning/usage details were pending at this
-milestone; the subsequent user-supplied disclosure is in [AI_USAGE.md](../../AI_USAGE.md).
+milestone; the subsequent user-supplied disclosure is in [AI_USAGE.md](../../docs/project/AI_USAGE.md).
 GitHub DNS still fails, so publication remains user-managed and unverified here.

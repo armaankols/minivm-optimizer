@@ -3,6 +3,8 @@
 **60,363 → 59,121 cycles across the eight supplied examples: 1,242 cycles saved.**
 Three examples improved; five were unchanged. This measures VM work, not elapsed-time speedup.
 
+Project files: [Conversation](CONVERSATION.md) · [Supporting documents](docs/project/README.md) · [Development records](records/SESSION.md).
+
 ## Assignment and approach
 
 We built a tool to make MiniVM programs do less work without changing their answers,
@@ -284,13 +286,13 @@ allowances are not converted into tokens, cost or elapsed development time.
 
 A separate **GPT-6.1 Sol, High reasoning** brainstorming thread discussed next
 steps and helped draft subsequent prompts. **That conversation is not included
-in the submitted logs.** [AI_USAGE.md](AI_USAGE.md), [prompts](records/PROMPTS.md)
+in the submitted logs.** [AI_USAGE.md](docs/project/AI_USAGE.md), [prompts](records/PROMPTS.md)
 and [development records](records/SESSION.md) preserve the available disclosures
 and curated logs.
 
 Git retains the starter and verified milestones; binaries remain excluded. The
 user confirmed earlier pushes, but latest publication is unverified because the
-recorded remote check failed GitHub DNS. The [submission checklist](SUBMISSION_CHECKLIST.md)
+recorded remote check failed GitHub DNS. The [submission checklist](docs/project/SUBMISSION_CHECKLIST.md)
 flags publication confirmation and the known gap in submitted conversation logs.
 
 ### Takeaway

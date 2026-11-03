@@ -1,7 +1,7 @@
 # Main-session conversation
 
 Recorded user prompts and visible assistant responses, copied verbatim.
-See [README.md](README.md) for the snapshot boundary and exclusions.
+See [export notes](records/conversations/README.md) for the snapshot boundary and exclusions.
 
 ## 0001 · 2026-11-02T22:37:04.596Z · User
 

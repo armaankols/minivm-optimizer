@@ -90,7 +90,7 @@
 
 ## AI usage and provenance
 
-Historical baseline status; see [the later user disclosure](../AI_USAGE.md) for current details.
+Historical baseline status; see [the later user disclosure](../docs/project/AI_USAGE.md) for current details.
 
 - Runtime identifies this agent as Codex based on GPT-6. Specialist sessions
   inherit the parent configuration; no model override was requested or used.
@@ -427,3 +427,14 @@ Historical baseline status; see [the later user disclosure](../AI_USAGE.md) for 
   milestone statements are labeled as pending at that time and point to the later
   disclosure; original supplied review and specialist logs remain historical.
   This update changes documentation only and uses no subagents.
+
+## Repository document layout cleanup
+
+- Moved the main-chat snapshot to root CONVERSATION.md at the user's request.
+  Only its export-framing link changed; all 104 recorded message blocks were
+  verified against their existing content hashes. Updated manifest offsets/hash.
+- Grouped supporting reports under docs/project/ with an index, moved starter
+  checksums to records/STARTER.sha256, and updated navigational Markdown links.
+  Recorded transcript/prompt bodies in fenced blocks remain unchanged.
+- Runtime entry points, Python modules, supplied binaries and Git history were
+  preserved. No source code or optimization change was made.

@@ -1,6 +1,6 @@
 # Main-chat export
 
-[main-session.md](main-session.md) contains recorded user prompts and visible
+[CONVERSATION.md](../../CONVERSATION.md) contains recorded user prompts and visible
 assistant commentary/final responses, including clarification questions, copied
 verbatim from this session's local Codex UI-event records. Original wording and
 formatting are preserved inside fenced text blocks; headers are export framing.
