@@ -1,0 +1,46 @@
+test_malformed_vm_output (test_evaluator_contract.ComparatorChallenges) ... ok
+test_non_greedy_matching_against_small_exhaustive_oracle (test_evaluator_contract.ComparatorChallenges) ... ok
+test_non_vm_numeric_strings_are_not_numeric_output (test_evaluator_contract.ComparatorChallenges) ... ok
+test_numeric_contract_allows_int_num_type_and_scale_changes (test_evaluator_contract.ComparatorChallenges) ... ok
+test_numeric_type_metadata_and_zero (test_evaluator_contract.ComparatorChallenges) ... ok
+test_type_multiplicity_associations_and_order (test_evaluator_contract.ComparatorChallenges) ... ok
+test_changed_alternative_constraints_are_incomplete (test_evaluator_contract.ExternalOptimizerChallenges) ... ok
+test_empty_program_nonzero_exit_and_invalid_utf8 (test_evaluator_contract.ExternalOptimizerChallenges) ... ok
+test_exact_int_to_num_rewrite_is_accepted_on_boundaries (test_evaluator_contract.ExternalOptimizerChallenges) ... ok
+test_global_deadline_is_incomplete_not_clean_or_optimizer_defect (test_evaluator_contract.ExternalOptimizerChallenges) ... ok
+test_huge_exponent_string_is_defect_with_witness (test_evaluator_contract.ExternalOptimizerChallenges) ... ok
+test_identity_accepts_alternatives_with_one_frozen_schema (test_evaluator_contract.ExternalOptimizerChallenges) ... ok
+test_noisy_identity_stderr_does_not_change_contract (test_evaluator_contract.ExternalOptimizerChallenges) ... ok
+test_stats_based_slice_is_rejected_and_witness_retained (test_evaluator_contract.ExternalOptimizerChallenges) ... ok
+test_unsorted_filter_may_reorder_whole_rows (test_evaluator_contract.ExternalOptimizerChallenges) ... ok
+test_child_holding_pipe_is_killed_on_timeout (test_evaluator_contract.ProcessChallenges) ... ok
+test_stderr_prefix_is_bounded_but_success_and_exit_failure_survive (test_evaluator_contract.ProcessChallenges) ... ok
+test_stdout_limit (test_evaluator_contract.ProcessChallenges) ... ok
+test_destination_input_aliases_and_reassignment (test_join_selection.JoinSelectionReview) ... ok
+test_join_output_estimates_do_not_reuse_overwritten_load_facts (test_join_selection.JoinSelectionReview) ... ok
+test_non_lf_separator_inside_literal_is_not_an_instruction (test_join_selection.JoinSelectionReview) ... ok
+test_numeric_cross_types_exact_comparison (test_join_selection.JoinSelectionReview) ... ok
+test_optimizer_changes_only_join_opcode_bytes (test_join_selection.JoinSelectionReview) ... ok
+test_optimizer_selects_cheaper_algorithm_on_matching_stats (test_join_selection.JoinSelectionReview) ... ok
+test_random_duplicate_null_pairs_against_independent_oracle (test_join_selection.JoinSelectionReview) ... ok
+test_register_reassignment_uses_latest_load_estimate (test_join_selection.JoinSelectionReview) ... ok
+test_small_and_large_raw_algorithm_costs (test_join_selection.JoinSelectionReview) ... ok
+test_stale_stats_can_regress_cost_without_changing_results (test_join_selection.JoinSelectionReview) ... ok
+test_type_errors_empty_and_null_inputs (test_join_selection.JoinSelectionReview) ... ok
+test_unknown_estimates_leave_source_unchanged (test_join_selection.JoinSelectionReview) ... ok
+test_documented_semantic_boundaries (test_semantic_witnesses.SemanticWitnesses) ... ok
+test_derived_columns_drop_direct_load_profile (test_string_cost_model.StringCostModelReview) ... ok
+test_missing_or_inconsistent_profiles_fall_back (test_string_cost_model.StringCostModelReview) ... ok
+test_nulls_are_zero_byte_mass_and_nulleq_changes_only_pairs (test_string_cost_model.StringCostModelReview) ... ok
+test_residual_singleton_tail_remains_a_model_limitation (test_string_cost_model.StringCostModelReview) ... ok
+test_rounded_mean_and_zero_residual_mass_are_safe (test_string_cost_model.StringCostModelReview) ... ok
+test_rounding_ambiguous_near_tie_retains_original_algorithm (test_string_cost_model.StringCostModelReview) ... ok
+test_seed_skew_uses_known_empty_frequency (test_string_cost_model.StringCostModelReview) ... ok
+test_stale_length_profile_can_still_regress (test_string_cost_model.StringCostModelReview) ... ok
+test_truncated_common_tail_is_not_assumed_singleton (test_string_cost_model.StringCostModelReview) ... ok
+test_utf8_bytes_not_character_count (test_string_cost_model.StringCostModelReview) ... ok
+
+----------------------------------------------------------------------
+Ran 41 tests in 8.507s
+
+OK

@@ -1,0 +1,566 @@
+{
+  "reference_commit": "31554143c7d8a42e5aa357910399eef135d5625d",
+  "corpus": "profile-holdouts-v1",
+  "platform": "macOS-15.7.7-arm64-arm-64bit",
+  "measurements": [
+    {
+      "suite": "holdouts",
+      "name": "null_skew_false",
+      "estimates": "matching",
+      "original_cycles": 20914,
+      "policies": {
+        "original": {
+          "cycles": 20914,
+          "vm_seconds": 0.010759416999999993
+        },
+        "previous": {
+          "cycles": 20914,
+          "optimizer_seconds": 0.21541783399999997,
+          "vm_seconds": 0.010721208000000038,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 14242,
+          "optimizer_seconds": 0.07887854100000002,
+          "vm_seconds": 0.009917125000000027,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 20914,
+          "optimizer_seconds": 0.19162837500000002,
+          "vm_seconds": 0.01154641600000006,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 14242,
+          "optimizer_seconds": 0.16255495900000005,
+          "vm_seconds": 0.011874041000000002,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "holdouts",
+      "name": "null_skew_true",
+      "estimates": "matching",
+      "original_cycles": 28852,
+      "policies": {
+        "original": {
+          "cycles": 28852,
+          "vm_seconds": 0.01079841700000006
+        },
+        "previous": {
+          "cycles": 28852,
+          "optimizer_seconds": 0.078380542,
+          "vm_seconds": 0.010415417000000038,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 22180,
+          "optimizer_seconds": 0.07959512499999999,
+          "vm_seconds": 0.009987583000000022,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 28852,
+          "optimizer_seconds": 0.04199758399999998,
+          "vm_seconds": 0.009764707999999844,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 22180,
+          "optimizer_seconds": 0.04300500000000018,
+          "vm_seconds": 0.010078458999999818,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "holdouts",
+      "name": "utf8_4000_byte_tail",
+      "estimates": "matching",
+      "original_cycles": 16852,
+      "policies": {
+        "original": {
+          "cycles": 16852,
+          "vm_seconds": 0.008938042000000035
+        },
+        "previous": {
+          "cycles": 16852,
+          "optimizer_seconds": 0.07620533299999988,
+          "vm_seconds": 0.009823792000000164,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 16180,
+          "optimizer_seconds": 0.07953229100000003,
+          "vm_seconds": 0.01004312499999993,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 16852,
+          "optimizer_seconds": 0.042406374999999885,
+          "vm_seconds": 0.010122583000000018,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 16180,
+          "optimizer_seconds": 0.042354375000000166,
+          "vm_seconds": 0.009673749999999925,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "holdouts",
+      "name": "ascii_1000_byte_tail",
+      "estimates": "matching",
+      "original_cycles": 13180,
+      "policies": {
+        "original": {
+          "cycles": 13180,
+          "vm_seconds": 0.009065125000000007
+        },
+        "previous": {
+          "cycles": 10852,
+          "optimizer_seconds": 0.07650849999999987,
+          "vm_seconds": 0.010092957999999985,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 10852,
+          "optimizer_seconds": 0.08054754200000014,
+          "vm_seconds": 0.010245457999999985,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 10852,
+          "optimizer_seconds": 0.04249241599999998,
+          "vm_seconds": 0.009907584000000025,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 13180,
+          "optimizer_seconds": 0.04273395800000013,
+          "vm_seconds": 0.010084042000000126,
+          "changes": [],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "holdouts",
+      "name": "full_common_utf8",
+      "estimates": "matching",
+      "original_cycles": 272,
+      "policies": {
+        "original": {
+          "cycles": 272,
+          "vm_seconds": 0.008441707999999881
+        },
+        "previous": {
+          "cycles": 268,
+          "optimizer_seconds": 0.07641695800000003,
+          "vm_seconds": 0.009519374999999997,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 268,
+          "optimizer_seconds": 0.07997774999999985,
+          "vm_seconds": 0.009384499999999907,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 268,
+          "optimizer_seconds": 0.04250191599999997,
+          "vm_seconds": 0.009401334000000094,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 272,
+          "optimizer_seconds": 0.042650666000000115,
+          "vm_seconds": 0.00936350000000008,
+          "changes": [],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "holdouts",
+      "name": "homogeneous_residual",
+      "estimates": "matching",
+      "original_cycles": 51448,
+      "policies": {
+        "original": {
+          "cycles": 51448,
+          "vm_seconds": 0.008763833999999804
+        },
+        "previous": {
+          "cycles": 28120,
+          "optimizer_seconds": 0.0771727499999999,
+          "vm_seconds": 0.009692290999999909,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 28120,
+          "optimizer_seconds": 0.08055629100000017,
+          "vm_seconds": 0.009732708000000034,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 28120,
+          "optimizer_seconds": 0.04245104199999972,
+          "vm_seconds": 0.009666957999999948,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 51448,
+          "optimizer_seconds": 0.042312832999999994,
+          "vm_seconds": 0.009586207999999985,
+          "changes": [],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "holdouts",
+      "name": "truncated_common_heterogeneous_tail",
+      "estimates": "matching",
+      "original_cycles": 18655,
+      "policies": {
+        "original": {
+          "cycles": 18655,
+          "vm_seconds": 0.00860200000000022
+        },
+        "previous": {
+          "cycles": 21358,
+          "optimizer_seconds": 0.07627058299999989,
+          "vm_seconds": 0.009658125000000073,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 21358,
+          "optimizer_seconds": 0.08016804199999994,
+          "vm_seconds": 0.009698791000000373,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 21358,
+          "optimizer_seconds": 0.04248262500000033,
+          "vm_seconds": 0.009331040999999818,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 18655,
+          "optimizer_seconds": 0.043398625000000024,
+          "vm_seconds": 0.00953483300000002,
+          "changes": [],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "holdouts",
+      "name": "rounded_average_near_tie",
+      "estimates": "matching",
+      "original_cycles": 11063,
+      "policies": {
+        "original": {
+          "cycles": 11063,
+          "vm_seconds": 0.008578709000000018
+        },
+        "previous": {
+          "cycles": 11064,
+          "optimizer_seconds": 0.07647379199999982,
+          "vm_seconds": 0.009862084000000326,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 11063,
+          "optimizer_seconds": 0.08044754200000037,
+          "vm_seconds": 0.009686749999999744,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 11063,
+          "optimizer_seconds": 0.04254291700000001,
+          "vm_seconds": 0.009977166000000093,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 11064,
+          "optimizer_seconds": 0.042261041999999804,
+          "vm_seconds": 0.00980599999999976,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "holdouts",
+      "name": "rounded_negative_central_residual",
+      "estimates": "matching",
+      "original_cycles": 157629,
+      "policies": {
+        "original": {
+          "cycles": 157629,
+          "vm_seconds": 0.014788416000000026
+        },
+        "previous": {
+          "cycles": 81608,
+          "optimizer_seconds": 0.08309554199999969,
+          "vm_seconds": 0.013118833000000052,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 81608,
+          "optimizer_seconds": 0.08311566600000031,
+          "vm_seconds": 0.01317424999999961,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 81608,
+          "optimizer_seconds": 0.043031416999999905,
+          "vm_seconds": 0.013083291999999691,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 157629,
+          "optimizer_seconds": 0.042706708999999954,
+          "vm_seconds": 0.013256415999999938,
+          "changes": [],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "holdouts",
+      "name": "stale_profile_distribution",
+      "estimates": "stale",
+      "original_cycles": 9232,
+      "policies": {
+        "original": {
+          "cycles": 9232,
+          "vm_seconds": 0.00918654200000013
+        },
+        "previous": {
+          "cycles": 9232,
+          "optimizer_seconds": 0.0770722909999999,
+          "vm_seconds": 0.010043208000000359,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 16528,
+          "optimizer_seconds": 0.08115195899999961,
+          "vm_seconds": 0.009922083999999831,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 9232,
+          "optimizer_seconds": 0.045061958999999874,
+          "vm_seconds": 0.010324417000000086,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 16528,
+          "optimizer_seconds": 0.043859125,
+          "vm_seconds": 0.010008582999999849,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        }
+      }
+    }
+  ],
+  "totals": {
+    "holdouts": {
+      "original": 328097,
+      "previous": 229120,
+      "current": 222399,
+      "always_HJOIN": 229119,
+      "always_NLJOIN": 321378
+    }
+  }
+}

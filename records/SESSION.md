@@ -99,6 +99,51 @@
   reports and concise execution results are retained with this milestone; this
   record is a curated transcript, not a claim of complete internal telemetry.
 
+## Cost-model comparison and refinement
+
+- User requested comparison against always-HJOIN and always-NLJOIN on the same
+  workloads, independent investigation of matching-stat string skew, and a
+  defensible cost-only improvement before another rewrite. Two existing
+  specialists retained their ownership; no nested delegation or model override.
+- Before any optimizer edit, coordinator saved `join-costs/before.json` for the
+  unchanged 8 examples + 11 targeted workloads. Reference optimizer text is
+  recovered from Git commit 3155414 and run through its command interface. Forced
+  policies also run as executables. Every candidate is audited for opcode-only
+  changes and executed against the same schema/data. Evaluator independently
+  copied the corpus and confirmed all raw cycles by documented formulas.
+- Reviewer independently derived seed NL 22180 / H 28852. Only one long/long pair
+  contributes 10000 byte cycles; min(mean) incorrectly assigns 640000 byte cycles
+  across 4096 pairs. The means themselves match the data; their use loses shape.
+- Based on that independent finding, added direct-LOAD string length profiles:
+  NULL zero-byte mass, common UTF-8 lengths/counts and a residual-mean bucket.
+  Constant FILL has exact metadata; GATHER/SLICE/element-wise operations discard
+  profiles. Retained scalar means are only heuristic fallbacks. No operand,
+  flag, instruction ordering or non-join source byte changes.
+- Decimal rounding intervals recover unique integer byte totals where possible;
+  otherwise an uncertainty margin keeps the original opcode near a rounded tie.
+  Counts/common values/distinct metadata and inferred residual totals are checked;
+  inconsistent profiles fall back. Rounding margins do not bound unknown tail
+  shape or statistical drift.
+- Reviewer supported the general residual-mean estimate but retained truncated
+  tail and stale-profile counterexamples. Initial cost-choice tests were red
+  against the old model, not semantic failures; after refinement they passed
+  without expectation changes. No new semantic failure was confirmed.
+- Fixed 19 comparison: previous 112833, refined 106161, always H 137963, always NL 449799.
+  Exactly one refined case improves by 6672, eighteen unchanged, no new regression
+  on this fixed set. Examples remain 60167 for selected, 60567 always H, 72953 always NL.
+- Separate holdouts are not substituted into those totals. They retain a matching
+  heterogeneous-tail regret 21358 vs 18655 and a NEW stale-profile regression from
+  old H 9232 to refined NL 16528. Derived profiles intentionally fall back and may
+  keep poor choices. These are performance limitations, with identical results.
+- Final coordinator suites: 59 evaluator tests passed 19.026 s; 41 adversarial tests
+  passed 8.507 s. All preceding semantic/lexical/process tests remain included.
+  Public evaluator still passes 26 cases / 70 datasets, wall 4.331 s, optimizer sum 2.156 s,
+  paired VM 1.252 s. Optimizer-only 20k-instruction/ 20k-column probe finishes 0.255 s.
+- Full before/after policy tables, raw measurements, separate holdouts and command
+  output are retained in `join-costs/` and specialist COST reports. Historical
+  baseline and first join-milestone records remain unchanged. No new token/spend
+  or backend model telemetry is available; none is invented.
+
 ## Remaining risks and deferred work
 
 - GitHub connectivity/authentication and remote history verification.

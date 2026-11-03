@@ -1,0 +1,418 @@
+{
+  "reference": "working-tree string-profile refinement after3155414",
+  "optimizer_sha256": "b3bb3dcf2eda63ac99b05d1abbfd7cebcdf4072e65dee349dee46b9ce2cdfad1",
+  "suite": "same-8-examples-and-11-join-workloads",
+  "measurements": [
+    {
+      "name": "q0001",
+      "original": 13766,
+      "cycles": {
+        "selected": 13570,
+        "NLJOIN": 13258,
+        "HJOIN": 13766
+      },
+      "join_opcodes": {
+        "selected": [
+          "HJOIN",
+          "NLJOIN",
+          "HJOIN"
+        ],
+        "NLJOIN": [
+          "NLJOIN",
+          "NLJOIN",
+          "NLJOIN"
+        ],
+        "HJOIN": [
+          "HJOIN",
+          "HJOIN",
+          "HJOIN"
+        ]
+      },
+      "estimates": "matching"
+    },
+    {
+      "name": "q0002",
+      "original": 3617,
+      "cycles": {
+        "selected": 3617,
+        "NLJOIN": 4049,
+        "HJOIN": 3617
+      },
+      "join_opcodes": {
+        "selected": [
+          "HJOIN",
+          "HJOIN"
+        ],
+        "NLJOIN": [
+          "NLJOIN",
+          "NLJOIN"
+        ],
+        "HJOIN": [
+          "HJOIN",
+          "HJOIN"
+        ]
+      },
+      "estimates": "matching"
+    },
+    {
+      "name": "q0003",
+      "original": 8562,
+      "cycles": {
+        "selected": 8562,
+        "NLJOIN": 13527,
+        "HJOIN": 8562
+      },
+      "join_opcodes": {
+        "selected": [
+          "HJOIN"
+        ],
+        "NLJOIN": [
+          "NLJOIN"
+        ],
+        "HJOIN": [
+          "HJOIN"
+        ]
+      },
+      "estimates": "matching"
+    },
+    {
+      "name": "q0004",
+      "original": 18442,
+      "cycles": {
+        "selected": 18442,
+        "NLJOIN": 20894,
+        "HJOIN": 18638
+      },
+      "join_opcodes": {
+        "selected": [
+          "HJOIN",
+          "HJOIN",
+          "NLJOIN",
+          "HJOIN"
+        ],
+        "NLJOIN": [
+          "NLJOIN",
+          "NLJOIN",
+          "NLJOIN",
+          "NLJOIN"
+        ],
+        "HJOIN": [
+          "HJOIN",
+          "HJOIN",
+          "HJOIN",
+          "HJOIN"
+        ]
+      },
+      "estimates": "matching"
+    },
+    {
+      "name": "q0005",
+      "original": 5518,
+      "cycles": {
+        "selected": 5518,
+        "NLJOIN": 5802,
+        "HJOIN": 5526
+      },
+      "join_opcodes": {
+        "selected": [
+          "HJOIN",
+          "NLJOIN",
+          "NLJOIN"
+        ],
+        "NLJOIN": [
+          "NLJOIN",
+          "NLJOIN",
+          "NLJOIN"
+        ],
+        "HJOIN": [
+          "HJOIN",
+          "HJOIN",
+          "HJOIN"
+        ]
+      },
+      "estimates": "matching"
+    },
+    {
+      "name": "q0006",
+      "original": 6338,
+      "cycles": {
+        "selected": 6338,
+        "NLJOIN": 11303,
+        "HJOIN": 6338
+      },
+      "join_opcodes": {
+        "selected": [
+          "HJOIN"
+        ],
+        "NLJOIN": [
+          "NLJOIN"
+        ],
+        "HJOIN": [
+          "HJOIN"
+        ]
+      },
+      "estimates": "matching"
+    },
+    {
+      "name": "q0007",
+      "original": 2596,
+      "cycles": {
+        "selected": 2596,
+        "NLJOIN": 2596,
+        "HJOIN": 2596
+      },
+      "join_opcodes": {
+        "selected": [],
+        "NLJOIN": [],
+        "HJOIN": []
+      },
+      "estimates": "matching"
+    },
+    {
+      "name": "q0008",
+      "original": 1524,
+      "cycles": {
+        "selected": 1524,
+        "NLJOIN": 1524,
+        "HJOIN": 1524
+      },
+      "join_opcodes": {
+        "selected": [],
+        "NLJOIN": [],
+        "HJOIN": []
+      },
+      "estimates": "matching"
+    },
+    {
+      "name": "numeric_tiny",
+      "original": 55,
+      "cycles": {
+        "selected": 31,
+        "NLJOIN": 31,
+        "HJOIN": 55
+      },
+      "join_opcodes": {
+        "selected": [
+          "NLJOIN"
+        ],
+        "NLJOIN": [
+          "NLJOIN"
+        ],
+        "HJOIN": [
+          "HJOIN"
+        ]
+      },
+      "estimates": "matching"
+    },
+    {
+      "name": "numeric_large",
+      "original": 4368,
+      "cycles": {
+        "selected": 1040,
+        "NLJOIN": 4368,
+        "HJOIN": 1040
+      },
+      "join_opcodes": {
+        "selected": [
+          "HJOIN"
+        ],
+        "NLJOIN": [
+          "NLJOIN"
+        ],
+        "HJOIN": [
+          "HJOIN"
+        ]
+      },
+      "estimates": "matching"
+    },
+    {
+      "name": "numeric_tie",
+      "original": 208,
+      "cycles": {
+        "selected": 208,
+        "NLJOIN": 208,
+        "HJOIN": 208
+      },
+      "join_opcodes": {
+        "selected": [
+          "HJOIN"
+        ],
+        "NLJOIN": [
+          "NLJOIN"
+        ],
+        "HJOIN": [
+          "HJOIN"
+        ]
+      },
+      "estimates": "matching"
+    },
+    {
+      "name": "empty_left",
+      "original": 240,
+      "cycles": {
+        "selected": 48,
+        "NLJOIN": 48,
+        "HJOIN": 240
+      },
+      "join_opcodes": {
+        "selected": [
+          "NLJOIN"
+        ],
+        "NLJOIN": [
+          "NLJOIN"
+        ],
+        "HJOIN": [
+          "HJOIN"
+        ]
+      },
+      "estimates": "matching"
+    },
+    {
+      "name": "duplicates_null_equal",
+      "original": 93,
+      "cycles": {
+        "selected": 59,
+        "NLJOIN": 59,
+        "HJOIN": 93
+      },
+      "join_opcodes": {
+        "selected": [
+          "NLJOIN"
+        ],
+        "NLJOIN": [
+          "NLJOIN"
+        ],
+        "HJOIN": [
+          "HJOIN"
+        ]
+      },
+      "estimates": "matching"
+    },
+    {
+      "name": "string_asymmetric",
+      "original": 33264,
+      "cycles": {
+        "selected": 2128,
+        "NLJOIN": 2128,
+        "HJOIN": 33264
+      },
+      "join_opcodes": {
+        "selected": [
+          "NLJOIN"
+        ],
+        "NLJOIN": [
+          "NLJOIN"
+        ],
+        "HJOIN": [
+          "HJOIN"
+        ]
+      },
+      "estimates": "matching"
+    },
+    {
+      "name": "string_large",
+      "original": 339060,
+      "cycles": {
+        "selected": 11516,
+        "NLJOIN": 339060,
+        "HJOIN": 11516
+      },
+      "join_opcodes": {
+        "selected": [
+          "HJOIN"
+        ],
+        "NLJOIN": [
+          "NLJOIN"
+        ],
+        "HJOIN": [
+          "HJOIN"
+        ]
+      },
+      "estimates": "matching"
+    },
+    {
+      "name": "string_skew_matching_stats",
+      "original": 22180,
+      "cycles": {
+        "selected": 22180,
+        "NLJOIN": 22180,
+        "HJOIN": 28852
+      },
+      "join_opcodes": {
+        "selected": [
+          "NLJOIN"
+        ],
+        "NLJOIN": [
+          "NLJOIN"
+        ],
+        "HJOIN": [
+          "HJOIN"
+        ]
+      },
+      "estimates": "matching"
+    },
+    {
+      "name": "stale_large_estimate_tiny_actual",
+      "original": 28,
+      "cycles": {
+        "selected": 48,
+        "NLJOIN": 28,
+        "HJOIN": 48
+      },
+      "join_opcodes": {
+        "selected": [
+          "HJOIN"
+        ],
+        "NLJOIN": [
+          "NLJOIN"
+        ],
+        "HJOIN": [
+          "HJOIN"
+        ]
+      },
+      "estimates": "stale"
+    },
+    {
+      "name": "stale_tiny_estimate_large_actual",
+      "original": 1040,
+      "cycles": {
+        "selected": 4368,
+        "NLJOIN": 4368,
+        "HJOIN": 1040
+      },
+      "join_opcodes": {
+        "selected": [
+          "NLJOIN"
+        ],
+        "NLJOIN": [
+          "NLJOIN"
+        ],
+        "HJOIN": [
+          "HJOIN"
+        ]
+      },
+      "estimates": "stale"
+    },
+    {
+      "name": "unknown_stats_large",
+      "original": 4368,
+      "cycles": {
+        "selected": 4368,
+        "NLJOIN": 4368,
+        "HJOIN": 1040
+      },
+      "join_opcodes": {
+        "selected": [
+          "NLJOIN"
+        ],
+        "NLJOIN": [
+          "NLJOIN"
+        ],
+        "HJOIN": [
+          "HJOIN"
+        ]
+      },
+      "estimates": "missing"
+    }
+  ]
+}

@@ -141,8 +141,9 @@ prefix, drain excess stderr under the original deadline, keep stdout overflow
 fatal. Reviewer inspected the fix and added independent external noisy-identity
 acceptance and process tests: stderr remains bounded at 20 bytes in the probe,
 stdout remains intact, and exit codes 0 and 7 are preserved. The reviewer did not
-capture an independent pre-fix execution of this failure; evaluator owner and
-coordinator supplied the confirmed reproduction.
+capture an independent pre-fix execution of this failure. Evaluator owner confirmed
+the pre-fix reproduction; coordinator authorized the fix and did not independently
+rerun that pre-fix case.
 
 Final combined command:
 

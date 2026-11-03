@@ -27,6 +27,14 @@ python3 tools/benchmark_joins.py ./optimize --output records/join-selection/work
 python3 tools/probe_join_scale.py --output records/join-selection/scale.json
 ```
 
+Compare the previous rule, current rule, always-HJOIN and always-NLJOIN on the
+same eight examples and eleven targeted workloads (reference commit 3155414):
+
+```sh
+python3 tools/compare_join_policies.py --output records/join-costs/after.json
+python3 tools/compare_join_policies.py --holdouts-only --output records/join-costs/holdouts.json
+```
+
 The original text starter is preserved in commit `b8e7f8a` and checksummed in
 `STARTER.sha256`. Original interpreter documentation starts at
 [docs/README.md](docs/README.md). Development decisions and known limitations are
@@ -35,6 +43,8 @@ are in [records/MILESTONE_1.md](records/MILESTONE_1.md).
 The implemented join rule, preconditions and cost-model limitations are in
 [docs/optimizer.md](docs/optimizer.md). Current results are in
 [records/join-selection/RESULTS.md](records/join-selection/RESULTS.md).
+The frequency-based string-cost refinement and policy comparison are in
+[records/join-costs/RESULTS.md](records/join-costs/RESULTS.md).
 
 The benchmark runs the eight fixed supplied programs through the public optimizer
 interface. It reports every case, including unchanged cases and regressions, and

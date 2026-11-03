@@ -1,0 +1,115 @@
+{
+  "suite": "separate-profile-holdouts",
+  "measurements": [
+    {
+      "name": "null_skew",
+      "selected": "NLJOIN",
+      "cycles": {
+        "selected": 14242,
+        "NLJOIN": 14242,
+        "HJOIN": 20914
+      },
+      "note": "NULLmasszero"
+    },
+    {
+      "name": "null_skew_nulleq",
+      "selected": "NLJOIN",
+      "cycles": {
+        "selected": 22180,
+        "NLJOIN": 22180,
+        "HJOIN": 28852
+      },
+      "note": "NULLmasszero"
+    },
+    {
+      "name": "utf8_full_common",
+      "selected": "HJOIN",
+      "cycles": {
+        "selected": 268,
+        "NLJOIN": 272,
+        "HJOIN": 268
+      },
+      "note": "fullcommonexact"
+    },
+    {
+      "name": "rounded_singleton",
+      "selected": "NLJOIN",
+      "cycles": {
+        "selected": 822,
+        "NLJOIN": 822,
+        "HJOIN": 824
+      },
+      "note": "singleintegertotal"
+    },
+    {
+      "name": "homogeneous_residual",
+      "selected": "HJOIN",
+      "cycles": {
+        "selected": 28120,
+        "NLJOIN": 51448,
+        "HJOIN": 28120
+      },
+      "note": "homogeneoustail"
+    },
+    {
+      "name": "common_full_rounded_avg",
+      "selected": "HJOIN",
+      "cycles": {
+        "selected": 172,
+        "NLJOIN": 192,
+        "HJOIN": 172
+      },
+      "note": "fullcommonexact"
+    },
+    {
+      "name": "derived_rtrim",
+      "selected": "HJOIN",
+      "cycles": {
+        "selected": 68988,
+        "NLJOIN": 62316,
+        "HJOIN": 68988
+      },
+      "note": "profilediscarded_scalarfallthrough"
+    },
+    {
+      "name": "derived_slice",
+      "selected": "HJOIN",
+      "cycles": {
+        "selected": 28988,
+        "NLJOIN": 22316,
+        "HJOIN": 28988
+      },
+      "note": "profilediscarded_scalarfallthrough"
+    },
+    {
+      "name": "derived_gather",
+      "selected": "HJOIN",
+      "cycles": {
+        "selected": 29124,
+        "NLJOIN": 22452,
+        "HJOIN": 29124
+      },
+      "note": "profilediscarded_scalarfallthrough"
+    },
+    {
+      "name": "ambiguous_tail_keep_h",
+      "selected": "HJOIN",
+      "cycles": {
+        "selected": 63768,
+        "NLJOIN": 63766,
+        "HJOIN": 63768
+      },
+      "note": "uncertaintyband_retainsoriginal"
+    },
+    {
+      "name": "literal_fill",
+      "selected": "HJOIN",
+      "cycles": {
+        "selected": 168,
+        "NLJOIN": 184,
+        "HJOIN": 168
+      },
+      "note": "literalutf8"
+    }
+  ]
+}

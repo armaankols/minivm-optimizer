@@ -4,6 +4,23 @@ These are the task requests and specialist assignments available in the session.
 This does not include hidden model reasoning, unavailable provider telemetry, or
 an automatic export of the application conversation.
 
+## User: cost-rule comparison and refinement
+
+```text
+Before adding another rewrite, let’s take a closer look at the join selection. Can you compare the current rule against always choosing HJOIN and always choosing NLJOIN on the same workloads?
+
+I’m particularly interested in why the skewed-string case gets worse even with matching statistics. Have the reviewer investigate that independently, then use the findings to improve the rule if there’s a defensible change.
+```
+
+Specialist assignments: reviewer independently derives skew cost and investigates
+common/null/average statistics before seeing a coordinator proposal, then reviews
+profile validation, rounding, derived-column invalidation and limitations. Own
+only `tests/adversarial/**`. Evaluator independently compares the identical
+19-case corpus under external forced policies, derives cycle formulas from VM
+execution/docs, and adds separate profile holdouts. Own only existing evaluator
+paths. Coordinator owns optimizer, comparison tooling, records and Git. No nested
+delegation or additional semantic rewrite.
+
 ## User: join milestone approval and push update
 
 ```text

@@ -1,0 +1,1041 @@
+{
+  "reference_commit": "31554143c7d8a42e5aa357910399eef135d5625d",
+  "corpus": "supplied-examples-v1 + join-workloads-v1",
+  "platform": "macOS-15.7.7-arm64-arm-64bit",
+  "measurements": [
+    {
+      "suite": "examples",
+      "name": "q0001",
+      "estimates": "supplied",
+      "original_cycles": 13766,
+      "policies": {
+        "original": {
+          "cycles": 13766,
+          "vm_seconds": 0.010956833999999999
+        },
+        "previous": {
+          "cycles": 13570,
+          "optimizer_seconds": 0.232745208,
+          "vm_seconds": 0.010972707999999998,
+          "changes": [
+            {
+              "line": 31,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 13570,
+          "optimizer_seconds": 0.08486537499999997,
+          "vm_seconds": 0.010213165999999996,
+          "changes": [
+            {
+              "line": 31,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 13766,
+          "optimizer_seconds": 0.183626,
+          "vm_seconds": 0.011621584000000018,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 13258,
+          "optimizer_seconds": 0.144962833,
+          "vm_seconds": 0.010794874999999982,
+          "changes": [
+            {
+              "line": 19,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            },
+            {
+              "line": 31,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            },
+            {
+              "line": 60,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "examples",
+      "name": "q0002",
+      "estimates": "supplied",
+      "original_cycles": 3617,
+      "policies": {
+        "original": {
+          "cycles": 3617,
+          "vm_seconds": 0.010143459000000021
+        },
+        "previous": {
+          "cycles": 3617,
+          "optimizer_seconds": 0.07685591700000005,
+          "vm_seconds": 0.010842624999999995,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 3617,
+          "optimizer_seconds": 0.08197583299999989,
+          "vm_seconds": 0.009780416000000125,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 3617,
+          "optimizer_seconds": 0.042535250000000024,
+          "vm_seconds": 0.010284583000000014,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 4049,
+          "optimizer_seconds": 0.04258133399999986,
+          "vm_seconds": 0.010120000000000129,
+          "changes": [
+            {
+              "line": 17,
+              "from": "hjoin",
+              "to": "NLJOIN"
+            },
+            {
+              "line": 34,
+              "from": "hjoin",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "examples",
+      "name": "q0003",
+      "estimates": "supplied",
+      "original_cycles": 8562,
+      "policies": {
+        "original": {
+          "cycles": 8562,
+          "vm_seconds": 0.009279833000000126
+        },
+        "previous": {
+          "cycles": 8562,
+          "optimizer_seconds": 0.07911937499999988,
+          "vm_seconds": 0.009825833999999922,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 8562,
+          "optimizer_seconds": 0.08209074999999988,
+          "vm_seconds": 0.009880250000000146,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 8562,
+          "optimizer_seconds": 0.042692583000000006,
+          "vm_seconds": 0.009930790999999939,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 13527,
+          "optimizer_seconds": 0.042850208999999806,
+          "vm_seconds": 0.010309667000000022,
+          "changes": [
+            {
+              "line": 10,
+              "from": "hjoin",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "examples",
+      "name": "q0004",
+      "estimates": "supplied",
+      "original_cycles": 18442,
+      "policies": {
+        "original": {
+          "cycles": 18442,
+          "vm_seconds": 0.009461582999999996
+        },
+        "previous": {
+          "cycles": 18442,
+          "optimizer_seconds": 0.0786462080000001,
+          "vm_seconds": 0.010208708999999816,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 18442,
+          "optimizer_seconds": 0.08292875,
+          "vm_seconds": 0.010015833000000196,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 18638,
+          "optimizer_seconds": 0.04296329099999996,
+          "vm_seconds": 0.009882541000000078,
+          "changes": [
+            {
+              "line": 43,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 20894,
+          "optimizer_seconds": 0.043184209000000084,
+          "vm_seconds": 0.010271875000000152,
+          "changes": [
+            {
+              "line": 13,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            },
+            {
+              "line": 27,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            },
+            {
+              "line": 62,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "examples",
+      "name": "q0005",
+      "estimates": "supplied",
+      "original_cycles": 5518,
+      "policies": {
+        "original": {
+          "cycles": 5518,
+          "vm_seconds": 0.009378166000000077
+        },
+        "previous": {
+          "cycles": 5518,
+          "optimizer_seconds": 0.07819579099999996,
+          "vm_seconds": 0.010345874999999838,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 5518,
+          "optimizer_seconds": 0.08251833299999989,
+          "vm_seconds": 0.010045917000000015,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 5526,
+          "optimizer_seconds": 0.04269195800000003,
+          "vm_seconds": 0.010042875000000118,
+          "changes": [
+            {
+              "line": 54,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            },
+            {
+              "line": 75,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 5802,
+          "optimizer_seconds": 0.04323566700000003,
+          "vm_seconds": 0.009852749999999855,
+          "changes": [
+            {
+              "line": 21,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "examples",
+      "name": "q0006",
+      "estimates": "supplied",
+      "original_cycles": 6338,
+      "policies": {
+        "original": {
+          "cycles": 6338,
+          "vm_seconds": 0.00914316599999987
+        },
+        "previous": {
+          "cycles": 6338,
+          "optimizer_seconds": 0.07765241700000036,
+          "vm_seconds": 0.010188625000000062,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 6338,
+          "optimizer_seconds": 0.0818733749999998,
+          "vm_seconds": 0.009749125000000358,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 6338,
+          "optimizer_seconds": 0.04294737500000023,
+          "vm_seconds": 0.010012667000000253,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 11303,
+          "optimizer_seconds": 0.04336179100000015,
+          "vm_seconds": 0.009658834000000116,
+          "changes": [
+            {
+              "line": 18,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "examples",
+      "name": "q0007",
+      "estimates": "supplied",
+      "original_cycles": 2596,
+      "policies": {
+        "original": {
+          "cycles": 2596,
+          "vm_seconds": 0.00957637499999997
+        },
+        "previous": {
+          "cycles": 2596,
+          "optimizer_seconds": 0.07896458299999987,
+          "vm_seconds": 0.009963000000000388,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 2596,
+          "optimizer_seconds": 0.08193420799999984,
+          "vm_seconds": 0.010110667000000184,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 2596,
+          "optimizer_seconds": 0.04306533300000037,
+          "vm_seconds": 0.010320791000000273,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 2596,
+          "optimizer_seconds": 0.042847499999999705,
+          "vm_seconds": 0.009895209000000182,
+          "changes": [],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "examples",
+      "name": "q0008",
+      "estimates": "supplied",
+      "original_cycles": 1524,
+      "policies": {
+        "original": {
+          "cycles": 1524,
+          "vm_seconds": 0.009565665999999862
+        },
+        "previous": {
+          "cycles": 1524,
+          "optimizer_seconds": 0.07812241699999989,
+          "vm_seconds": 0.010160374999999888,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 1524,
+          "optimizer_seconds": 0.08182341700000029,
+          "vm_seconds": 0.00992312499999981,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 1524,
+          "optimizer_seconds": 0.043543791999999915,
+          "vm_seconds": 0.009795249999999811,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 1524,
+          "optimizer_seconds": 0.04324670900000038,
+          "vm_seconds": 0.009695208000000122,
+          "changes": [],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "targeted",
+      "name": "numeric_tiny",
+      "estimates": "matching",
+      "original_cycles": 55,
+      "policies": {
+        "original": {
+          "cycles": 55,
+          "vm_seconds": 0.008358583000000142
+        },
+        "previous": {
+          "cycles": 31,
+          "optimizer_seconds": 0.07711441700000021,
+          "vm_seconds": 0.00980616699999981,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 31,
+          "optimizer_seconds": 0.08208337500000029,
+          "vm_seconds": 0.009674916999999894,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 55,
+          "optimizer_seconds": 0.04295529199999981,
+          "vm_seconds": 0.009736791999999994,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 31,
+          "optimizer_seconds": 0.042781999999999876,
+          "vm_seconds": 0.009242292000000152,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "targeted",
+      "name": "numeric_large",
+      "estimates": "matching",
+      "original_cycles": 4368,
+      "policies": {
+        "original": {
+          "cycles": 4368,
+          "vm_seconds": 0.009188374999999915
+        },
+        "previous": {
+          "cycles": 1040,
+          "optimizer_seconds": 0.07743087500000012,
+          "vm_seconds": 0.010041791999999994,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 1040,
+          "optimizer_seconds": 0.0813385000000002,
+          "vm_seconds": 0.009962999999999944,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 1040,
+          "optimizer_seconds": 0.04289608300000003,
+          "vm_seconds": 0.00987416699999999,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 4368,
+          "optimizer_seconds": 0.042951666,
+          "vm_seconds": 0.009381791000000028,
+          "changes": [],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "targeted",
+      "name": "numeric_tie",
+      "estimates": "matching",
+      "original_cycles": 208,
+      "policies": {
+        "original": {
+          "cycles": 208,
+          "vm_seconds": 0.009316833000000191
+        },
+        "previous": {
+          "cycles": 208,
+          "optimizer_seconds": 0.07763149999999985,
+          "vm_seconds": 0.009817333999999622,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 208,
+          "optimizer_seconds": 0.08141958400000027,
+          "vm_seconds": 0.009824791000000221,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 208,
+          "optimizer_seconds": 0.04325050000000008,
+          "vm_seconds": 0.009854666999999928,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 208,
+          "optimizer_seconds": 0.04305033300000005,
+          "vm_seconds": 0.009536917000000145,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "targeted",
+      "name": "empty_left",
+      "estimates": "matching",
+      "original_cycles": 240,
+      "policies": {
+        "original": {
+          "cycles": 240,
+          "vm_seconds": 0.008673874999999942
+        },
+        "previous": {
+          "cycles": 48,
+          "optimizer_seconds": 0.07782216699999989,
+          "vm_seconds": 0.010112125000000027,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 48,
+          "optimizer_seconds": 0.08208883399999989,
+          "vm_seconds": 0.00969483300000018,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 240,
+          "optimizer_seconds": 0.04296474999999944,
+          "vm_seconds": 0.009960249999999782,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 48,
+          "optimizer_seconds": 0.04319300000000048,
+          "vm_seconds": 0.009590542000000646,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "targeted",
+      "name": "duplicates_null_equal",
+      "estimates": "matching",
+      "original_cycles": 93,
+      "policies": {
+        "original": {
+          "cycles": 93,
+          "vm_seconds": 0.00956704200000047
+        },
+        "previous": {
+          "cycles": 59,
+          "optimizer_seconds": 0.07773595899999997,
+          "vm_seconds": 0.009950916999999393,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 59,
+          "optimizer_seconds": 0.08184329200000029,
+          "vm_seconds": 0.00955008299999971,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 93,
+          "optimizer_seconds": 0.042964666000000484,
+          "vm_seconds": 0.009909083999999346,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 59,
+          "optimizer_seconds": 0.0427578749999995,
+          "vm_seconds": 0.00957641599999981,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "targeted",
+      "name": "string_asymmetric",
+      "estimates": "matching",
+      "original_cycles": 33264,
+      "policies": {
+        "original": {
+          "cycles": 33264,
+          "vm_seconds": 0.008960500000000593
+        },
+        "previous": {
+          "cycles": 2128,
+          "optimizer_seconds": 0.07750366600000014,
+          "vm_seconds": 0.009652624999999304,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 2128,
+          "optimizer_seconds": 0.08186587500000009,
+          "vm_seconds": 0.009911749999999664,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 33264,
+          "optimizer_seconds": 0.04294274999999992,
+          "vm_seconds": 0.010010583000000572,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 2128,
+          "optimizer_seconds": 0.043193084000000326,
+          "vm_seconds": 0.009632499999999489,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "targeted",
+      "name": "string_large",
+      "estimates": "matching",
+      "original_cycles": 339060,
+      "policies": {
+        "original": {
+          "cycles": 339060,
+          "vm_seconds": 0.009095916999999787
+        },
+        "previous": {
+          "cycles": 11516,
+          "optimizer_seconds": 0.08084908399999957,
+          "vm_seconds": 0.010151500000000091,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 11516,
+          "optimizer_seconds": 0.08228829200000032,
+          "vm_seconds": 0.009861083999999742,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 11516,
+          "optimizer_seconds": 0.043192458000000045,
+          "vm_seconds": 0.009518374999999857,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 339060,
+          "optimizer_seconds": 0.04281904200000053,
+          "vm_seconds": 0.00979854200000041,
+          "changes": [],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "targeted",
+      "name": "string_skew_matching_stats",
+      "estimates": "matching",
+      "original_cycles": 22180,
+      "policies": {
+        "original": {
+          "cycles": 22180,
+          "vm_seconds": 0.009002417000000484
+        },
+        "previous": {
+          "cycles": 28852,
+          "optimizer_seconds": 0.07804812499999958,
+          "vm_seconds": 0.01007058400000016,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 22180,
+          "optimizer_seconds": 0.08177325000000035,
+          "vm_seconds": 0.010417040999999294,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 28852,
+          "optimizer_seconds": 0.04308349999999983,
+          "vm_seconds": 0.00975162499999982,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 22180,
+          "optimizer_seconds": 0.04342112500000006,
+          "vm_seconds": 0.009776749999999446,
+          "changes": [],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "targeted",
+      "name": "stale_large_estimate_tiny_actual",
+      "estimates": "stale",
+      "original_cycles": 28,
+      "policies": {
+        "original": {
+          "cycles": 28,
+          "vm_seconds": 0.008716833000000257
+        },
+        "previous": {
+          "cycles": 48,
+          "optimizer_seconds": 0.07814708300000017,
+          "vm_seconds": 0.009617874999999998,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 48,
+          "optimizer_seconds": 0.08183412499999942,
+          "vm_seconds": 0.009868917000000366,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 48,
+          "optimizer_seconds": 0.0431017090000001,
+          "vm_seconds": 0.009463042000000144,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 28,
+          "optimizer_seconds": 0.043024916000000246,
+          "vm_seconds": 0.009657958000000022,
+          "changes": [],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "targeted",
+      "name": "stale_tiny_estimate_large_actual",
+      "estimates": "stale",
+      "original_cycles": 1040,
+      "policies": {
+        "original": {
+          "cycles": 1040,
+          "vm_seconds": 0.00912441600000058
+        },
+        "previous": {
+          "cycles": 4368,
+          "optimizer_seconds": 0.0779972080000002,
+          "vm_seconds": 0.009836292000000135,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 4368,
+          "optimizer_seconds": 0.0812903330000001,
+          "vm_seconds": 0.009998374999999449,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 1040,
+          "optimizer_seconds": 0.043012832999999695,
+          "vm_seconds": 0.009481749999999955,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 4368,
+          "optimizer_seconds": 0.04334924999999945,
+          "vm_seconds": 0.009854875000000263,
+          "changes": [
+            {
+              "line": 3,
+              "from": "HJOIN",
+              "to": "NLJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        }
+      }
+    },
+    {
+      "suite": "targeted",
+      "name": "unknown_stats_large",
+      "estimates": "missing",
+      "original_cycles": 4368,
+      "policies": {
+        "original": {
+          "cycles": 4368,
+          "vm_seconds": 0.008651625000000607
+        },
+        "previous": {
+          "cycles": 4368,
+          "optimizer_seconds": 0.0778140830000007,
+          "vm_seconds": 0.009972750000000197,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "current": {
+          "cycles": 4368,
+          "optimizer_seconds": 0.08181662500000009,
+          "vm_seconds": 0.009830292000000185,
+          "changes": [],
+          "exact_result_equal": true
+        },
+        "always_HJOIN": {
+          "cycles": 1040,
+          "optimizer_seconds": 0.04323304199999978,
+          "vm_seconds": 0.009730083,
+          "changes": [
+            {
+              "line": 3,
+              "from": "NLJOIN",
+              "to": "HJOIN"
+            }
+          ],
+          "exact_result_equal": true
+        },
+        "always_NLJOIN": {
+          "cycles": 4368,
+          "optimizer_seconds": 0.04349120799999984,
+          "vm_seconds": 0.009545042000000059,
+          "changes": [],
+          "exact_result_equal": true
+        }
+      }
+    }
+  ],
+  "totals": {
+    "examples": {
+      "original": 60363,
+      "previous": 60167,
+      "current": 60167,
+      "always_HJOIN": 60567,
+      "always_NLJOIN": 72953
+    },
+    "targeted": {
+      "original": 404904,
+      "previous": 52666,
+      "current": 45994,
+      "always_HJOIN": 77396,
+      "always_NLJOIN": 376846
+    }
+  }
+}

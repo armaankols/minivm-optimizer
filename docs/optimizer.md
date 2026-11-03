@@ -37,24 +37,48 @@ NLJOIN = L * R
 HJOIN  = 6 * (L + R)
 ```
 
-For STR keys with estimated mean UTF-8 byte lengths bL and bR:
+For STR keys with estimated all-row mean UTF-8 byte lengths bL and bR:
 
 ```
-NLJOIN ~= L * R * (1 + min(bL, bR))
+NLJOIN ~= L * R * (1 + sum(p_i * q_j * min(length_i, length_j)))
 HJOIN  ~= L * (6 + bL) + R * (6 + bR)
 ```
 
-`min(mean bytes)` is not `mean(min(bytes))`. This deliberate approximation can be
-poor even when statistics match actual data; the fixed skewed-string benchmark
-retains a measured regression. Stale stats can also cause regressions, including
-on tiny joins. Choosing hash unconditionally would have avoidable tiny-join costs.
+The sum uses a small length-frequency profile for direct LOAD columns: NULL mass
+at zero bytes, up to eight reported common values at their UTF-8 byte lengths,
+and unlisted non-NULL rows at a residual mean length. `avg_bytes` is a non-NULL
+mean; subtract common-value bytes from its implied non-NULL total to estimate
+the residual. Profiles have at most ten buckets. Without a profile, the scalar
+mean becomes one bucket, retaining the previous fallback model. Valid NULL counts
+also adjust the fallback mean to include zero bytes for NULL rows.
+
+Reported averages are rounded to two decimal places. Decimal intervals of
+plus/minus .005 times non-NULL count bound the implied total. Total byte counts
+are integers; recover a residual sum exactly when only one nonnegative integer
+fits. Otherwise retain its mean and rounding slack. Keep the input opcode when
+the estimated cost difference is within L*R*(eL+eR)+L*eL+R*eR, where each e is
+per-row rounding uncertainty. This guards average-reporting error only.
+
+Duplicate/malformed common values, invalid counts, inconsistent supplied distinct
+counts or impossible byte totals discard the profile. Profiles are dropped after
+GATHER, SLICE and every element-wise operation; constant STR FILL has an exact
+profile. Scalar estimates can survive as an explicitly rough fallback.
+
+The previous `min(mean bytes)` was not `mean(min(bytes))`; it overcharged the seed
+skew case by 64 times. Partitioning common values fixes that case. With exact
+matching means, residual mean buckets still upper-estimate the NL byte term
+because min is concave. That does not prove HJOIN is cheaper: heterogeneous
+residuals can still make it a bad choice. Truncated common lists, derived-column
+fallbacks and stale stats remain measured limitations. No semantic decision
+depends on this distribution estimate being true for the actual runtime data.
 
 The implementation tracks estimates in one forward pass. Direct LOADs read table
 rows, column type, distinct count and STR average bytes. IOTA, SORT, TOPK, SLICE,
 FILL, GATHER and element-wise operations propagate estimated lengths/types.
 IDX assumes 50% selectivity. Join output size uses L*R/max(1,NDV_L,NDV_R) when
 all required estimates exist, capped by the register limit; otherwise it is
-unknown. String transformations carry a rough input-byte estimate. Aggregates
+unknown. String transformations carry only a rough input-byte mean, not a source
+distribution. Aggregates
 and group sets are not modeled. These approximations affect cost choices only.
 Register reassignment replaces old facts; facts are never used to substitute
 registers or change operand values. Schema stats are indexed once per table.
@@ -78,5 +102,9 @@ candidate with MiniVM, without importing optimizer code. Benchmarks additionally
 audit source differences to allow only opcode changes. Seeds and commands are
 retained in `tests/adversarial/JOIN_REVIEW.md`,
 `tests/evaluator/JOIN_REPORT.md`, and `records/join-selection/`.
+
+The cost refinement also has separate independent tests and before/after policy
+comparisons in `tests/adversarial/COST_REVIEW.md`,
+`tests/evaluator/COST_REPORT.md`, and `records/join-costs/`.
 
 No other optimizer rewrite is included in this milestone.
