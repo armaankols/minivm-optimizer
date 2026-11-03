@@ -250,3 +250,15 @@ the original reviewer for independent reproduction and tests/adversarial only.
 Coordinator owns optimizer final UTF-8 size guard, records, docs, integration and
 Git. No new optimizations, shared helper edits or nested delegation authorized.
 Both specialists were instructed to reproduce before fixing and retain reports.
+
+## User: supplied AI-use disclosure (verbatim)
+
+```text
+here is the ai info i have. please add this and replace what you have. ask anything that is unclear before commiting: I used Codex CLI with GPT‑6.1 Sol at High reasoning for development and GPT‑6 Astra at High reasoning for the independent review. Usage was through ChatGPT Plus, and I consumed approximately four full five-hour usage allowances across the assignment. Exact token counts were not recorded, so I cannot provide a reliable token total or project-specific dollar cost.
+
+I also used a separate brainstorming thread to discuss next steps and help draft subsequent prompts. That conversation is not included in the submitted logs.
+```
+
+The coordinator asked which model/reasoning setting was used for the separate
+brainstorming thread, before committing. The user answered `sol 6.1 high`, recorded
+as GPT-6.1 Sol with High reasoning. No usage conversion or cost estimate was inferred.

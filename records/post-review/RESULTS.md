@@ -75,5 +75,6 @@ Finite tests do not prove soundness. The evaluator's 10-second candidate-VM cap
 remains a policy concern; the fresh reviewer did not reproduce an equivalent
 candidate exceeding it. Error/resource equivalence, type-tag ambiguity and join
 cost prediction caveats remain. No second-platform or new fresh-clone run was
-performed for these fixes. AI model/reasoning/usage details still await the user.
+performed for these fixes. AI model/reasoning/usage details were pending at this
+milestone; the subsequent user-supplied disclosure is in [AI_USAGE.md](../../AI_USAGE.md).
 GitHub DNS still fails, so publication remains user-managed and unverified here.

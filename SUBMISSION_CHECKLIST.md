@@ -13,16 +13,17 @@ Start with [REVIEW_HANDOFF.md](REVIEW_HANDOFF.md) and [WRITEUP.md](WRITEUP.md).
 | Identity and incorrect optimizers | Baseline receipts and witnesses retained; replay with `tools/verify_baseline.py`. Identity accepted, five deliberate defective optimizers rejected. |
 | Reproducible results | Fixed workloads, holdouts, seeds, raw JSON, failure fixtures and commands retained. [Current results](records/sorted-order/RESULTS.md), [join tradeoffs](records/join-costs/RESULTS.md). Reproduction commands corrected from `python 3` to `python3`; use temporary result paths in SETUP. |
 | Narrative and limitations | [WRITEUP.md](WRITEUP.md), handoff and per-rule proofs cover implementation, evaluator, measurements, join regressions, error preservation and memory lifetime. |
-| AI use | [AI_USAGE.md](AI_USAGE.md) describes roles and future work. Exact model/reasoning settings and rough usage/spend remain **pending user information**, as requested by the user. |
-| Prompts and logs | Curated prompts, assignments, decisions, commands, results and available specialist reports retained. A complete provider conversation/tool export is not available in the repository. User can supply it if available; do not describe these curated records as exhaustive. |
+| AI use | [AI_USAGE.md](AI_USAGE.md) records user-reported Codex CLI models: GPT-6.1 Sol / High for development and GPT-6 Astra / High for independent review; brainstorming also used GPT-6.1 Sol / High. ChatGPT Plus usage was approximately four full five-hour allowances. Exact tokens and reliable project-specific cost are unavailable. |
+| Prompts and logs | Curated prompts, assignments, decisions, commands, results and available specialist reports retained. A separate brainstorming thread discussed next steps and helped draft prompts; it is not included in submitted logs. A complete provider conversation/tool export is unavailable in the repository. This is a disclosed coverage gap. |
 | Git history and binaries | At frozen commit: 10 commits, 34 starter hashes verified, 195 historical blobs checked as UTF-8 without NUL, no binary blobs or tracked bin files. [Audit](records/submission-audit/git-audit.json). Documentation preparation was text only; later review fixes add source and generated-boundary regression tests. |
 | Publication | Requested origin configured. User confirmed earlier pushes. Latest remote state cannot be checked here because GitHub DNS fails. User handles pushes and should confirm the final branch/commit is accessible. No history rewriting. |
 
 ## Information still needed from the user
 
-- Exact models/reasoning settings and approximate token usage or spend, or an
-  explicit statement that telemetry is unavailable. User said they will provide it later.
-- A complete conversation export if available, to supplement the curated prompts/logs.
+- Any available conversation export to supplement the curated logs, especially
+  the separate brainstorming conversation disclosed as absent from the submission.
+  Model/reasoning details and a usage-allowance estimate have now been supplied;
+  exact token totals and a reliable project-specific dollar cost are unavailable.
 - Confirmation that the final commits have been pushed and the submission reviewer
   can access the intended branch. Any portal-specific packaging instructions have
   not been supplied.

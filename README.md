@@ -275,17 +275,23 @@ valid slow candidate; no such witness was reproduced. DCE intentionally retains
 many unused operations. Broader algebraic rewrites, partial sorting and repeated-expression reuse
 remain deferred because errors, register versions and resource lifetimes matter.
 
-The recorded runtime identified Codex as based on the **GPT-6 family**, not an
-authoritative exact model ID. Exact model/reasoning settings and approximate tokens
-or spend remain **pending user/account information**; no estimates are invented.
-[AI_USAGE.md](AI_USAGE.md), [prompts](records/PROMPTS.md) and
-[development records](records/SESSION.md) preserve available information. Logs are
-curated, not a complete provider conversation export.
+Development used **Codex CLI with GPT-6.1 Sol, High reasoning**; independent review
+used **Codex CLI with GPT-6 Astra, High reasoning**. Usage was through **ChatGPT
+Plus**, consuming approximately **four full five-hour usage allowances** across
+the assignment, as reported by the user. Exact token counts were not recorded;
+a reliable token total or project-specific dollar cost is unavailable. Usage
+allowances are not converted into tokens, cost or elapsed development time.
+
+A separate **GPT-6.1 Sol, High reasoning** brainstorming thread discussed next
+steps and helped draft subsequent prompts. **That conversation is not included
+in the submitted logs.** [AI_USAGE.md](AI_USAGE.md), [prompts](records/PROMPTS.md)
+and [development records](records/SESSION.md) preserve the available disclosures
+and curated logs.
 
 Git retains the starter and verified milestones; binaries remain excluded. The
 user confirmed earlier pushes, but latest publication is unverified because the
 recorded remote check failed GitHub DNS. The [submission checklist](SUBMISSION_CHECKLIST.md)
-flags publication confirmation, missing AI metadata and any available full export.
+flags publication confirmation and the known gap in submitted conversation logs.
 
 With more time and compute, we would generate programs and datasets automatically,
 shrink failures to small examples, challenge the evaluator with more faulty
@@ -295,4 +301,4 @@ Broader, fixed holdouts should precede a more complex cost model or additional r
 ### Takeaway
 
 The next investment should strengthen evidence and analysis before expanding scope.
-Submission metadata and publication still require confirmation.
+Publication and log coverage remain the submission gaps.

@@ -1,38 +1,39 @@
-# AI use and outstanding usage metadata
+# AI use and recorded usage
 
-AI was used throughout, as required by the assignment. One coordinator implemented
-the optimizer, integrated the work, measured results and coordinated Git. Two
-specialists worked independently: evaluator design/code/tests and adversarial
-semantics/rewrite review. No nested delegation or model overrides were requested.
-The user reviewed scope and tradeoffs and approved each implementation milestone.
+The following model, reasoning and account details were supplied by the user.
+They replace the earlier pending fields and generic runtime identification.
 
-The runtime identified the agents as Codex based on the GPT-6 family. This is not
-an authoritative exact backend model identifier. Specialist sessions inherited
-the parent configuration; the user supplied no exact model or reasoning setting
-in the recorded task prompts.
+| Work | Tool / model | Reasoning |
+|---|---|---|
+| Development | Codex CLI, GPT-6.1 Sol | High |
+| Independent review | Codex CLI, GPT-6 Astra | High |
+| Separate brainstorming thread | GPT-6.1 Sol | High |
 
-| Required detail | Current status |
-|---|---|
-| Exact model ID(s) shown by the product | **Pending user information** |
-| Reasoning setting(s) | **Pending user information** |
-| Approximate total tokens or spend | **Pending user/account telemetry** |
+Usage was through **ChatGPT Plus**. The user reports consuming approximately
+**four full five-hour usage allowances** across the assignment. This is a reported
+usage-limit measure, not a token count or a measurement of elapsed development
+time. Exact token counts were not recorded, so no reliable token total or
+project-specific dollar cost is available. No conversion or cost estimate is inferred.
 
-On request, the user said they would provide this information later. These fields
-are intentionally unfilled; no token, cost, human-time or model-setting estimate
-is invented. If account telemetry is unavailable, the final write-up should say
-so explicitly. The assignment requests rough tokens or spend, so this remains a
-submission-completeness item for the user rather than a claimed completed field.
+One coordinator implemented the optimizer, integrated the work, measured results
+and coordinated Git. Two specialists worked independently on evaluator code/tests
+and adversarial semantics/rewrite review. The user reviewed scope and tradeoffs
+and approved implementation milestones. No nested delegation was used.
 
-Available prompts/assignments are retained in `records/PROMPTS.md`; important
-commands, results, decisions, failures, fixes and specialist reports are retained
-under records/ and tests/. This is a curated development record, not a complete
-provider-exported chat/tool trace. A full export should be supplied if available
-and required by the submission's request for all prompts/logs. Temporary specialist
+The user also used a **separate brainstorming thread to discuss next steps and
+help draft subsequent prompts**. That conversation is **not included in the
+submitted logs**. Its model and reasoning setting were clarified as GPT-6.1 Sol
+with High reasoning.
+
+Available prompts and assignments are retained in [records/PROMPTS.md](records/PROMPTS.md);
+commands, results, decisions, failures, fixes and available specialist reports are
+retained under records/ and tests/. These are curated development records, not a
+complete provider-exported conversation/tool trace. The omitted brainstorming
+conversation is a known gap in submitted log coverage. Temporary specialist
 usage-limit errors occurred; later follow-ups completed the final independent checks.
 
-With a few days and unlimited compute/tokens, I would prioritize independent
-schema/program fuzzing, mutation testing of the evaluator, automatic shrinking
-of witnesses, exhaustive small-state checks and explicit resource/lifetime
-analysis. A broader fixed holdout collection should precede cost-model complexity.
-Only then would I revisit identity gathers or version-aware CSE with enforceable
-preconditions. More generated tests would provide evidence, not a proof of soundness.
+With a few days and unlimited compute/tokens, priorities would be independent
+schema/program generation, evaluator mutation testing, automatic shrinking of
+failures, exhaustive small-input checks and explicit resource/lifetime analysis.
+Broader fixed holdouts should precede cost-model complexity or additional rewrites.
+More generated tests would provide evidence, not a proof of soundness.

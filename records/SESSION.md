@@ -90,6 +90,8 @@
 
 ## AI usage and provenance
 
+Historical baseline status; see [the later user disclosure](../AI_USAGE.md) for current details.
+
 - Runtime identifies this agent as Codex based on GPT-6. Specialist sessions
   inherit the parent configuration; no model override was requested or used.
 - User supplied no specific model variant or reasoning setting. Exact backend
@@ -408,3 +410,20 @@
   bin paths. Default whitespace check reported only extra final blank lines in
   byte-faithful generated mutant source fixtures; preserved their exact stdout
   and checked other whitespace with blank-at-EOF detection disabled.
+
+## User-supplied AI metadata and log coverage update
+
+- User supplied Codex CLI / GPT-6.1 Sol / High for development and Codex CLI /
+  GPT-6 Astra / High for independent review. These user-reported details replace
+  earlier generic runtime/pending statements in current submission documents.
+- ChatGPT Plus usage was approximately four full five-hour allowances across the
+  assignment. Exact tokens were not recorded; no reliable token total or project-
+  specific dollar cost is available. Allowances are not converted into elapsed
+  development time, tokens or cost.
+- User disclosed a separate brainstorming conversation for next steps and prompt
+  drafting, absent from submitted logs. Asked about that thread's model/reasoning
+  before committing; user clarified `sol 6.1 high` (GPT-6.1 Sol / High).
+- Updated README, AI_USAGE, WRITEUP, checklist and reviewer handoff. Historical
+  milestone statements are labeled as pending at that time and point to the later
+  disclosure; original supplied review and specialist logs remain historical.
+  This update changes documentation only and uses no subagents.

@@ -102,9 +102,10 @@ Process cleanup targets POSIX and is not a security sandbox.
 
 One coordinator and exactly two specialists were used, with no nested delegation.
 Available prompts, assignments, decisions, execution logs and reports are retained.
-The runtime identifies Codex based on GPT-6; exact backend model/reasoning metadata,
-token usage and spend are unavailable. No user-specified model settings or usage
-numbers have been invented.
+At this milestone, the runtime identified Codex based on GPT-6; exact model/reasoning
+settings and usage were not yet supplied. The later user-reported models, settings,
+usage allowances and log omissions are recorded in [AI_USAGE.md](../AI_USAGE.md).
+Exact token totals and reliable project-specific cost remain unavailable.
 
 With additional days and compute, prioritize generated schema/program families,
 metamorphic tests and mutation testing, shrinking counterexamples, explicit type

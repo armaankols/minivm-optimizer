@@ -4,7 +4,7 @@ New optimizations are frozen at `49c7048`. Current HEAD includes the
 [post-review correctness fixes](records/post-review/RESULTS.md). [Reviewer handoff](REVIEW_HANDOFF.md) maps
 the source, specification, proofs, checks and known failures. [Setup](SETUP.md)
 provides reproducible commands; [checklist](SUBMISSION_CHECKLIST.md) identifies
-the outstanding publication and AI-usage details.
+publication status and the disclosed gaps in conversation logs.
 
 ## Optimizer
 
@@ -74,9 +74,16 @@ Starter text and meaningful verified milestones are retained in Git; binaries
 remain local. Prompts, decisions, failures, fixes and available specialist reports
 are retained, but this is not a complete provider conversation export.
 
-[AI_USAGE.md](AI_USAGE.md) records the known configuration and the user-dependent
-model/reasoning/usage fields still pending. With a few days and unlimited compute
-and tokens, priorities would be independent schema/program fuzzing with shrinking,
-stronger evaluator mutation testing, exhaustive small-state checks, explicit
+The user reports using Codex CLI with GPT-6.1 Sol at High reasoning for development
+and GPT-6 Astra at High reasoning for independent review. Usage through ChatGPT
+Plus consumed approximately four full five-hour usage allowances. Exact token
+counts were not recorded; a reliable token total or project-specific dollar cost
+is unavailable. A separate GPT-6.1 Sol / High brainstorming thread helped discuss
+next steps and draft prompts; that conversation is not included in submitted logs.
+See [AI_USAGE.md](AI_USAGE.md) for the full disclosure.
+
+With a few days and unlimited compute and tokens, priorities would be independent
+schema/program fuzzing with shrinking, stronger evaluator mutation testing,
+exhaustive small-state checks, explicit
 resource/lifetime analysis and broader holdouts before expanding cost models or
 adding rewrites.

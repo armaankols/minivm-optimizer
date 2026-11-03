@@ -110,11 +110,14 @@ limited. Review timeout classification too (optimizer 60s, VM 10s, overall 840s)
 
 Prompts/decisions: [PROMPTS](records/PROMPTS.md), [SESSION](records/SESSION.md),
 specialist reports under tests/, and [final returned review log](records/sorted-order/REVIEW_LOG.md).
-Some logs are curated, not a complete provider conversation export. Specialists
+Logs are curated, not a complete provider conversation export. A separate
+GPT-6.1 Sol / High brainstorming thread helped discuss next steps and draft prompts;
+it is not included in submitted logs. User-reported development/review models and
+ChatGPT Plus usage allowances are recorded in AI_USAGE.md. Specialists
 temporarily hit limits then resumed final checks; evaluator reran reviewer fixtures
 rather than authoring a separate SORT fixture set. See [AI_USAGE.md](AI_USAGE.md).
 
 Git starts at untouched text starter `b8e7f8a`; original files are checksummed.
 Binaries are excluded. Baseline publication was user-confirmed; latest remote
 state is unverified because GitHub DNS fails here. [Submission checklist](SUBMISSION_CHECKLIST.md)
-separates verified artifacts from user-dependent publication/usage fields.
+separates verified artifacts from publication and log-coverage gaps.
