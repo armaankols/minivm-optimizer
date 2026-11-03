@@ -30,7 +30,7 @@ Evaluator final returned commands/results:
 
 - `PYTHONDONTWRITEBYTECODE=1 ./evaluate ./optimize`: exit 0,26 cases/70 exec,
   wall 4.642505458 s, optimizer 2.261987085 s, VM 1.384163789 s.
-- `PYTHONDONTWRITEBYTECODE=1 python 3 -m unittest discover -s tests/adversarial -p test_sorted_order.py -v`:
+- `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests/adversarial -p test_sorted_order.py -v`:
   16 tests passed 6.194 s. These commands ran concurrently.
 - No new evaluator-owned SORT fixtures or file edits. Verification was an
   independent rerun of the reviewer's fixtures plus the full public CLI.

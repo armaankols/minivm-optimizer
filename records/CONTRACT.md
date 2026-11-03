@@ -57,7 +57,8 @@ The evaluator has an internal overall monotonic budget below the required 900
 seconds, leaving cleanup/reporting reserve. Individual optimizer calls are capped
 at 60 seconds and VM calls at 10 seconds, further capped by remaining budget.
 Output capture is bounded; stdout must fit a legal program (4 MiB); stderr is
-bounded to avoid an output flood. POSIX process groups are killed and reaped,
+captured to a bounded prefix and the remainder drained/discarded. Noisy stderr
+alone is not a defect. POSIX process groups are killed and reaped,
 including children holding inherited pipes open. The baseline is POSIX-only.
 
 Deadline exhaustion is an incomplete evaluation, not a clean pass. Failed runs
@@ -81,6 +82,7 @@ behavior remains an explicit caveat because the work accounting differs.
 
 The user subsequently authorized this rule. It is implemented in `optimizer.py`;
 the exact source-preserving conditions, heuristic propagation and limitations
-are described in `docs/optimizer.md`. No second rewrite is included. The baseline
+are described in `docs/optimizer.md`. Later authorized stored-order and DCE rules
+are documented in `docs/sorted-order.md` and `docs/dce.md`. The baseline
 identity executable used for evaluator validation is now a separate independent
 fixture rather than the evolving `optimize` command.

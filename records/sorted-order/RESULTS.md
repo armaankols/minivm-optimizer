@@ -104,13 +104,13 @@ savings do not establish an end-to-end wall-time improvement.
 ## Reproduction and remaining limits
 
 ```
-python 3 tools/benchmark_sorted.py --output records/sorted-order/benchmark.json
-python 3 tools/benchmark.py ./optimize --output records/sorted-order/examples-full.json
-python 3 tools/benchmark.py ./optimize --no-sorted-order --output records/sorted-order/examples-baseline.json
-PYTHONDONTWRITEBYTECODE=1 python 3 -m unittest discover -s tests/evaluator -v
-PYTHONDONTWRITEBYTECODE=1 python 3 -m unittest discover -s tests/adversarial -v
-python 3 tools/verify_baseline.py --output records/sorted-order/cli-checks.json
-python 3 tools/reproduce_dce_lifetime.py
+python3 tools/benchmark_sorted.py --output records/sorted-order/benchmark.json
+python3 tools/benchmark.py ./optimize --output records/sorted-order/examples-full.json
+python3 tools/benchmark.py ./optimize --no-sorted-order --output records/sorted-order/examples-baseline.json
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests/evaluator -v
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests/adversarial -v
+python3 tools/verify_baseline.py --output records/sorted-order/cli-checks.json
+python3 tools/reproduce_dce_lifetime.py
 ```
 
 Benchmarks contain raw cycles/timing and source events. Specialist evidence is

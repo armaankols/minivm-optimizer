@@ -348,3 +348,28 @@
   still reported the configured token invalid. No push was attempted because
   required remote history verification could not succeed. No remote history was
   fetched or replaced. These are local commits, not published commits.
+
+## Submission preparation: implementation frozen at 49c7048
+
+- User froze new optimizations and requested a fresh-reviewer handoff and missing
+  deliverables audit. Added REVIEW_HANDOFF.md, SETUP.md, WRITEUP.md, AI_USAGE.md,
+  SUBMISSION_CHECKLIST.md and a requirements transcript with the original PDF hash.
+- Exact model/reasoning settings and rough usage/spend remain pending: user said
+  they would supply them later. Available logs are curated, not an exhaustive export.
+- Audited frozen Git history: 10 commits, 34 original starter hashes verified,
+  195 history blobs UTF-8 without NUL, no tracked binaries/bin paths. Receipt:
+  records/submission-audit/git-audit.json. GitHub DNS still prevented remote checks;
+  user handles pushes. No history replacement or force push.
+- Fresh full-history local clone at 49c7048 passed 75 evaluator and 75 adversarial
+  tests plus public evaluator 26 cases / 70 executions (4.487s internal wall time).
+  Clean status before/after. Same local macOS host/interpreter; not network or
+  cross-platform verification. Receipts and command output in submission-audit/.
+- First audit attempt passed all checks but its bin-directory symlink was untracked
+  because /bin/ ignores real directories. Corrected setup uses a real ignored bin
+  directory with local interpreter-file symlinks. Both attempts retained; this was
+  a setup-audit issue, not a test failure.
+- Corrected broken documentation commands `python 3` to `python3` in sorted-order
+  results/review log. Updated README links/reproduction guidance and stale contract
+  wording about stderr capture and later authorized rules. Runtime source frozen.
+- User asked why a clean check was running and requested handoff priority; linked
+  the handoff immediately. No further optimization or broad testing planned.

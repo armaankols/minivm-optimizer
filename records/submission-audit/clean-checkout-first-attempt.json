@@ -1,0 +1,24 @@
+{
+  "tested_commit": "49c704877deed17b45b3e360f1f6f683b0db5b90",
+  "python": "3.9.6",
+  "clean_local_clone": true,
+  "full_history": true,
+  "local_interpreter_symlinked_for_testing_only": true,
+  "tests": [
+    {
+      "suite": "evaluator",
+      "exit": 0,
+      "command": "python3 -m unittest discover -s tests/evaluator -v"
+    },
+    {
+      "suite": "adversarial",
+      "exit": 0,
+      "command": "python3 -m unittest discover -s tests/adversarial -v"
+    }
+  ],
+  "evaluate_exit": 0,
+  "evaluate_stdout": "{\"status\": \"no defects found\", \"cases\": 26, \"executions\": 70, \"optimizer_seconds\": 2.1753896669999992, \"vm_seconds\": 1.3336937090000036, \"wall_seconds\": 4.483016042}\n",
+  "tracked_worktree_clean_after_tests": false,
+  "elapsed_seconds": 30.762166999999998,
+  "scope": "implementation smoke and regression checks in fresh local clone; no network installation or second-platform validation"
+}

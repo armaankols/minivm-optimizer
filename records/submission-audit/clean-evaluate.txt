@@ -1,0 +1,1 @@
+{"status": "no defects found", "cases": 26, "executions": 70, "optimizer_seconds": 2.1986175849999987, "vm_seconds": 1.322199959999998, "wall_seconds": 4.487061875}

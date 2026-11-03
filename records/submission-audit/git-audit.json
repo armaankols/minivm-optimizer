@@ -1,0 +1,11 @@
+{
+  "implementation_commit": "49c704877deed17b45b3e360f1f6f683b0db5b90",
+  "tracked_files": 270,
+  "history_commits": 10,
+  "history_blob_objects_checked": 195,
+  "all_history_blobs_utf8_without_nul": true,
+  "bin_tracked": false,
+  "starter_34_hashes_verified": true,
+  "binary_objects_found": [],
+  "remote_verification": "git ls-remote origin failed: Could not resolve host github.com; latest publication unverified"
+}

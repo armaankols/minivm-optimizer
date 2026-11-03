@@ -215,3 +215,25 @@ First baseline implementation authorized, NO optimizer rewrites. Starter capture
 ```text
 First baseline implementation authorized only. Independently challenge evaluator assumptions and test contract; evaluator agent implementing evaluate/evaluator.py/tests/evaluator. You own only tests/adversarial/**, may add repro fixtures and standalone stdlib tests runnable `python3 -m unittest discover -s tests/adversarial -v`. Retain prior /tmp witnesses (DCE TOPK CSE sorted suffix nullable check) here as relevant; no optimizer rewrites yet. Challenge comparator row multiplicity/association/ordering numeric encodings, tolerance greedy matches bool vs int, frozen schema stats, generated validity, process/deadline failures and no false clean pass. Inspect implementation when agent sends ready or files exist. Report confirmed failures separately from risks/gaps; coordinate concrete findings directly with evaluator and coordinator, but do not edit evaluator-owned files. No Git or shared helpers or nested delegation. Starter commit b8e7f8a captured. Independent review completion needed before milestone done. Provide final logs/commands findings in concise report.
 ```
+
+## User: submission preparation (verbatim)
+
+```text
+Let’s prioritize getting this ready to submit. Freeze new optimizations for now.
+
+Prepare a concise handoff for a fresh reviewer, pointing to the specification, current commit, implementation, test commands, benchmarks, and known limitations. Include the join regressions and the error-preservation and memory-lifetime issues we’ve encountered.
+
+Then check what’s still missing from the submission: setup instructions, reproducible results, AI-use write-up, prompts and logs, and Git history. Flag anything that needs information from me rather than filling it in.
+```
+
+Asked for exact model/reasoning settings and approximate usage/spend, the user
+answered `i say later`. These fields remain pending, without invented estimates.
+
+## User: prioritize handoff (verbatim)
+
+```text
+Why are you doing a clean code check? Also prioritize outputting the handoff
+```
+
+The coordinator explained the fresh-checkout packaging/setup purpose and linked
+the handoff immediately. No optimization or runtime changes were made.

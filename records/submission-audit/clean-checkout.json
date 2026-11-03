@@ -1,0 +1,28 @@
+{
+  "tested_commit": "49c704877deed17b45b3e360f1f6f683b0db5b90",
+  "python": "3.9.6",
+  "clean_local_clone": true,
+  "full_history": true,
+  "interpreter_setup": "ignored real bin directory with local-only symlinked builds; no binaries copied into Git",
+  "tests": [
+    {
+      "suite": "evaluator",
+      "exit": 0,
+      "command": "python3 -m unittest discover -s tests/evaluator -v"
+    },
+    {
+      "suite": "adversarial",
+      "exit": 0,
+      "command": "python3 -m unittest discover -s tests/adversarial -v"
+    }
+  ],
+  "evaluate_exit": 0,
+  "evaluate_stdout": "{\"status\": \"no defects found\", \"cases\": 26, \"executions\": 70, \"optimizer_seconds\": 2.1986175849999987, \"vm_seconds\": 1.322199959999998, \"wall_seconds\": 4.487061875}\n",
+  "worktree_clean_before_tests": true,
+  "worktree_clean_after_tests": true,
+  "post_test_status": "",
+  "elapsed_seconds": 31.465939291,
+  "first_attempt_audit_note": "all tests/CLI passed, but setup bin symlink is untracked because /bin/ ignores directories; rerun uses real ignored directory",
+  "recreated_symlink_status": "?? bin\n",
+  "scope": "fresh local clone, original local interpreter, same macOS host; no network or second-platform setup validation"
+}
