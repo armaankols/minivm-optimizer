@@ -1,0 +1,78 @@
+{
+  "scope": "ordinary optimizer input mutation; public command interface",
+  "before": [
+    {
+      "argv": [
+        "./evaluate",
+        "/Users/armaankolsawala/Downloads/Assessment/review-49c7048/inplace-wrong-optimizer"
+      ],
+      "exit_status": 0,
+      "summary": {
+        "status": "no defects found",
+        "cases": 26,
+        "executions": 70,
+        "optimizer_seconds": 1.4962540839999996,
+        "vm_seconds": 1.2870902480000004,
+        "wall_seconds": 3.723221625
+      }
+    },
+    {
+      "argv": [
+        "./evaluate",
+        "/Users/armaankolsawala/Downloads/Assessment/review-49c7048/nonmutating-wrong-optimizer"
+      ],
+      "exit_status": 1,
+      "finding": "numeric_values: unordered rows differ (including duplicate multiplicity)",
+      "witness_directory": "/Users/armaankolsawala/Downloads/Assessment/aim-takehome/.evaluation-failures/1793687379889009000-numeric_values"
+    }
+  ],
+  "after": [
+    {
+      "argv": [
+        "./evaluate",
+        "/Users/armaankolsawala/Downloads/Assessment/review-49c7048/inplace-wrong-optimizer"
+      ],
+      "exit_status": 1,
+      "finding": "numeric_values: unordered rows differ (including duplicate multiplicity)",
+      "witness_directory": "/Users/armaankolsawala/Downloads/Assessment/aim-takehome/.evaluation-failures/1793688432912647000-numeric_values"
+    },
+    {
+      "argv": [
+        "./evaluate",
+        "/Users/armaankolsawala/Downloads/Assessment/review-49c7048/nonmutating-wrong-optimizer"
+      ],
+      "exit_status": 1,
+      "finding": "numeric_values: unordered rows differ (including duplicate multiplicity)",
+      "witness_directory": "/Users/armaankolsawala/Downloads/Assessment/aim-takehome/.evaluation-failures/1793688432915738000-numeric_values"
+    },
+    {
+      "argv": [
+        "./evaluate",
+        "./optimize"
+      ],
+      "exit_status": 0,
+      "summary": {
+        "status": "no defects found",
+        "cases": 26,
+        "executions": 70,
+        "optimizer_seconds": 2.211589788999998,
+        "vm_seconds": 1.4616850030000001,
+        "wall_seconds": 4.791835292
+      }
+    }
+  ],
+  "tests": [
+    {
+      "pattern": "test_input_mutation.py",
+      "tests": 4,
+      "seconds": 5.893,
+      "result": "PASS"
+    },
+    {
+      "pattern": "test_evaluator.py",
+      "tests": 31,
+      "seconds": 6.044,
+      "result": "PASS"
+    }
+  ]
+}

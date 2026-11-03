@@ -1,12 +1,10 @@
 # Fresh reviewer handoff
 
-**Optimization work is frozen.** Review implementation commit
-`49c704877deed17b45b3e360f1f6f683b0db5b90` (short `49c7048`). Subsequent submission
-preparation changes documentation only. Check this before relying on that statement:
-
-```sh
-git diff 49c7048..HEAD -- '*.py' optimize evaluate
-```
+**New optimizations remain frozen. Review current HEAD**, including the two
+correctness fixes from the [fresh review](records/post-review/supplied-REVIEW.md).
+The original optimization freeze was `49c7048`; `fc300d2` prepared documentation.
+Later fixes preserve the evaluator's pristine oracle and the VM program-size limit.
+See [post-review results](records/post-review/RESULTS.md) for validation and commits.
 
 Submission overview: [WRITEUP.md](WRITEUP.md). Remaining items:
 [SUBMISSION_CHECKLIST.md](SUBMISSION_CHECKLIST.md).
@@ -20,7 +18,8 @@ Submission overview: [WRITEUP.md](WRITEUP.md). Remaining items:
   `./evaluate OPTIMIZER` exits 0 if no defects found, nonzero otherwise, in <=900s.
   Results must agree for any data satisfying declarations/constraints; stats are
   estimates only. Numeric tolerance is 1e-6 relative; ordering matters when specified.
-- [optimizer.py](optimizer.py): CLI/parser and frozen simple NLJOIN/HJOIN selection.
+- [optimizer.py](optimizer.py): CLI/parser, frozen simple NLJOIN/HJOIN selection,
+  and a final UTF-8 byte-size guard with original-source fallback.
 - [sorted_order.py](sorted_order.py): current direct LOAD keys, one table, exact
   leading guaranteed sorted prefix, ASC NF only; preserves the destination write.
 - [dead_code.py](dead_code.py): backward liveness, guaranteed type facts, narrow
@@ -28,6 +27,8 @@ Submission overview: [WRITEUP.md](WRITEUP.md). Remaining items:
 - [evaluator.py](evaluator.py): independent VM oracle, typed fixture metadata,
   full-row multiplicity/order comparison, Decimal tolerance and maximum matching,
   frozen schemas with varied valid data, subprocess bounds and global deadline.
+  A separate pristine program is used for the baseline, never the input given to
+  the optimizer (which may edit that input in place).
 - [experiments/](experiments/README.md): exact archived profile model, not active.
   Proofs: [joins](docs/optimizer.md), [sort rule](docs/sorted-order.md), [DCE](docs/dce.md).
 
@@ -46,13 +47,14 @@ python3 tools/benchmark_sorted.py --output "$review_dir/benchmark.json"
 python3 tools/benchmark.py ./optimize --output "$review_dir/examples.json"
 ```
 
-Expected frozen evidence: 150 tests (75+75), public 26 cases / 70 datasets, identity
-accepted and five baseline mutants rejected. Flags `--joins-only` and
+At the original freeze: 150 tests (75+75), public 26 cases / 70 datasets, identity
+accepted and five baseline mutants rejected. Post-review counts are in the
+linked results: **162 tests (79+83) pass**, and public 26/70 still passes. Flags `--joins-only` and
 `--no-sorted-order` isolate stages; required two-argument behavior remains primary.
 
 ## Measurements and tradeoffs
 
-- Eight examples: 60363 original  -> 59121 current cycles (-1242, 2.06%). Measured
+- Eight examples: 60363 original -> 59121 current cycles (-1242, 2.06%). Measured
   incremental contributions: 196 join selection, 276 DCE, 770 SORT->IOTA. Current
   per-program cycles are 12766,3527,8562,18442,5518,6338,2444,1524.
 - Last rule: q0001 improves; seven examples unchanged. All 39 diagnostic cases
@@ -71,6 +73,12 @@ accepted and five baseline mutants rejected. Flags `--joins-only` and
   optimizer ~89-91ms/example, scale probe ~0.45s. See receipts for exact runs.
 
 ## Highest-value review targets and encountered failures
+
+Fresh review found two further confirmed bugs: ordinary in-place optimizer input
+mutation contaminated the evaluator oracle, and HJOIN-to-NLJOIN expansion made an
+exact-limit program exceed 4 MiB. Fixes and generated regressions are retained;
+large padding is generated locally instead of stored as a fixture.
+
 
 1. Error preservation: dead DIV0/type/overflow/index/date errors must stay.
    SORT+SLICE->TOPK can suppress errors and was deferred. NULL-first type checking,

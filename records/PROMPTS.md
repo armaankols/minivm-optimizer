@@ -237,3 +237,16 @@ Why are you doing a clean code check? Also prioritize outputting the handoff
 
 The coordinator explained the fresh-checkout packaging/setup purpose and linked
 the handoff immediately. No optimization or runtime changes were made.
+
+## User: fresh-review fixes (verbatim)
+
+```text
+The reviewer saved the findings and reproductions in review-49c7048/REVIEW.md. Read that before making the fixes.
+```
+
+Read the report before any edit. Resumed the original evaluator specialist for
+the input-mutation oracle fix (evaluator.py and tests/evaluator only). Resumed
+the original reviewer for independent reproduction and tests/adversarial only.
+Coordinator owns optimizer final UTF-8 size guard, records, docs, integration and
+Git. No new optimizations, shared helper edits or nested delegation authorized.
+Both specialists were instructed to reproduce before fixing and retain reports.

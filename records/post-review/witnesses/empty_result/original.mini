@@ -1,0 +1,3 @@
+LOAD x,t.x
+LOAD s,t.s
+OUT x,s

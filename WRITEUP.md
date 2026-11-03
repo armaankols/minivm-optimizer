@@ -1,6 +1,7 @@
 # MiniVM submission overview
 
-Implementation is frozen at `49c7048`. [Reviewer handoff](REVIEW_HANDOFF.md) maps
+New optimizations are frozen at `49c7048`. Current HEAD includes the
+[post-review correctness fixes](records/post-review/RESULTS.md). [Reviewer handoff](REVIEW_HANDOFF.md) maps
 the source, specification, proofs, checks and known failures. [Setup](SETUP.md)
 provides reproducible commands; [checklist](SUBMISSION_CHECKLIST.md) identifies
 the outstanding publication and AI-usage details.
@@ -13,6 +14,10 @@ justifies this choice; estimates only predict cost. It then replaces qualifying
 SORT operations with IOTA using guaranteed stored order, current direct LOAD keys,
 an exact leading sorted prefix and ASC NF ordering. Finally it removes dead first
 definitions from a narrow whitelist of proven-total instructions.
+
+The final UTF-8 candidate must fit the VM’s 4 MiB file limit; otherwise the
+optimizer emits the original bytes. This prevents HJOIN-to-NLJOIN growth from
+breaking an exact-limit input.
 
 The rules preserve register writes where memory lifetime requires them. Dead
 arithmetic, unchecked indices and potentially failing operations remain. Ordinary
@@ -27,10 +32,15 @@ data under frozen schemas. It preserves duplicate multiplicity and whole-row
 associations, observes required ordering, and uses typed fixture metadata and
 Decimal numeric tolerance. Unordered approximate rows use maximum matching.
 
+The evaluator uses a separate pristine baseline program, so an optimizer editing
+its input cannot corrupt the comparison oracle. This fixes a reproduced false
+acceptance of a wrong division rewrite.
+
 Subprocess failures, malformed output, bounded output capture, process-group
 cleanup, optimizer timeouts and the overall deadline are covered. The public suite
 has 26 cases / 70 dataset executions. Identity and five deliberate mutants establish
-a working baseline; 150 tests cover evaluator behavior and adversarial rewrites.
+a working baseline; 162 tests (79 evaluator, 83 adversarial) cover evaluator
+behavior and adversarial rewrites, including the fresh-review regressions.
 Finite testing does not establish soundness for arbitrary optimizers.
 
 ## Results and limitations

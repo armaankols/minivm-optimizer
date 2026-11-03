@@ -1,0 +1,5 @@
+LOAD x,t.x
+LOAD s,t.s
+NVL x,x,0
+OUT x,s
+

@@ -373,3 +373,38 @@
   wording about stderr capture and later authorized rules. Runtime source frozen.
 - User asked why a clean check was running and requested handoff priority; linked
   the handoff immediately. No further optimization or broad testing planned.
+
+## Fresh-review correctness fixes
+
+- User directed us to review-49c7048/REVIEW.md. Read it before edits; retained a
+  verbatim copy in records/post-review/supplied-REVIEW.md and the small raw witnesses.
+  Resumed the original evaluator and reviewer specialists under separate ownership.
+- Both specialists independently reproduced the in-place oracle corruption and
+  source-size expansion before fixes. Reviewer also confirmed correct stdout could
+  be falsely rejected after changing the input. No speculative finding promoted
+  to confirmed failure; timeout policy remains a caveat.
+- Coordinator fixed final encoded-byte limit; five black-box boundary tests passed,
+  reviewer independently inspected placement/all modes. Committed separately as
+  af12e15, preserving valid exact-limit originals and normal small-join savings.
+- Evaluator owner isolated each optimizer input and built pristine baseline after
+  optimizer return. Independent reviewer fixtures challenge wrong/correct/in-place
+  output, while evaluator-owned public command regressions check mutation, readonly
+  replacement/removal and pristine saved-witness replay.
+- Coordinator full suites: 79 evaluator tests (32.378s), 83 adversarial (27.368s).
+  Public evaluator 26/70 (5.967s); identity/current accepted, five mutants rejected.
+  Fixed examples still 60363 -> 59121; all 39 diagnostics pass, six improve / 33 unchanged
+  relative to prior pipeline. Commands/logs/results under records/post-review/.
+  Parallel checks make wall times noisy; no throughput claim. No new optimizations.
+- Updated reviewer handoff/setup/checklist/write-up to target current HEAD including
+  fixes rather than claiming all changes after 49c7048 are documentation only.
+- git ls-remote origin still failed with Could not resolve host: github.com. User
+  will handle pushes. AI usage metadata remains pending as previously requested.
+- Final reviewer sign-off: all three owned mutation tests pass in 0.711s; both
+  supplied public wrong optimizers now reject. Evaluator owner completed four new
+  methods in 5.893s and 31 existing harness tests in 6.044s. Saved exact supplied
+  scripts and both pristine before/after-associated rejection fixtures under
+  records/post-review/; no unresolved witnessed finding remains.
+- Precommit content check verified all staged files are UTF-8 without NUL, no
+  bin paths. Default whitespace check reported only extra final blank lines in
+  byte-faithful generated mutant source fixtures; preserved their exact stdout
+  and checked other whitespace with blank-at-EOF detection disabled.

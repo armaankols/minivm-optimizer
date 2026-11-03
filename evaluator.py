@@ -359,12 +359,18 @@ def evaluate(optimizer, *, cases=None, budget=840.0, optimizer_timeout=60.0,
     summary = dict(cases=0, executions=0, optimizer_seconds=0.0, vm_seconds=0.0)
     with tempfile.TemporaryDirectory(prefix='minivm-evaluate-') as temp:
         temp = Path(temp)
-        for case in cases:
-            program = temp/'original.mini'
-            schema_file = temp/'schema.json'
-            data_file = temp/'data.json'
-            candidate = temp/'optimized.mini'
-            program.write_text(case.program)
+        for case_index, case in enumerate(cases):
+            # The optimizer may rewrite, replace, remove or chmod its input.
+            # Keep a fresh input per case and create the baseline separately
+            # after the subprocess exits; no optimizer gets its oracle path.
+            case_dir = temp/str(case_index)
+            case_dir.mkdir()
+            optimizer_input = case_dir/'optimizer-input.mini'
+            program = case_dir/'original.mini'
+            schema_file = case_dir/'schema.json'
+            data_file = case_dir/'data.json'
+            candidate = case_dir/'optimized.mini'
+            optimizer_input.write_text(case.program)
             data_file.write_text(json.dumps(case.datasets[0]))
             schema_run = run_process([vm_path, '--schema', data_file], 10.0, deadline)
             if schema_run.issue or schema_run.returncode:
@@ -375,7 +381,7 @@ def evaluate(optimizer, *, cases=None, budget=840.0, optimizer_timeout=60.0,
                 raise EvaluationError('malformed VM schema: '+str(exc)) from exc
             schema_file.write_text(json.dumps(schema))
             tick = time.monotonic()
-            result = run_process([optimizer, program, schema_file], optimizer_timeout, deadline)
+            result = run_process([optimizer, optimizer_input, schema_file], optimizer_timeout, deadline)
             summary['optimizer_seconds'] += time.monotonic()-tick
             if result.issue or result.returncode:
                 message = result.issue or 'optimizer exited '+str(result.returncode)
@@ -389,6 +395,7 @@ def evaluate(optimizer, *, cases=None, budget=840.0, optimizer_timeout=60.0,
                 path = save_failure(artifact_root, case, program, schema, case.datasets[0], result, str(exc))
                 raise Defect('malformed optimizer output; witness '+str(path)) from exc
             candidate.write_text(source)
+            program.write_text(case.program)
             for data in case.datasets:
                 data_file.write_text(json.dumps(data))
                 # --schema validates declared constraints on EVERY alternative.

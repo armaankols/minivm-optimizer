@@ -1,0 +1,4 @@
+LOAD n,t.n
+ADD a,n,0.00
+DIV b,a,2
+OUT n,a,b

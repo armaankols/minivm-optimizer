@@ -9,8 +9,8 @@ Windows subprocess management is not supported by this evaluator.
 
 Use a full-history clone of `https://github.com/armaankols/minivm-optimizer.git`.
 Avoid a shallow/source-only export: comparison tools read older optimizer text
-from Git commits. The frozen implementation is `49c7048`; later preparation
-commits should be documentation only. Confirm the actual published branch/HEAD.
+from Git commits. The original optimization freeze is `49c7048`; review current HEAD, including
+post-review correctness fixes. Confirm the actual published branch/HEAD.
 
 The assignment's original `bin/` must be restored locally. It is intentionally
 not committed or submitted. Replace the placeholder with the original bundle path:
@@ -37,8 +37,9 @@ PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests/evaluator -v
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests/adversarial -v
 ```
 
-Expected frozen baseline: public 26 cases / 70 datasets, 75 evaluator and 75 adversarial
-tests. Use these two discovery roots explicitly. A clean exit is finite evidence,
+Original frozen baseline: public 26 cases / 70 datasets, 75 evaluator and 75 adversarial
+tests. Current post-review suites contain 79 evaluator and 83 adversarial tests
+(162 total). Use these two discovery roots explicitly. A clean exit is finite evidence,
 not a soundness proof. Independent identity and defective optimizers are exercised
 by tests and `tools/verify_baseline.py`.
 
@@ -68,6 +69,7 @@ under `$review_dir` do not alter tracked files. VM binaries stay in ignored bin/
 The default lifetime replay compares successful original/current runs; explicitly
 adding `--include-unsafe` runs the old failure and may need roughly 1 GiB of memory.
 
-A fresh local clone check at the frozen commit is recorded in
+Post-review regression results are in `records/post-review/RESULTS.md`.
+A fresh local clone check at the original frozen commit is recorded in
 `records/submission-audit/clean-checkout.json`. It uses the original local
 interpreter on the same host; it does not certify network setup or other platforms.

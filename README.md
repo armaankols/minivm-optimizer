@@ -22,8 +22,8 @@ python3 -m unittest discover -s tests/adversarial -v
 ```
 
 For a fresh review, start with [REVIEW_HANDOFF.md](REVIEW_HANDOFF.md).
-Implementation is frozen at `49c7048`; submission preparation changes documentation
-only. [SETUP.md](SETUP.md) has installation and reproduction commands that write to
+New optimizations are frozen at `49c7048`; current HEAD also includes the
+[fresh-review correctness fixes](records/post-review/RESULTS.md). [SETUP.md](SETUP.md) has installation and reproduction commands that write to
 temporary paths rather than overwriting historical receipts. [WRITEUP.md](WRITEUP.md)
 summarizes the implementation and results; [SUBMISSION_CHECKLIST.md](SUBMISSION_CHECKLIST.md)
 flags pending publication and AI-usage details.

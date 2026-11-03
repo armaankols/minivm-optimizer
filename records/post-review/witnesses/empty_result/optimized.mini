@@ -1,0 +1,6 @@
+LOAD x,t.x
+LOAD s,t.s
+SLICE x,x,0
+SLICE s,s,0
+OUT x,s
+

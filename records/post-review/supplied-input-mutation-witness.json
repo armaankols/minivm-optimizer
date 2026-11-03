@@ -1,0 +1,14 @@
+[
+  {
+    "optimizer": "inplace-wrong-optimizer",
+    "exit": 0,
+    "stdout": "{\"status\": \"no defects found\", \"cases\": 26, \"executions\": 70, \"optimizer_seconds\": 1.275739626, \"vm_seconds\": 1.253678537000001, \"wall_seconds\": 3.4460228330000002}\n",
+    "stderr": ""
+  },
+  {
+    "optimizer": "nonmutating-wrong-optimizer",
+    "exit": 1,
+    "stdout": "",
+    "stderr": "optimizer defect: numeric_values: unordered rows differ (including duplicate multiplicity); witness /Users/armaankolsawala/Downloads/Assessment/aim-takehome/.evaluation-failures/1793686590558581000-numeric_values\n"
+  }
+]
