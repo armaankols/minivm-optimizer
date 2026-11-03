@@ -262,7 +262,7 @@ observations, not evidence of elapsed-time speedup.
 We demonstrated a modest cycle reduction on the supplied examples and stronger
 correctness evidence, while preserving the known join-performance regressions.
 
-## Limitations, AI use and remaining work
+## Limitations and AI use
 
 The final scope favors a few explainable transformations over broad coverage.
 Passing tests strengthen the evidence but cannot prove correctness for all programs.
@@ -293,12 +293,20 @@ user confirmed earlier pushes, but latest publication is unverified because the
 recorded remote check failed GitHub DNS. The [submission checklist](SUBMISSION_CHECKLIST.md)
 flags publication confirmation and the known gap in submitted conversation logs.
 
-With more time and compute, we would generate programs and datasets automatically,
-shrink failures to small examples, challenge the evaluator with more faulty
-optimizers, exhaustively check small inputs and analyze resource lifetimes.
-Broader, fixed holdouts should precede a more complex cost model or additional rewrites.
+### Takeaway
+
+Publication and log coverage remain the submission gaps; known technical limits
+remain explicit.
+
+## What I would do with a few days and unlimited compute and tokens
+
+With a few days and unlimited compute and tokens, I would build a continuously running improvement loop: generate valid MiniVM programs and schema-conforming datasets, optimize them, compare executions, minimize failures, and retain counterexamples as regression tests. Parallel agents would investigate different operations and interactions between rewrites, targeting NULLs, duplicates, ordering, numeric precision, register reassignment, memory lifetimes, and interpreter limits. I would use the strongest available reasoning models for difficult semantic questions and separate review agents to challenge proposed transformations. Decisions would require documented semantics and reproducible evidence.
+
+I would stress-test the evaluator independently using deliberately faulty optimizers with known witnesses, including subtle result changes, input-file modification, malformed output, crashes, and timeouts. For manageable subsets of MiniVM, I would explore exhaustive testing of small inputs, an independent reference implementation, and symbolic checks of rewrite preconditions. These experiments would help expose assumptions shared by the optimizer and evaluator. Each improvement cycle would track coverage and newly discovered defects, redirecting effort when repeated testing stopped finding useful cases.
+
+For performance, I would profile the remaining cycle costs and explore competing implementations in isolated branches, including identity-gather elimination, common-subexpression elimination, and broader dead-code analysis. Benchmarks would vary data size, skew, duplicates, string lengths, NULL frequency, and statistics accuracy. Separate holdouts would test generalization, while comparisons against simple baselines and measurements with individual passes disabled would show which changes justify their complexity. The final report would preserve gains and regressions, reproducible commands and failures, model usage, and explicit limitations.
 
 ### Takeaway
 
-The next investment should strengthen evidence and analysis before expanding scope.
-Publication and log coverage remain the submission gaps.
+Use continuous counterexample discovery and independent review to guide broader
+optimization, with performance decisions tested on separate holdouts.
