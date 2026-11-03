@@ -1,0 +1,114 @@
+{
+  "suite": "supplied-examples-v1",
+  "stage": "joins-only",
+  "python": "3.9.6",
+  "platform": "macOS-15.7.7-arm64-arm-64bit",
+  "measurement_policy": "one invocation per entry; process startup included; wall times are noisy",
+  "benchmark_seconds": 0.813547291,
+  "measurements": [
+    {
+      "program": "q0001.mini",
+      "baseline_cycles": 13766,
+      "candidate_cycles": 13570,
+      "cycles_saved": 196,
+      "optimizer_seconds": 0.080145292,
+      "baseline_vm_seconds": 0.009813875,
+      "candidate_vm_seconds": 0.009780125,
+      "candidate_is_byte_identical": false,
+      "join_changes": [
+        {
+          "line": 31,
+          "from": "HJOIN",
+          "to": "NLJOIN"
+        }
+      ],
+      "dead_removed": []
+    },
+    {
+      "program": "q0002.mini",
+      "baseline_cycles": 3617,
+      "candidate_cycles": 3617,
+      "cycles_saved": 0,
+      "optimizer_seconds": 0.079801292,
+      "baseline_vm_seconds": 0.009162874999999987,
+      "candidate_vm_seconds": 0.010298250000000009,
+      "candidate_is_byte_identical": true,
+      "join_changes": [],
+      "dead_removed": []
+    },
+    {
+      "program": "q0003.mini",
+      "baseline_cycles": 8562,
+      "candidate_cycles": 8562,
+      "cycles_saved": 0,
+      "optimizer_seconds": 0.07993979099999998,
+      "baseline_vm_seconds": 0.00894462500000004,
+      "candidate_vm_seconds": 0.009809332999999976,
+      "candidate_is_byte_identical": true,
+      "join_changes": [],
+      "dead_removed": []
+    },
+    {
+      "program": "q0004.mini",
+      "baseline_cycles": 18442,
+      "candidate_cycles": 18442,
+      "cycles_saved": 0,
+      "optimizer_seconds": 0.08055687499999997,
+      "baseline_vm_seconds": 0.008972707999999996,
+      "candidate_vm_seconds": 0.010125582999999994,
+      "candidate_is_byte_identical": true,
+      "join_changes": [],
+      "dead_removed": []
+    },
+    {
+      "program": "q0005.mini",
+      "baseline_cycles": 5518,
+      "candidate_cycles": 5518,
+      "cycles_saved": 0,
+      "optimizer_seconds": 0.08049741699999996,
+      "baseline_vm_seconds": 0.009029542000000002,
+      "candidate_vm_seconds": 0.01002016700000008,
+      "candidate_is_byte_identical": true,
+      "join_changes": [],
+      "dead_removed": []
+    },
+    {
+      "program": "q0006.mini",
+      "baseline_cycles": 6338,
+      "candidate_cycles": 6338,
+      "cycles_saved": 0,
+      "optimizer_seconds": 0.07940129200000001,
+      "baseline_vm_seconds": 0.008858834000000093,
+      "candidate_vm_seconds": 0.009740583999999997,
+      "candidate_is_byte_identical": true,
+      "join_changes": [],
+      "dead_removed": []
+    },
+    {
+      "program": "q0007.mini",
+      "baseline_cycles": 2596,
+      "candidate_cycles": 2596,
+      "cycles_saved": 0,
+      "optimizer_seconds": 0.080961583,
+      "baseline_vm_seconds": 0.008873458000000056,
+      "candidate_vm_seconds": 0.009731999999999963,
+      "candidate_is_byte_identical": true,
+      "join_changes": [],
+      "dead_removed": []
+    },
+    {
+      "program": "q0008.mini",
+      "baseline_cycles": 1524,
+      "candidate_cycles": 1524,
+      "cycles_saved": 0,
+      "optimizer_seconds": 0.07931495799999999,
+      "baseline_vm_seconds": 0.008810874999999996,
+      "candidate_vm_seconds": 0.009558499999999914,
+      "candidate_is_byte_identical": true,
+      "join_changes": [],
+      "dead_removed": []
+    }
+  ],
+  "total_baseline_cycles": 60363,
+  "total_candidate_cycles": 60167
+}

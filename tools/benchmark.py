@@ -2,7 +2,7 @@
 """Measure the fixed supplied examples through the public optimizer interface.
 
 This small benchmark is separate from the evaluator. It checks exact results;
-opcode-only join selection preserves numeric representations and row order.
+the implemented rules preserve numeric representations and row order.
 Broader semantic comparison and adversarial cases belong to the evaluator.
 """
 
@@ -30,16 +30,23 @@ def result_rows(value):
     return {key: value[key] for key in ("ncols", "rows")}
 
 
-def join_changes(original, candidate):
+def join_changes(original, candidate, allow_dead=False):
     before, after = original.split(b'\n'), candidate.split(b'\n')
     if len(before) != len(after):
-        raise ValueError('join-only optimizer changed physical line count')
+        raise ValueError('optimizer changed physical line count')
     changes = []
     for number, (left, right) in enumerate(zip(before, after), 1):
         if left == right:
             continue
         match = re.match(rb'[ \t]*(NLJOIN|HJOIN)(?=[ \t])', left, re.IGNORECASE)
         if not match:
+            dead = re.match(rb'[ \t]*(LOAD|IOTA|SLICE|ISNULL|UPPER|RTRIM|TRIM|LEN|NULLIFE|LEFT|SUBSTR|YEAR|MONTH|DAY|DOW)(?=[ \t])', left, re.IGNORECASE)
+            if allow_dead and dead:
+                semi = left.find(b';')
+                remaining = left[:dead.start(1)] + left[semi:] if semi >= 0 else b'\r' if left.endswith(b'\r') else b''
+                if right == remaining:
+                    changes.append({'line': number, 'from': dead.group(1).decode(), 'to': None})
+                    continue
             raise ValueError('non-join source changed')
         new = b'HJOIN' if match.group(1).upper() == b'NLJOIN' else b'NLJOIN'
         if right != left[:match.start(1)] + new + left[match.end(1):]:
@@ -52,6 +59,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("optimizer", type=Path)
     parser.add_argument("--output", type=Path)
+    parser.add_argument('--joins-only', action='store_true', help='isolate the frozen join stage')
     args = parser.parse_args()
     optimizer = args.optimizer.resolve(strict=True)
     vm = ROOT / "bin" / "minivm"
@@ -70,12 +78,12 @@ def main():
             if baseline != expected:
                 raise ValueError(f"supplied expected result differs: {program.name}")
             candidate_bytes, optimizer_seconds = run(
-                [str(optimizer), str(program), str(ROOT / "examples" / "schema.json")]
+                [str(optimizer), *(['--joins-only'] if args.joins_only else []), str(program), str(ROOT / "examples" / "schema.json")]
             )
             if not candidate_bytes or len(candidate_bytes) > 4 * 1024 * 1024:
                 raise ValueError(f"invalid candidate size: {program.name}")
             candidate_bytes.decode("utf-8", errors="strict")
-            changes = join_changes(program.read_bytes(), candidate_bytes)
+            changes = join_changes(program.read_bytes(), candidate_bytes, allow_dead=not args.joins_only)
             candidate_path.write_bytes(candidate_bytes)
             candidate_json, candidate_seconds = run(
                 [str(vm), str(candidate_path), str(ROOT / "examples" / "data.json")]
@@ -93,11 +101,13 @@ def main():
                     "baseline_vm_seconds": baseline_seconds,
                     "candidate_vm_seconds": candidate_seconds,
                     "candidate_is_byte_identical": candidate_bytes == program.read_bytes(),
-                    "join_changes": changes,
+                    "join_changes": [c for c in changes if c['to'] is not None],
+                    "dead_removed": [c for c in changes if c['to'] is None],
                 }
             )
     report = {
         "suite": "supplied-examples-v1",
+        "stage": 'joins-only' if args.joins_only else 'joins-plus-dce',
         "python": platform.python_version(),
         "platform": platform.platform(),
         "measurement_policy": "one invocation per entry; process startup included; wall times are noisy",

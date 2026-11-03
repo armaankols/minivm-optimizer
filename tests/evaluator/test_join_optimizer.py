@@ -2,7 +2,8 @@
 
 Expected result/error comes exclusively from MiniVM on the original program.
 Schema stats are frozen for each optimization and changed under subsequent runs.
-Opcode-only source assertions apply specifically to this authorized milestone.
+Opcode-only source assertions use the active --joins-only mode to isolate the
+join stage from the later DCE pass.
 """
 import json
 from pathlib import Path
@@ -61,7 +62,8 @@ class JoinOptimizerTests(unittest.TestCase):
         s=ev.run_process([ROOT/'bin/minivm','--schema',data],10,deadline)
         self.assertEqual((s.issue,s.returncode),(None,0),s.stderr)
         schema.write_bytes(s.stdout)
-        emitted=ev.run_process([optimizer or ROOT/'optimize',original,schema],60,deadline)
+        optimizer_command=[optimizer] if optimizer is not None else [ROOT/'optimize','--joins-only']
+        emitted=ev.run_process([*optimizer_command,original,schema],60,deadline)
         self.assertEqual((emitted.issue,emitted.returncode),(None,0),emitted.stderr)
         output=emitted.stdout.decode('utf8')
         candidate.write_text(output)

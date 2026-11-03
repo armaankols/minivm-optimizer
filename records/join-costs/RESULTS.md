@@ -114,6 +114,39 @@ values per side. This holds the same declarations and constraints while changing
 the length distribution. Better use of a snapshot does not guarantee a better
 choice after drift. Outputs still agree exactly.
 
+## Combined tradeoff and freeze recommendation
+
+| Measurement set | Simple rule | Refined rule | Refined minus simple |
+|---|---:|---:|---:|
+| Fixed nineteen cases | 112833 | 106161 | -6672 |
+| Stale-profile holdout alone | 9232 | 16528 | +7296 |
+| Fixed nineteen plus that holdout | 122065 | 122689 | +624 |
+| Other nine holdouts | 219888 | 205871 | -14017 |
+| All ten holdouts | 229120 | 222399 | -6721 |
+| All twenty-nine measured cases | 341953 | 328560 | -13393 |
+
+The stale-profile loss is larger than the fixed-set gain: adding that case makes
+the refinement 624 cycles worse. It would also be misleading to omit the other
+nine holdouts: with every measured case included, the refinement saves 13393
+cycles. These are unweighted diagnostic totals, not sampled workload frequencies.
+The sparse-tail cases overlap in behavior; neither aggregation predicts expected
+production cost or establishes dominance.
+
+**Recommendation: freeze the simpler `3155414` policy for this assignment.**
+The refined model has a principled mathematical benefit, but adds roughly100
+active lines of distribution, rounding and invalidation logic; improves none of
+the eight supplied examples; retains unknown-tail/derived-column limitations;
+and has a concrete drift case that erases its fixed-set gain. Without a broader,
+representative validation set, those benefits do not justify the added complexity
+under the requested few-defensible-optimizations scope. This is an engineering
+decision, not a claim that the simpler rule generally runs faster.
+
+The active implementation has returned to the simple policy. The exact refined
+source remains executable as `experiments/profile_optimizer.py`, its tests remain
+active, and every prior report/holdout is preserved. No further case-specific join
+tuning was performed. `tools/summarize_join_tradeoffs.py` reproduces this table
+from archived `after.json` and `holdouts.json` into `combined.json`.
+
 The truncated-common case retains a 2703-cycle regret relative to NL. Eight common
 one-byte values cover half the rows, but the unlisted 32 values include one very
 long string. A residual mean bucket still loses that tail shape. Separate

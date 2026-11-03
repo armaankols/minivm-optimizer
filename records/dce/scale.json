@@ -1,0 +1,10 @@
+{
+  "purpose": "Optimizer-only scale probe; not a claim of worst-case VM equivalence.",
+  "instructions": 20000,
+  "schema_columns": 20000,
+  "program_bytes": 299985,
+  "schema_bytes": 1455668,
+  "wall_seconds": 0.336256375,
+  "exit": 0,
+  "all_19997_join_choices_expected": true
+}

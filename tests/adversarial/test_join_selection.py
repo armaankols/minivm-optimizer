@@ -25,6 +25,8 @@ def program(opcode, flag='', outputs='a,b', left_dest='a', right_dest='b'):
 
 @unittest.skipUnless(VM.is_file(), 'supplied MiniVM is local only')
 class JoinSelectionReview(unittest.TestCase):
+    optimizer_command = (str(ROOT / 'optimize'), '--joins-only')
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix='minivm-join-review-')
         self.folder = Path(self.temp.name)
@@ -52,7 +54,7 @@ class JoinSelectionReview(unittest.TestCase):
         source_path, schema_path = self.folder / 'p.mini', self.folder / 'schema.json'
         source_path.write_bytes(source.encode())
         schema_path.write_text(json.dumps(schema))
-        got = subprocess.run([str(ROOT / 'optimize'), str(source_path), str(schema_path)],
+        got = subprocess.run([*self.optimizer_command, str(source_path), str(schema_path)],
                              capture_output=True, timeout=10)
         self.assertEqual(got.returncode, 0, got.stderr)
         return got.stdout.decode()

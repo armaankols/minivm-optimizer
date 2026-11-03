@@ -72,3 +72,24 @@ Additional public-interface tests reject malformed/inconsistent common lists to 
 After the initial full 57-test run, two explicit tests were added and passed individually: ambiguous 128-row tail totals permit 14850 or 14851 bytes and retain either original opcode near a cost tie (0.348 seconds); UTF-8 literal FILL selects HJOIN (0.127 seconds). A consolidated cost-module run follows below. The finite corpus does not establish universal cost optimality or soundness; the reviewer separately investigates truncated-common-list heterogeneous tails.
 
 Consolidated command: `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests/evaluator -p test_join_cost_model.py -v` ran all 13 cost-policy/profile test methods, including the two added holdouts, and passed in 9.227 seconds. Together with the preceding full-suite run, all current 59 evaluator test methods have been exercised successfully; this is not presented as a single 59-test timed run. No further evaluator source changes or optimizer changes were made by this agent.
+
+## Final model choice: simple active policy; profile model archived
+
+The coordinator chose the simpler3155414 join model for the active pipeline. The exact experimental profile implementation is retained as executable `experiments/profile_optimizer.py`; its SHA-256 matches the optimizer hash in this agent's saved `cost-policy-refined.json`. The profile tests now invoke that archived executable through its original two-argument interface. Active join-only checks invoke `./optimize --joins-only PROGRAM SCHEMA`, isolating join selection from the later dead-code pass. Required public `./optimize PROGRAM SCHEMA` remains the complete pipeline. No test was dropped to make the simpler model pass.
+
+This agent independently recomputed all stored policy measurements, including the favorable evidence for the archived model:
+
+| Corpus | Cases | Simple model | Profile model | Profile minus simple |
+|---|---:|---:|---:|---:|
+| Original fixed corpus |19|112833|106161|-6672|
+| Additional stale-profile case alone |1|9232|16528|+7296|
+| Original fixed corpus plus that stale case |20|122065|122689|+624|
+| Matching-stat profile holdouts |9|219888|205871|-14017|
+| All profile holdouts, including stale case |10|229120|222399|-6721|
+| Original fixed corpus plus all holdouts |29|341953|328560|-13393|
+
+The20-case result does not demonstrate that the simpler model is generally faster: all29 cases favor the profile model. Neither aggregate establishes expected performance without representative workload frequencies. The reason to freeze the simpler active model is its smaller implementation/proof surface, no improvement on the eight supplied examples, sensitivity to stale statistics and unmodeled heterogeneous tails, and the assignment's limited scope. The archived model remains a reproducible experiment with measured benefits and limits.
+
+After adapting tests to separate active join-only selection, the archived profile experiment and the complete DCE pipeline, the full evaluator-owned suite ran73 tests and passed in24.720 seconds. The public evaluator completed26 cases/70 execution pairs on the active full pipeline without defects. Detailed DCE evidence is in `DCE_REPORT.md`.
+
+The subsequent DCE lifetime correction adds two lightweight structural regressions without changing either join model. Final post-guard evaluator-owned verification ran75 tests, all passing in24.370 seconds; actual public evaluator still completed26/70. See `DCE_REPORT.md` for the confirmed resource failure, first-definition restriction and final CLI timings.

@@ -1,0 +1,141 @@
+{
+  "purpose": "deterministic positive DCE fixture; root handles representative benchmarks",
+  "source": "LOAD x,t.x\nLOAD s,t.s\nUPPER u,s\nLEN n,s\nIOTA i,s\nSLICE p,s,2\nOUT x\n",
+  "candidate": "LOAD x,t.x\n\n\n\n\n\nOUT x\n",
+  "datasets": [
+    {
+      "t": {
+        "columns": [
+          {
+            "name": "x",
+            "type": "INT"
+          },
+          {
+            "name": "s",
+            "type": "STR"
+          },
+          {
+            "name": "d",
+            "type": "DATE"
+          }
+        ],
+        "rows": [
+          [
+            1,
+            " ab ",
+            "2024-02-29"
+          ],
+          [
+            null,
+            null,
+            null
+          ],
+          [
+            2,
+            "stra\u00dfe",
+            "9999-12-31"
+          ]
+        ]
+      },
+      "u": {
+        "columns": [
+          {
+            "name": "x",
+            "type": "INT"
+          }
+        ],
+        "rows": [
+          [
+            1
+          ],
+          [
+            null
+          ],
+          [
+            2
+          ]
+        ]
+      }
+    },
+    {
+      "t": {
+        "columns": [
+          {
+            "name": "x",
+            "type": "INT"
+          },
+          {
+            "name": "s",
+            "type": "STR"
+          },
+          {
+            "name": "d",
+            "type": "DATE"
+          }
+        ],
+        "rows": []
+      },
+      "u": {
+        "columns": [
+          {
+            "name": "x",
+            "type": "INT"
+          }
+        ],
+        "rows": []
+      }
+    },
+    {
+      "t": {
+        "columns": [
+          {
+            "name": "x",
+            "type": "INT"
+          },
+          {
+            "name": "s",
+            "type": "STR"
+          },
+          {
+            "name": "d",
+            "type": "DATE"
+          }
+        ],
+        "rows": [
+          [
+            null,
+            null,
+            null
+          ]
+        ]
+      },
+      "u": {
+        "columns": [
+          {
+            "name": "x",
+            "type": "INT"
+          }
+        ],
+        "rows": [
+          [
+            null
+          ]
+        ]
+      }
+    }
+  ],
+  "cycle_pairs": [
+    [
+      78,
+      11
+    ],
+    [
+      28,
+      8
+    ],
+    [
+      34,
+      9
+    ]
+  ]
+}

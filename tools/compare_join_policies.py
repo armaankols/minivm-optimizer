@@ -119,7 +119,8 @@ def main():
             row = dict(suite=suite, name=name, estimates=status, original_cycles=original['cycles'],
                        policies={'original': dict(cycles=original['cycles'], vm_seconds=seconds)})
             for policy, executable in policies.items():
-                optimized, optimizer_seconds = run([executable, program, schema_file])
+                stage = ['--joins-only'] if executable == ROOT/'optimize' else []
+                optimized, optimizer_seconds = run([executable, *stage, program, schema_file])
                 changes = join_changes(source, optimized)
                 candidate.write_bytes(optimized)
                 encoded, vm_seconds = run([ROOT/'bin/minivm', candidate, data])

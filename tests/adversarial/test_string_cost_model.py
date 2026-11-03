@@ -6,6 +6,9 @@ import test_join_selection as joins
 
 
 class StringCostModelReview(unittest.TestCase):
+    # Keep every experiment holdout after the simpler active join policy freezes.
+    optimizer_command = (str(joins.ROOT / 'experiments/profile_optimizer.py'),)
+
     setUp = joins.JoinSelectionReview.setUp
     tearDown = joins.JoinSelectionReview.tearDown
     run_vm = joins.JoinSelectionReview.run_vm

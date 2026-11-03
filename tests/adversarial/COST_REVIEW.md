@@ -168,3 +168,40 @@ its new focused cases into that fixed comparison.
 - With more time, evaluate length histograms collected by a separate estimator,
   bounds for unknown tails, and a fixed broader holdout family before expanding
   propagation. Existing STR schema files do not provide length histograms.
+
+## Independent complexity tradeoff assessment
+
+At the next authorized milestone, the reviewer recomputed these sums directly
+from `records/join-costs/after.json` and `holdouts.json`; these are an independent
+assessment of existing measurements, not new VM executions:
+
+| Corpus | Simple 3155414 | Profile 48ae105 | Profile minus simple |
+| --- | ---: | ---: | ---: |
+| Same fixed nineteen | 112833 | 106161 | -6672 |
+| All ten recorded holdouts | 229120 | 222399 | -6721 |
+| All twenty-nine | 341953 | 328560 | -13393 |
+| Fixed nineteen plus stale-profile case only | 122065 | 122689 | +624 |
+
+All ten holdouts are included in the combined assessment, including the new
+7296-cycle stale-profile loss. No additional gain appears on the eight supplied
+examples. Several gains are close variants of the same sparse long-tail family;
+these hand-built corpora are not representative workload samples. Neither model
+dominates, and aggregate totals cannot establish expected production performance.
+
+Reviewer recommendation: under the assignment's few-defensible-optimizations and
+2–3-hour preference, freeze the simpler 3155414 cost policy for submission and
+preserve 48ae105 as a documented experiment/history. This is an engineering
+complexity judgment: extra profile state, validation, rounding logic, and unknown
+tail assumptions do not improve the supplied examples, and one valid stale case
+erases the fixed-nineteen gain. It is not a claim that the simple policy is
+universally faster or that the profile policy is semantically unsound. The
+coordinator owns the final policy decision. No further cost tuning was proposed
+or performed by this reviewer.
+
+Coordinator accepted this recommendation: active join selection freezes the
+simple 3155414 policy, and exact 48ae105 profile code is retained as executable
+`experiments/profile_optimizer.py`. Existing source-byte/cost tests use active
+`./optimize --joins-only` to isolate that stage from newly authorized DCE. Every
+profile-positive, rounding, malformed-profile, tail, derived-column, and stale
+holdout in `test_string_cost_model.py` now targets the archived executable through
+the same two-argument command contract. No holdout was deleted or retuned.

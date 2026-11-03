@@ -1,0 +1,72 @@
+{
+  "recorded_at_utc": "2026-11-03T00:41:13.557005+00:00",
+  "interface": "./evaluate OPTIMIZER",
+  "checks": [
+    {
+      "name": "independent_identity",
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "wall_seconds": 2.620983833,
+      "stdout": "{\"status\": \"no defects found\", \"cases\": 26, \"executions\": 70, \"optimizer_seconds\": 0.41602495900000036, \"vm_seconds\": 1.2120571189999991, \"wall_seconds\": 2.512760417}\n",
+      "stderr": ""
+    },
+    {
+      "name": "current_optimizer",
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "wall_seconds": 4.325043958,
+      "stdout": "{\"status\": \"no defects found\", \"cases\": 26, \"executions\": 70, \"optimizer_seconds\": 2.0941374969999993, \"vm_seconds\": 1.224838997, \"wall_seconds\": 4.215070042}\n",
+      "stderr": ""
+    },
+    {
+      "name": "empty_result",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "wall_seconds": 0.298084083,
+      "stdout": "",
+      "stderr": "optimizer defect: bag_rows: output row count changed; witness /Users/armaankolsawala/Downloads/Assessment/aim-takehome/.evaluation-failures/1793666480797904000-bag_rows\n",
+      "optimizer_prints": "LOAD x,t.x\nLOAD s,t.s\nSLICE x,x,0\nSLICE s,s,0\nOUT x,s\n",
+      "retained_witness": "witnesses/empty_result"
+    },
+    {
+      "name": "drop_duplicates",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "wall_seconds": 0.29018037500000027,
+      "stdout": "",
+      "stderr": "optimizer defect: bag_rows: output row count changed; witness /Users/armaankolsawala/Downloads/Assessment/aim-takehome/.evaluation-failures/1793666481089929000-bag_rows\n",
+      "optimizer_prints": "LOAD x,t.x\nLOAD s,t.s\nGROUP g,x,s\nGFIRST i,g\nGATHER x,x,i\nGATHER s,s,i\nOUT x,s\n",
+      "retained_witness": "witnesses/drop_duplicates"
+    },
+    {
+      "name": "swap_columns",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "wall_seconds": 0.288889792,
+      "stdout": "",
+      "stderr": "optimizer defect: bag_rows: unordered rows differ (including duplicate multiplicity); witness /Users/armaankolsawala/Downloads/Assessment/aim-takehome/.evaluation-failures/1793666481380396000-bag_rows\n",
+      "optimizer_prints": "LOAD x,t.x\nLOAD s,t.s\nOUT s,x\n",
+      "retained_witness": "witnesses/swap_columns"
+    },
+    {
+      "name": "break_row_associations",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "wall_seconds": 0.29050308300000083,
+      "stdout": "",
+      "stderr": "optimizer defect: bag_rows: unordered rows differ (including duplicate multiplicity); witness /Users/armaankolsawala/Downloads/Assessment/aim-takehome/.evaluation-failures/1793666481673107000-bag_rows\n",
+      "optimizer_prints": "LOAD x,t.x\nLOAD s,t.s\nSORT i,x ASC NF\nGATHER x,x,i\nOUT x,s\n",
+      "retained_witness": "witnesses/break_row_associations"
+    },
+    {
+      "name": "replace_null_with_zero",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "wall_seconds": 0.2901503329999997,
+      "stdout": "",
+      "stderr": "optimizer defect: bag_rows: unordered rows differ (including duplicate multiplicity); witness /Users/armaankolsawala/Downloads/Assessment/aim-takehome/.evaluation-failures/1793666481964798000-bag_rows\n",
+      "optimizer_prints": "LOAD x,t.x\nLOAD s,t.s\nNVL x,x,0\nOUT x,s\n",
+      "retained_witness": "witnesses/replace_null_with_zero"
+    }
+  ]
+}

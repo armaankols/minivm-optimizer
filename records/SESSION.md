@@ -151,7 +151,46 @@
 - Ordering intent, numeric denominator, and behavior on failing originals are
   underspecified. Test metadata and documented policies bound these ambiguities.
 - Broad rewrites and a general constraint solver are deferred.
-- Add no optimizer rewrites until the user reviews baseline results.
+- Additional rewrites beyond this milestone's conservative DCE await user review.
+
+## Balanced freeze and conservative DCE
+
+- User requested the combined join tradeoff and a complexity recommendation,
+  then authorized the next conservative rewrite with independent review and
+  separately measured contribution. Later status questions did not cancel work.
+- Combined arithmetic: fixed 19 plus stale-profile holdout is 122065 simple versus
+  122689 refined (+624); all 29 cases are 341953 versus 328560 (-13393). Both are
+  reported. These unweighted related diagnostic cases do not establish workload
+  probabilities. Freeze 315 simple on scope/complexity grounds, not a performance
+  dominance claim; archive exact 48 source and all profile tests/measurements.
+- Full CLI now joins then DCE; --joins-only isolates the frozen cost stage.
+  DCE uses guaranteed types, exact known opcode roles and backward liveness,
+  retaining every potentially failing instruction and its inputs. Only a narrow
+  whitelist is eligible; no statistics justify semantic removal. Unknown syntax
+  disables the pass. Removed lines preserve comments and physical line endings.
+- Coordinator found and reproduced a successful-source resource regression:
+  removing dead LOAD overwrites after eight 2000x2000 HJOINs retained old large
+  columns; original exit 0 versus candidate exit 1 at line 23 memory > 64000000 values.
+  Complete program/candidate and results saved before fix. First-textual-definition
+  guard now keeps all overwrites; after-fix result matches original including
+  cycles 64226104. Both specialists reviewed and added lightweight guards; neither
+  duplicated the heavy probe. This is stronger than merely documenting ambiguity
+  for originally failing runs.
+- Final coordinator suites: 75 evaluator tests pass 25.125 s and 57 adversarial tests
+  pass 17.141 s. All existing tests, archived profile coverage and join holdouts
+  remain. Public identity/current pass 26 cases / 70datasets; five mutants reject.
+- Separate DCE measurement: examples 60167->59891, saving 276 (q1:34,q2:90,q7:152;
+  five unchanged,no regressions). Eleven targeted join cases and ten holdouts
+  unchanged. Three separate positive fixtures save 88,24,56 cycles. All32 benchmark
+  outputs agree exactly; join choices are held fixed across the DCE comparison.
+- Unoptimized example total 60363->59891 combines 196 join plus 276 DCE savings.
+  This does not claim to overcome the archived profile gain across all 29 cases.
+- Public current wall 4.325 s; per-example optimizer 80-82ms; optimizer-only 20k scale
+  probe 0.336 s. Startup included, timings noisy. Reports/raw logs and reproduction
+  tools are retained in records/dce and both specialist DCE reports.
+- No additional join tuning or rewrite was added. Model settings and unavailable
+  usage telemetry are unchanged. Binary exclusion and local-commit/push policy
+  remain as authorized; remote state is not inferred from user-reported pushes.
 
 ## Join milestone authorization
 

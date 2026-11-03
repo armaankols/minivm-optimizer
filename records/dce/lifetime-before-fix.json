@@ -1,0 +1,22 @@
+{
+  "rows": 2000,
+  "joins": 8,
+  "program": "LOAD x,t.x\nHJOIN a0,b0,x,x\nLOAD a0,t.x\nLOAD b0,t.x\nHJOIN a1,b1,x,x\nLOAD a1,t.x\nLOAD b1,t.x\nHJOIN a2,b2,x,x\nLOAD a2,t.x\nLOAD b2,t.x\nHJOIN a3,b3,x,x\nLOAD a3,t.x\nLOAD b3,t.x\nHJOIN a4,b4,x,x\nLOAD a4,t.x\nLOAD b4,t.x\nHJOIN a5,b5,x,x\nLOAD a5,t.x\nLOAD b5,t.x\nHJOIN a6,b6,x,x\nLOAD a6,t.x\nLOAD b6,t.x\nHJOIN a7,b7,x,x\nLOAD a7,t.x\nLOAD b7,t.x\nOUT x\n",
+  "candidate": "LOAD x,t.x\nHJOIN a0,b0,x,x\n\n\nHJOIN a1,b1,x,x\n\n\nHJOIN a2,b2,x,x\n\n\nHJOIN a3,b3,x,x\n\n\nHJOIN a4,b4,x,x\n\n\nHJOIN a5,b5,x,x\n\n\nHJOIN a6,b6,x,x\n\n\nHJOIN a7,b7,x,x\n\n\nOUT x\n",
+  "results": [
+    {
+      "name": "program.mini",
+      "exit": 0,
+      "seconds": 0.449912333,
+      "stderr": "",
+      "stdout_bytes": 8039
+    },
+    {
+      "name": "candidate.mini",
+      "exit": 1,
+      "seconds": 0.613154625,
+      "stderr": "error: line 23: HJOIN: the registers would hold more than 64000000 values\n",
+      "stdout_bytes": 0
+    }
+  ]
+}

@@ -15,6 +15,7 @@ import time
 import unittest
 
 ROOT=Path(__file__).resolve().parents[2]
+ARCHIVED_PROFILE=ROOT/'experiments/profile_optimizer.py'
 sys.path.insert(0,str(ROOT))
 import evaluator as ev
 
@@ -71,9 +72,10 @@ def command(argv,deadline=None):
     return result.stdout
 
 
-def measure_suite(optimizer=ROOT/'optimize'):
+def measure_suite(optimizer=None):
     """Same19 programs/data for selected, forcedNL and forcedH; frozen schemas."""
     results=[]
+    selected_command=[ROOT/'optimize','--joins-only'] if optimizer is None else [optimizer]
     with tempfile.TemporaryDirectory(prefix='cost-policy-check-') as folder:
         folder=Path(folder)
         original=folder/'original.mini'
@@ -88,7 +90,7 @@ def measure_suite(optimizer=ROOT/'optimize'):
                               'p=re.compile(rb"(?im)^([ \\t]*)(NLJOIN|HJOIN)(?=[ \\t])")\n'
                               'sys.stdout.buffer.write(p.sub(lambda m:m.group(1)+'+repr(op.encode())+',s))\n')
             policy.chmod(0o755)
-            policies[op]=policy
+            policies[op]=[policy]
         inputs=[]
         example_data=json.loads((ROOT/'examples/data.json').read_text())
         for i in range(1,9):
@@ -107,8 +109,8 @@ def measure_suite(optimizer=ROOT/'optimize'):
             expected=ev.parse_result(command([ROOT/'bin/minivm',original,data_file]))
             cycles={}
             selections={}
-            for label,executable in [('selected',optimizer),*policies.items()]:
-                emitted=command([executable,original,schema_file])
+            for label,executable in [('selected',selected_command),*policies.items()]:
+                emitted=command([*executable,original,schema_file])
                 # Replacing every join opcode by the same marker must yield
                 # byte-identical sources, preserving operands/flags and literals.
                 if force_policy(source,'NLJOIN')!=force_policy(emitted,'NLJOIN'):
@@ -154,7 +156,7 @@ class CostPolicyTests(unittest.TestCase):
 
 
 class StringProfileHoldoutTests(unittest.TestCase):
-    """New model assumptions: separate holdouts, outside the original19 totals."""
+    """Retained experimental model assumptions, tested against its archived CLI."""
     def probe(self,data,*,prefix='',initial='NLJOIN',nulleq=False,mutate=None):
         with tempfile.TemporaryDirectory(prefix='string-cost-holdout-') as directory:
             directory=Path(directory)
@@ -169,7 +171,7 @@ class StringProfileHoldoutTests(unittest.TestCase):
             if mutate:
                 mutate(schema)
             schema_file.write_text(json.dumps(schema))
-            emitted=command([ROOT/'optimize',original,schema_file])
+            emitted=command([ARCHIVED_PROFILE,original,schema_file])
             self.assertEqual(force_policy(source,'NLJOIN'),force_policy(emitted,'NLJOIN'))
             matches=list(JOIN_TOKEN.finditer(emitted))
             self.assertEqual(len(matches),1)

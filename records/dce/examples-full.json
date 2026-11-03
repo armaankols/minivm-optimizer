@@ -1,0 +1,137 @@
+{
+  "suite": "supplied-examples-v1",
+  "stage": "joins-plus-dce",
+  "python": "3.9.6",
+  "platform": "macOS-15.7.7-arm64-arm-64bit",
+  "measurement_policy": "one invocation per entry; process startup included; wall times are noisy",
+  "benchmark_seconds": 0.834065167,
+  "measurements": [
+    {
+      "program": "q0001.mini",
+      "baseline_cycles": 13766,
+      "candidate_cycles": 13536,
+      "cycles_saved": 230,
+      "optimizer_seconds": 0.08183729199999999,
+      "baseline_vm_seconds": 0.010126625,
+      "candidate_vm_seconds": 0.01207233299999999,
+      "candidate_is_byte_identical": false,
+      "join_changes": [
+        {
+          "line": 31,
+          "from": "HJOIN",
+          "to": "NLJOIN"
+        }
+      ],
+      "dead_removed": [
+        {
+          "line": 52,
+          "from": "LOAD",
+          "to": null
+        }
+      ]
+    },
+    {
+      "program": "q0002.mini",
+      "baseline_cycles": 3617,
+      "candidate_cycles": 3527,
+      "cycles_saved": 90,
+      "optimizer_seconds": 0.08171399999999998,
+      "baseline_vm_seconds": 0.009701083,
+      "candidate_vm_seconds": 0.010062457999999996,
+      "candidate_is_byte_identical": false,
+      "join_changes": [],
+      "dead_removed": [
+        {
+          "line": 7,
+          "from": "load",
+          "to": null
+        }
+      ]
+    },
+    {
+      "program": "q0003.mini",
+      "baseline_cycles": 8562,
+      "candidate_cycles": 8562,
+      "cycles_saved": 0,
+      "optimizer_seconds": 0.08075716599999999,
+      "baseline_vm_seconds": 0.00886291699999997,
+      "candidate_vm_seconds": 0.009809332999999976,
+      "candidate_is_byte_identical": true,
+      "join_changes": [],
+      "dead_removed": []
+    },
+    {
+      "program": "q0004.mini",
+      "baseline_cycles": 18442,
+      "candidate_cycles": 18442,
+      "cycles_saved": 0,
+      "optimizer_seconds": 0.08157008399999999,
+      "baseline_vm_seconds": 0.009198874999999995,
+      "candidate_vm_seconds": 0.010094500000000006,
+      "candidate_is_byte_identical": true,
+      "join_changes": [],
+      "dead_removed": []
+    },
+    {
+      "program": "q0005.mini",
+      "baseline_cycles": 5518,
+      "candidate_cycles": 5518,
+      "cycles_saved": 0,
+      "optimizer_seconds": 0.08146724999999994,
+      "baseline_vm_seconds": 0.009222125000000025,
+      "candidate_vm_seconds": 0.009415042000000096,
+      "candidate_is_byte_identical": true,
+      "join_changes": [],
+      "dead_removed": []
+    },
+    {
+      "program": "q0006.mini",
+      "baseline_cycles": 6338,
+      "candidate_cycles": 6338,
+      "cycles_saved": 0,
+      "optimizer_seconds": 0.08071558300000004,
+      "baseline_vm_seconds": 0.008524084000000043,
+      "candidate_vm_seconds": 0.00994925000000002,
+      "candidate_is_byte_identical": true,
+      "join_changes": [],
+      "dead_removed": []
+    },
+    {
+      "program": "q0007.mini",
+      "baseline_cycles": 2596,
+      "candidate_cycles": 2444,
+      "cycles_saved": 152,
+      "optimizer_seconds": 0.08082179099999998,
+      "baseline_vm_seconds": 0.008823833000000003,
+      "candidate_vm_seconds": 0.009851042000000088,
+      "candidate_is_byte_identical": false,
+      "join_changes": [],
+      "dead_removed": [
+        {
+          "line": 16,
+          "from": "upper",
+          "to": null
+        },
+        {
+          "line": 17,
+          "from": "dow",
+          "to": null
+        }
+      ]
+    },
+    {
+      "program": "q0008.mini",
+      "baseline_cycles": 1524,
+      "candidate_cycles": 1524,
+      "cycles_saved": 0,
+      "optimizer_seconds": 0.08042400000000005,
+      "baseline_vm_seconds": 0.008638625000000011,
+      "candidate_vm_seconds": 0.010040666999999948,
+      "candidate_is_byte_identical": true,
+      "join_changes": [],
+      "dead_removed": []
+    }
+  ],
+  "total_baseline_cycles": 60363,
+  "total_candidate_cycles": 59891
+}

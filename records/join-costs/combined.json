@@ -1,0 +1,57 @@
+{
+  "policy": "one execution per retained case; diagnostic unweighted totals, not an expected production cost",
+  "sources": [
+    "after.json",
+    "holdouts.json"
+  ],
+  "groups": {
+    "fixed_19": {
+      "cases": 19,
+      "simple": 112833,
+      "refined": 106161,
+      "refined_minus_simple": -6672,
+      "always_HJOIN": 137963,
+      "always_NLJOIN": 449799
+    },
+    "stale_profile_1": {
+      "cases": 1,
+      "simple": 9232,
+      "refined": 16528,
+      "refined_minus_simple": 7296,
+      "always_HJOIN": 9232,
+      "always_NLJOIN": 16528
+    },
+    "fixed_plus_stale_20": {
+      "cases": 20,
+      "simple": 122065,
+      "refined": 122689,
+      "refined_minus_simple": 624,
+      "always_HJOIN": 147195,
+      "always_NLJOIN": 466327
+    },
+    "matching_holdouts_9": {
+      "cases": 9,
+      "simple": 219888,
+      "refined": 205871,
+      "refined_minus_simple": -14017,
+      "always_HJOIN": 219887,
+      "always_NLJOIN": 304850
+    },
+    "all_holdouts_10": {
+      "cases": 10,
+      "simple": 229120,
+      "refined": 222399,
+      "refined_minus_simple": -6721,
+      "always_HJOIN": 229119,
+      "always_NLJOIN": 321378
+    },
+    "all_measured_29": {
+      "cases": 29,
+      "simple": 341953,
+      "refined": 328560,
+      "refined_minus_simple": -13393,
+      "always_HJOIN": 367082,
+      "always_NLJOIN": 771177
+    }
+  }
+}
