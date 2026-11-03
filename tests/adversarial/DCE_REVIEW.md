@@ -202,3 +202,11 @@ All semantic negative tests remain unchanged. Sixteen DCE methods passed in
 post-fix review. The coordinator owns the heavyweight fixed-witness rerun and
 representative benchmark verification; no result for those unexecuted-by-reviewer
 commands is invented here.
+
+During the subsequent guaranteed-order review, independent probes found another
+error-preservation issue in shared operand parsing: Python `.strip()` removes
+U+001C..U+001F while the VM rejects them. A dead `LOAD dead,t.x<FS>` was incorrectly
+considered valid and removed. All four controls were reproduced before the parser
+fix and retained in `test_python_only_whitespace_does_not_validate_malformed_load`.
+This is tracked with the related SORT parse-error finding and fix provenance in
+`SORT_REVIEW.md`; earlier finite passing-test checkpoints are historical evidence.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Select NLJOIN/HJOIN, then eliminate a narrow set of total dead definitions.
+"""Select joins, replace guaranteed stored-order sorts, and remove safe dead work.
 
 joins.md explicitly guarantees the same ordered pairs and semantic errors. None
 of these estimates establish a semantic precondition. Resource-limit failures
@@ -68,6 +68,13 @@ def instruction(line):
             if char == ';':
                 break
             start = i + 1
+        elif not quoted and (char in '\x1c\x1d\x1e\x1f'
+                             or (not char.isascii() and not char.isspace())):
+            # Python treats FS/GS/RS/US as whitespace and Unicode case folding
+            # accepts token lookalikes (e.g. long-s or Kelvin sign) that MiniVM
+            # rejects. Never prove a rewrite from those tokens. Quoted strings
+            # and comments remain unrestricted data; VM Unicode whitespace is OK.
+            return None
         i += 1
     else:
         operands.append(line[start:].strip())
@@ -247,18 +254,21 @@ def select_joins(source, schema):
 
 def main(argv=None):
     argv = sys.argv[1:] if argv is None else argv
-    joins_only = len(argv) == 3 and argv[0] == '--joins-only'
-    if joins_only:
+    mode = argv[0] if len(argv) == 3 and argv[0] in ('--joins-only', '--no-sorted-order') else None
+    if mode:
         argv = argv[1:]
     if len(argv) != 2:
-        print('usage: ./optimize [--joins-only] PROGRAM SCHEMA', file=sys.stderr)
+        print('usage: ./optimize [--joins-only|--no-sorted-order] PROGRAM SCHEMA', file=sys.stderr)
         return 2
     try:
         original = Path(argv[0]).read_bytes()
         schema = json.loads(Path(argv[1]).read_text())
         source = original.decode('utf-8')
         selected = select_joins(source, schema)
-        if not joins_only:
+        if mode != '--joins-only':
+            if mode != '--no-sorted-order':
+                from sorted_order import replace_sorted
+                selected = replace_sorted(selected, schema, instruction, register)
             from dead_code import eliminate_dead
             selected = eliminate_dead(selected, schema, instruction, register)
         sys.stdout.buffer.write(selected.encode('utf-8'))

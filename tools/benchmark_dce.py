@@ -25,7 +25,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
-    report = {'policy': 'same active join choices; full two-argument CLI adds only DCE', 'measurements': []}
+    report = {'policy': 'same active join choices; sorted-order pass disabled to isolate DCE', 'measurements': []}
     cases = [*corpus(), *corpus(True), *positive_cases()]
     assert len(cases) == 32
     with tempfile.TemporaryDirectory(prefix='minivm-dce-benchmark-') as directory:
@@ -47,7 +47,7 @@ def main():
             outputs = {}
             row = {'suite': suite, 'name': name, 'estimates': status, 'original_cycles': original['cycles']}
             for mode in ('joins_only', 'full'):
-                command = [str(ROOT/'optimize'), *(['--joins-only'] if mode == 'joins_only' else []), str(program), str(schema_file)]
+                command = [str(ROOT/'optimize'), '--joins-only' if mode == 'joins_only' else '--no-sorted-order', str(program), str(schema_file)]
                 emitted, seconds = run(command)
                 outputs[mode] = emitted
                 changes = join_changes(source, emitted, allow_dead=mode == 'full')

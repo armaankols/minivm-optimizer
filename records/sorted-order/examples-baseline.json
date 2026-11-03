@@ -1,0 +1,145 @@
+{
+  "suite": "supplied-examples-v1",
+  "stage": "joins-plus-dce",
+  "python": "3.9.6",
+  "platform": "macOS-15.7.7-arm64-arm-64bit",
+  "measurement_policy": "one invocation per entry; process startup included; wall times are noisy",
+  "benchmark_seconds": 0.897305375,
+  "measurements": [
+    {
+      "program": "q0001.mini",
+      "baseline_cycles": 13766,
+      "candidate_cycles": 13536,
+      "cycles_saved": 230,
+      "optimizer_seconds": 0.08922820900000002,
+      "baseline_vm_seconds": 0.010266582999999996,
+      "candidate_vm_seconds": 0.010816790999999992,
+      "candidate_is_byte_identical": false,
+      "join_changes": [
+        {
+          "line": 31,
+          "from": "HJOIN",
+          "to": "NLJOIN"
+        }
+      ],
+      "sort_changes": [],
+      "dead_removed": [
+        {
+          "line": 52,
+          "from": "LOAD",
+          "to": null
+        }
+      ]
+    },
+    {
+      "program": "q0002.mini",
+      "baseline_cycles": 3617,
+      "candidate_cycles": 3527,
+      "cycles_saved": 90,
+      "optimizer_seconds": 0.08800712500000002,
+      "baseline_vm_seconds": 0.010239166999999993,
+      "candidate_vm_seconds": 0.010450791000000015,
+      "candidate_is_byte_identical": false,
+      "join_changes": [],
+      "sort_changes": [],
+      "dead_removed": [
+        {
+          "line": 7,
+          "from": "load",
+          "to": null
+        }
+      ]
+    },
+    {
+      "program": "q0003.mini",
+      "baseline_cycles": 8562,
+      "candidate_cycles": 8562,
+      "cycles_saved": 0,
+      "optimizer_seconds": 0.08778058300000002,
+      "baseline_vm_seconds": 0.010361500000000023,
+      "candidate_vm_seconds": 0.010737125000000014,
+      "candidate_is_byte_identical": true,
+      "join_changes": [],
+      "sort_changes": [],
+      "dead_removed": []
+    },
+    {
+      "program": "q0004.mini",
+      "baseline_cycles": 18442,
+      "candidate_cycles": 18442,
+      "cycles_saved": 0,
+      "optimizer_seconds": 0.09051399999999998,
+      "baseline_vm_seconds": 0.010680625,
+      "candidate_vm_seconds": 0.010404541999999961,
+      "candidate_is_byte_identical": true,
+      "join_changes": [],
+      "sort_changes": [],
+      "dead_removed": []
+    },
+    {
+      "program": "q0005.mini",
+      "baseline_cycles": 5518,
+      "candidate_cycles": 5518,
+      "cycles_saved": 0,
+      "optimizer_seconds": 0.08707425000000002,
+      "baseline_vm_seconds": 0.009939458999999928,
+      "candidate_vm_seconds": 0.010885209000000007,
+      "candidate_is_byte_identical": true,
+      "join_changes": [],
+      "sort_changes": [],
+      "dead_removed": []
+    },
+    {
+      "program": "q0006.mini",
+      "baseline_cycles": 6338,
+      "candidate_cycles": 6338,
+      "cycles_saved": 0,
+      "optimizer_seconds": 0.08855879200000005,
+      "baseline_vm_seconds": 0.010461833000000031,
+      "candidate_vm_seconds": 0.010230457999999998,
+      "candidate_is_byte_identical": true,
+      "join_changes": [],
+      "sort_changes": [],
+      "dead_removed": []
+    },
+    {
+      "program": "q0007.mini",
+      "baseline_cycles": 2596,
+      "candidate_cycles": 2444,
+      "cycles_saved": 152,
+      "optimizer_seconds": 0.08834641600000004,
+      "baseline_vm_seconds": 0.01013045899999998,
+      "candidate_vm_seconds": 0.010493874999999986,
+      "candidate_is_byte_identical": false,
+      "join_changes": [],
+      "sort_changes": [],
+      "dead_removed": [
+        {
+          "line": 16,
+          "from": "upper",
+          "to": null
+        },
+        {
+          "line": 17,
+          "from": "dow",
+          "to": null
+        }
+      ]
+    },
+    {
+      "program": "q0008.mini",
+      "baseline_cycles": 1524,
+      "candidate_cycles": 1524,
+      "cycles_saved": 0,
+      "optimizer_seconds": 0.08747450000000001,
+      "baseline_vm_seconds": 0.010218459000000069,
+      "candidate_vm_seconds": 0.010625624999999972,
+      "candidate_is_byte_identical": true,
+      "join_changes": [],
+      "sort_changes": [],
+      "dead_removed": []
+    }
+  ],
+  "total_baseline_cycles": 60363,
+  "total_candidate_cycles": 59891
+}

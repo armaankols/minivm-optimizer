@@ -1,0 +1,6 @@
+LOAD x,t.x
+LOAD s,t.s
+SORT i,x ASC NF
+GATHER x,x,i
+OUT x,s
+

@@ -1,0 +1,44 @@
+[
+  {
+    "name": "key_control_28",
+    "original_exit": 1,
+    "candidate_exit": 1,
+    "source_preserved": true
+  },
+  {
+    "name": "key_control_29",
+    "original_exit": 1,
+    "candidate_exit": 1,
+    "source_preserved": true
+  },
+  {
+    "name": "key_control_30",
+    "original_exit": 1,
+    "candidate_exit": 1,
+    "source_preserved": true
+  },
+  {
+    "name": "key_control_31",
+    "original_exit": 1,
+    "candidate_exit": 1,
+    "source_preserved": true
+  },
+  {
+    "name": "dead_load_control",
+    "original_exit": 1,
+    "candidate_exit": 1,
+    "source_preserved": true
+  },
+  {
+    "name": "unicode_ASC",
+    "original_exit": 1,
+    "candidate_exit": 1,
+    "source_preserved": true
+  },
+  {
+    "name": "unicode_column",
+    "original_exit": 1,
+    "candidate_exit": 1,
+    "source_preserved": true
+  }
+]

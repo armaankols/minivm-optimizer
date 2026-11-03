@@ -4,6 +4,34 @@ These are the task requests and specialist assignments available in the session.
 This does not include hidden model reasoning, unavailable provider telemetry, or
 an automatic export of the application conversation.
 
+## User: final optimization recommendation and approval
+
+```text
+Let’s try one more optimization before the final review, which would you recommend next given the findings so far?
+```
+
+Coordinator recommended direct guaranteed SORT->IOTA and reported a read-only
+temporary q0001 trial saving770 cycles with identical results. Reviewer confirmed
+the nonempty leading-prefix, direct-LOAD, same-table, ASC NF preconditions.
+
+```text
+Sounds good
+```
+
+The user subsequently sent `continue` twice when specialist sessions reported
+usage limits. Work continued within the approved one-rule scope. Both specialists
+were later able to resume for narrow final independent checks.
+
+Assignments: reviewer owns tests/adversarial sorted-rule fixtures/review, checking
+proofs, alias invalidation, source bytes, malformed syntax and DCE lifetime
+interaction. Evaluator owns its existing paths and was asked for independent
+public-CLI verification. Coordinator owns implementation, shared parsing fixes,
+benchmarks, records and Git. No nested delegation, join tuning or additional
+GATHER rewrite. When usage limited the initial sessions, coordinator ran retained
+tests locally; resumed reviewer inspected the exact fix and reran16tests, and
+resumed evaluator independently reran those fixtures and public26/70 CLI. No new
+evaluator-owned SORT fixtures were written; that distinction is preserved.
+
 ## User: balanced join freeze and next conservative rewrite
 
 ```text

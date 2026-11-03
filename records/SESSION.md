@@ -99,6 +99,45 @@
   reports and concise execution results are retained with this milestone; this
   record is a curated transcript, not a claim of complete internal telemetry.
 
+## Final stored-order rule
+
+- User approved the recommended SORT->IOTA rule, then requested continuation
+  during temporary specialist usage limits. Scope stayed one rule: no join tuning
+  or identity-GATHER rewrite. Team ownership stayed separate; no nested agents.
+- Implemented joins -> guaranteed stored-order pass -> guarded DCE. Optional
+  --no-sorted-order isolates the previous pipeline; --joins-only is unchanged.
+  Current direct LOAD origins, same table, exact nonempty leading sorted prefix
+  and ASC NF establish the proof. Stats never establish sortedness.
+- Reviewer found invalid-token error suppression from Python-only FS..US whitespace
+  and Unicode case folding (long-s ASC, Kelvin stored identifier). Coordinator
+  reproduced seven original-exit-1/candidate-exit-0 cases BEFORE fixing the scanner.
+  The shared parser now refuses those tokens outside quotes/comments. All seven
+  preserve failure and source bytes. A 29-codepoint whitespace probe preserves
+  every VM success/failure outcome.
+- Both specialist sessions temporarily hit usage limits. Later follow-ups worked:
+  reviewer inspected the fix and passed 16 methods in 5.745 s; evaluator reran the
+  same 16 methods in 6.194 s plus public 26/70 CLI in 4.643 s. No additional
+  evaluator-authored SORT fixtures were written. Returned messages are preserved
+  in sorted-order/REVIEW_LOG.md, with authorship/reruns distinguished.
+- Coordinator final suites: 75 evaluator tests passed in 25.251 s; 75 adversarial
+  tests passed in 23.493 s. Public identity/current pass 26 cases/70 datasets; five
+  mutants reject with saved witnesses. The memory-lifetime original/current replay
+  still agrees exactly at 64226104 cycles; unsafe high-memory variant was not rerun.
+- Isolated contribution: q0001 13536->12766 (-770), seven other examples unchanged.
+  Example total 59891->59121. From unoptimized 60363, savings total 1242:
+  join 196 + DCE 276 + sorted-order 770. Join choices stay fixed in this comparison.
+- All prior 32 cases remain: 29 join cases (every holdout included) and three DCE
+  positives. Seven new sorted-order diagnostics make 39: six improve, 33 unchanged,
+  zero regressions. Some new diagnostic savings include induced safe DCE; source
+  events identify these. q0001's 770 cycles are the direct sort contribution.
+- Root public CLI wall 4.392 s; example optimizer about 89-91 ms; optimizer-only
+  20k scale probe 0.445 s. Startup is included and timings noisy; no wall-time gain
+  is claimed. Historical records are preserved. No new model/reasoning settings,
+  backend usage telemetry or spend became available; none is invented.
+- This is the last approved optimization before final review. Origin remains
+  correct but GitHub DNS fails; new agent commits are local for the user's pushes.
+  Staged artifacts are checked as text; supplied binaries stay local and excluded.
+
 ## Cost-model comparison and refinement
 
 - User requested comparison against always-HJOIN and always-NLJOIN on the same

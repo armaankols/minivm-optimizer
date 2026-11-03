@@ -1,0 +1,66 @@
+{
+  "message": "output row count changed",
+  "seeds": [
+    1729,
+    8675309
+  ],
+  "expected": {
+    "ncols": 2,
+    "rows": [
+      [
+        0,
+        ""
+      ],
+      [
+        1,
+        "a"
+      ],
+      [
+        2,
+        "b"
+      ],
+      [
+        null,
+        null
+      ],
+      [
+        2,
+        "b"
+      ],
+      [
+        -3,
+        " stra\u00dfe "
+      ],
+      [
+        0,
+        "Zo\u00eb"
+      ],
+      [
+        2,
+        "1.0"
+      ],
+      [
+        0,
+        null
+      ],
+      [
+        null,
+        "it's"
+      ],
+      [
+        9,
+        "a;b"
+      ],
+      [
+        9,
+        "1.0"
+      ]
+    ],
+    "cycles": 36
+  },
+  "actual": {
+    "ncols": 2,
+    "rows": [],
+    "cycles": 44
+  }
+}

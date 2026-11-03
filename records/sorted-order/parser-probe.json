@@ -1,0 +1,30 @@
+[
+  {
+    "separator": "'\\xa0'",
+    "before": 0,
+    "after": 0,
+    "before_stderr": "",
+    "changed": true
+  },
+  {
+    "separator": "'\\x0b'",
+    "before": 0,
+    "after": 0,
+    "before_stderr": "",
+    "changed": true
+  },
+  {
+    "separator": "'\\r'",
+    "before": 0,
+    "after": 0,
+    "before_stderr": "",
+    "changed": true
+  },
+  {
+    "separator": "'\\u2028'",
+    "before": 0,
+    "after": 0,
+    "before_stderr": "",
+    "changed": true
+  }
+]

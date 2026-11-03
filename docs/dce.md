@@ -1,8 +1,9 @@
 # Proven-total dead computation elimination
 
-The full two-argument optimizer runs this pass **after** frozen join selection.
-`--joins-only` provides the baseline for measuring its separate contribution;
-join choices cannot change because of DCE. No arithmetic or live-value identity
+The full two-argument optimizer runs this pass after frozen join selection and
+guaranteed stored-order elimination. To isolate the historical DCE contribution,
+compare `--joins-only` with `--no-sorted-order`; the latter disables only the new
+sort rule. Join choices cannot change because of DCE. No arithmetic or live-value identity
 rewrite is performed.
 
 ## Preconditions

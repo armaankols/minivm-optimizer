@@ -93,6 +93,20 @@ class DeadComputationReview(unittest.TestCase):
                 candidate, _, _ = self.compare(source, error=True)
                 self.assertIn('LOAD bad,'+reference, candidate)
 
+    def test_python_only_whitespace_does_not_validate_malformed_load(self):
+        for separator in ['\x1c', '\x1d', '\x1e', '\x1f']:
+            with self.subTest(separator=repr(separator)):
+                source = 'LOAD dead,t.x'+separator+'\nLOAD x,t.x\nOUT x\n'
+                self.compare(source, error=True)
+
+    def test_unicode_casefold_is_not_a_valid_stored_identifier(self):
+        actual = tables()
+        actual['t']['columns'].append({'name': 'k', 'type': 'INT'})
+        for row in actual['t']['rows']:
+            row.append(1)
+        source = 'LOAD dead,t.K\nLOAD x,t.x\nOUT x\n'
+        self.compare(source, actual=actual, error=True)
+
     def test_group_and_undefined_sources_do_not_prove_column_totality(self):
         for operation in ['IOTA bad,g', 'SLICE bad,g,0', 'ISNULL bad,g',
                           'UPPER bad,g', 'IOTA bad,undefined', 'SLICE bad,undefined,0']:

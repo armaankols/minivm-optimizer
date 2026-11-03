@@ -1,0 +1,147 @@
+[
+  {
+    "codepoint": "U+0009",
+    "original_exit": 0,
+    "candidate_exit": 0
+  },
+  {
+    "codepoint": "U+000A",
+    "original_exit": 1,
+    "candidate_exit": 1
+  },
+  {
+    "codepoint": "U+000B",
+    "original_exit": 0,
+    "candidate_exit": 0
+  },
+  {
+    "codepoint": "U+000C",
+    "original_exit": 0,
+    "candidate_exit": 0
+  },
+  {
+    "codepoint": "U+000D",
+    "original_exit": 0,
+    "candidate_exit": 0
+  },
+  {
+    "codepoint": "U+001C",
+    "original_exit": 1,
+    "candidate_exit": 1
+  },
+  {
+    "codepoint": "U+001D",
+    "original_exit": 1,
+    "candidate_exit": 1
+  },
+  {
+    "codepoint": "U+001E",
+    "original_exit": 1,
+    "candidate_exit": 1
+  },
+  {
+    "codepoint": "U+001F",
+    "original_exit": 1,
+    "candidate_exit": 1
+  },
+  {
+    "codepoint": "U+0020",
+    "original_exit": 0,
+    "candidate_exit": 0
+  },
+  {
+    "codepoint": "U+0085",
+    "original_exit": 0,
+    "candidate_exit": 0
+  },
+  {
+    "codepoint": "U+00A0",
+    "original_exit": 0,
+    "candidate_exit": 0
+  },
+  {
+    "codepoint": "U+1680",
+    "original_exit": 0,
+    "candidate_exit": 0
+  },
+  {
+    "codepoint": "U+2000",
+    "original_exit": 0,
+    "candidate_exit": 0
+  },
+  {
+    "codepoint": "U+2001",
+    "original_exit": 0,
+    "candidate_exit": 0
+  },
+  {
+    "codepoint": "U+2002",
+    "original_exit": 0,
+    "candidate_exit": 0
+  },
+  {
+    "codepoint": "U+2003",
+    "original_exit": 0,
+    "candidate_exit": 0
+  },
+  {
+    "codepoint": "U+2004",
+    "original_exit": 0,
+    "candidate_exit": 0
+  },
+  {
+    "codepoint": "U+2005",
+    "original_exit": 0,
+    "candidate_exit": 0
+  },
+  {
+    "codepoint": "U+2006",
+    "original_exit": 0,
+    "candidate_exit": 0
+  },
+  {
+    "codepoint": "U+2007",
+    "original_exit": 0,
+    "candidate_exit": 0
+  },
+  {
+    "codepoint": "U+2008",
+    "original_exit": 0,
+    "candidate_exit": 0
+  },
+  {
+    "codepoint": "U+2009",
+    "original_exit": 0,
+    "candidate_exit": 0
+  },
+  {
+    "codepoint": "U+200A",
+    "original_exit": 0,
+    "candidate_exit": 0
+  },
+  {
+    "codepoint": "U+2028",
+    "original_exit": 0,
+    "candidate_exit": 0
+  },
+  {
+    "codepoint": "U+2029",
+    "original_exit": 0,
+    "candidate_exit": 0
+  },
+  {
+    "codepoint": "U+202F",
+    "original_exit": 0,
+    "candidate_exit": 0
+  },
+  {
+    "codepoint": "U+205F",
+    "original_exit": 0,
+    "candidate_exit": 0
+  },
+  {
+    "codepoint": "U+3000",
+    "original_exit": 0,
+    "candidate_exit": 0
+  }
+]

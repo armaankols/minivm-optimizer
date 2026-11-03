@@ -1,0 +1,58 @@
+[
+  {
+    "name": "key_control_28",
+    "source": "LOAD a,t.a\nSORT i,a\u001cASC NF\nOUT i\n",
+    "candidate": "LOAD a,t.a\nIOTA i, a\nOUT i\n",
+    "original_exit": 1,
+    "candidate_exit": 0,
+    "original_stderr": "error: line 2: SORT: expected a sort key `reg ASC|DESC NF|NL`, got \"a\\u{1c}ASC NF\"\n"
+  },
+  {
+    "name": "key_control_29",
+    "source": "LOAD a,t.a\nSORT i,a\u001dASC NF\nOUT i\n",
+    "candidate": "LOAD a,t.a\nIOTA i, a\nOUT i\n",
+    "original_exit": 1,
+    "candidate_exit": 0,
+    "original_stderr": "error: line 2: SORT: expected a sort key `reg ASC|DESC NF|NL`, got \"a\\u{1d}ASC NF\"\n"
+  },
+  {
+    "name": "key_control_30",
+    "source": "LOAD a,t.a\nSORT i,a\u001eASC NF\nOUT i\n",
+    "candidate": "LOAD a,t.a\nIOTA i, a\nOUT i\n",
+    "original_exit": 1,
+    "candidate_exit": 0,
+    "original_stderr": "error: line 2: SORT: expected a sort key `reg ASC|DESC NF|NL`, got \"a\\u{1e}ASC NF\"\n"
+  },
+  {
+    "name": "key_control_31",
+    "source": "LOAD a,t.a\nSORT i,a\u001fASC NF\nOUT i\n",
+    "candidate": "LOAD a,t.a\nIOTA i, a\nOUT i\n",
+    "original_exit": 1,
+    "candidate_exit": 0,
+    "original_stderr": "error: line 2: SORT: expected a sort key `reg ASC|DESC NF|NL`, got \"a\\u{1f}ASC NF\"\n"
+  },
+  {
+    "name": "dead_load_control",
+    "source": "LOAD dead,t.a\u001c\nLOAD a,t.a\nOUT a\n",
+    "candidate": "\nLOAD a,t.a\nOUT a\n",
+    "original_exit": 1,
+    "candidate_exit": 0,
+    "original_stderr": "error: line 1: LOAD: expected a table.column, got \"t.a\\u{1c}\"\n"
+  },
+  {
+    "name": "unicode_ASC",
+    "source": "LOAD a,t.a\nSORT i,a A\u017fC NF\nOUT i\n",
+    "candidate": "LOAD a,t.a\nIOTA i, a\nOUT i\n",
+    "original_exit": 1,
+    "candidate_exit": 0,
+    "original_stderr": "error: line 2: SORT: expected a sort key `reg ASC|DESC NF|NL`, got \"a A\u017fC NF\"\n"
+  },
+  {
+    "name": "unicode_column",
+    "source": "LOAD dead,t.\u212a\nLOAD a,t.a\nOUT a\n",
+    "candidate": "\nLOAD a,t.a\nOUT a\n",
+    "original_exit": 1,
+    "candidate_exit": 0,
+    "original_stderr": "error: line 1: LOAD: expected a table.column, got \"t.\u212a\"\n"
+  }
+]

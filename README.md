@@ -1,7 +1,8 @@
 # MiniVM optimizer assignment
 
-The optimizer first selects NLJOIN/HJOIN with a frozen simple cost model, then
-removes a small whitelist of proven-total dead first definitions. It retains
+The optimizer selects NLJOIN/HJOIN with a frozen simple cost model, replaces
+SORT with IOTA when stored order is guaranteed, then removes a small whitelist
+of proven-total dead first definitions. It retains
 overwrites that can release older register values. The independent evaluator
 compares original/candidate MiniVM execution under frozen schemas.
 The starter identity baseline remains preserved in Git.
@@ -14,6 +15,7 @@ assignment's matching interpreter bundle locally at `bin/minivm` to run checks.
 ```sh
 ./optimize examples/programs/q0001.mini examples/schema.json
 ./optimize --joins-only examples/programs/q0001.mini examples/schema.json
+./optimize --no-sorted-order examples/programs/q0001.mini examples/schema.json
 ./evaluate ./optimize
 python3 -m unittest discover -s tests/evaluator -v
 python3 -m unittest discover -s tests/adversarial -v
@@ -28,6 +30,15 @@ python3 tools/benchmark.py ./optimize --output records/dce/examples-full.json
 python3 tools/benchmark.py ./optimize --joins-only --output records/dce/examples-joins-only.json
 python3 tools/benchmark_dce.py --output records/dce/benchmark.json
 python3 tools/probe_join_scale.py --output records/dce/scale.json
+```
+
+For the final stored-order rule, preserve historical measurements with new paths:
+
+```sh
+python3 tools/benchmark_sorted.py --output records/sorted-order/benchmark.json
+python3 tools/benchmark.py ./optimize --output records/sorted-order/examples-full.json
+python3 tools/benchmark.py ./optimize --no-sorted-order --output records/sorted-order/examples-baseline.json
+python3 tools/verify_baseline.py --output records/sorted-order/cli-checks.json
 ```
 
 Compare the previous rule, current rule, always-HJOIN and always-NLJOIN on the
@@ -54,6 +65,9 @@ grounds, not a claim of generally better performance. The exact profile experime
 and its tests remain in [experiments/](experiments/README.md).
 The conservative dead-code proof and current separately measured contribution
 are in [docs/dce.md](docs/dce.md) and [records/dce/RESULTS.md](records/dce/RESULTS.md).
+The guaranteed stored-order proof and isolated contribution are in
+[docs/sorted-order.md](docs/sorted-order.md) and
+[records/sorted-order/RESULTS.md](records/sorted-order/RESULTS.md).
 
 The benchmark runs the eight fixed supplied programs through the public optimizer
 interface. It reports every case, including unchanged cases and regressions, and
