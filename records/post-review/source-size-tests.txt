@@ -1,0 +1,10 @@
+test_candidate_exactly_at_limit_is_allowed_all_modes (test_source_byte_limit.SourceByteLimitReview) ... ok
+test_exact_limit_expansion_falls_back_byte_identically_all_modes (test_source_byte_limit.SourceByteLimitReview) ... ok
+test_final_guard_allows_dce_to_free_room_before_fallback (test_source_byte_limit.SourceByteLimitReview) ... ok
+test_normal_small_program_still_uses_cheaper_join (test_source_byte_limit.SourceByteLimitReview) ... ok
+test_utf8_limit_counts_bytes_instead_of_characters (test_source_byte_limit.SourceByteLimitReview) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 1.808s
+
+OK

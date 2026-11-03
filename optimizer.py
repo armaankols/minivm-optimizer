@@ -19,6 +19,7 @@ KEYWORDS = {'NULL', 'TRUE', 'FALSE', 'ASC', 'DESC', 'NF', 'NL', 'NULLEQ'}
 NUMERIC = {'INT', 'NUM'}
 NON_STRING = {'INT', 'NUM', 'DATE', 'BOOL'}
 MAX_VALUES = 4_000_000
+MAX_PROGRAM_BYTES = 4 * 1024 * 1024  # docs/running.md: inclusive UTF-8 file limit
 
 
 @dataclasses.dataclass(frozen=True)
@@ -271,7 +272,13 @@ def main(argv=None):
                 selected = replace_sorted(selected, schema, instruction, register)
             from dead_code import eliminate_dead
             selected = eliminate_dead(selected, schema, instruction, register)
-        sys.stdout.buffer.write(selected.encode('utf-8'))
+        output = selected.encode('utf-8')
+        # HJOIN -> NLJOIN adds a byte. Check after every pass has finished, since
+        # later removals may offset growth. Preserve the original bytes if the
+        # candidate would exceed the VM's file limit (including UTF-8 comments).
+        if len(output) > MAX_PROGRAM_BYTES:
+            output = original
+        sys.stdout.buffer.write(output)
         return 0
     except (OSError, ValueError, UnicodeError) as exc:
         print('optimize: ' + str(exc), file=sys.stderr)

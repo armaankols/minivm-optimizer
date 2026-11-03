@@ -1,0 +1,17 @@
+{
+  "original_bytes": 4194304,
+  "candidate_bytes": 4194305,
+  "optimizer_status": 0,
+  "optimizer_seconds": 0.088507334,
+  "candidate_prefix": "LOAD x,t.x\nNLJOIN l,r,x,x\nOUT l,r\n;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "original": {
+    "status": 0,
+    "stdout": "{\"ncols\":2,\"rows\":[[0,0]],\"cycles\":27}\n",
+    "stderr": ""
+  },
+  "candidate": {
+    "status": 1,
+    "stdout": "",
+    "stderr": "error: /tmp/minivm-review.PTGYOO/candidate.mini: larger than 4 MB\n"
+  }
+}

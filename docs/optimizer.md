@@ -90,3 +90,14 @@ retained in `tests/adversarial/JOIN_REVIEW.md`,
 `tests/evaluator/JOIN_REPORT.md`, and `records/join-selection/`.
 
 The subsequent DCE stage is measured separately; all join holdouts remain in its regression corpus.
+
+## Final source-size guard
+
+MiniVM accepts program files up to 4 MiB inclusive (`docs/running.md`). Replacing
+HJOIN with NLJOIN adds a byte, so opcode equivalence alone is insufficient at this
+boundary. After all enabled passes, the CLI encodes the complete candidate as
+UTF-8. If it exceeds 4,194,304 bytes, it emits the original input bytes instead.
+Checking at final emission allows subsequent deletions to offset growth and
+applies to every CLI mode. This relies on the original valid program's size, not
+schema estimates. Exact-limit, one-byte-below, multibyte-comment and normal small
+program regressions are retained in `tests/adversarial/test_source_byte_limit.py`.

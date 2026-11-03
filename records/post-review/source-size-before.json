@@ -1,0 +1,37 @@
+{
+  "implementation": "49c7048",
+  "stage": "before fix",
+  "modes": [
+    {
+      "flags": [],
+      "optimizer_exit": 0,
+      "output_bytes": 4194305,
+      "vm_exit": 1,
+      "vm_stdout": "",
+      "vm_stderr": "error: /var/folders/cq/fsg84yxj0cgcxmjpm6vzvvx80000gn/T/tmpbiu63v0z/candidate.mini: larger than 4 MB\n",
+      "optimizer_and_vm_wall_seconds": 0.11843424999999999
+    },
+    {
+      "flags": [
+        "--joins-only"
+      ],
+      "optimizer_exit": 0,
+      "output_bytes": 4194305,
+      "vm_exit": 1,
+      "vm_stdout": "",
+      "vm_stderr": "error: /var/folders/cq/fsg84yxj0cgcxmjpm6vzvvx80000gn/T/tmpbiu63v0z/candidate.mini: larger than 4 MB\n",
+      "optimizer_and_vm_wall_seconds": 0.095899667
+    },
+    {
+      "flags": [
+        "--no-sorted-order"
+      ],
+      "optimizer_exit": 0,
+      "output_bytes": 4194305,
+      "vm_exit": 1,
+      "vm_stdout": "",
+      "vm_stderr": "error: /var/folders/cq/fsg84yxj0cgcxmjpm6vzvvx80000gn/T/tmpbiu63v0z/candidate.mini: larger than 4 MB\n",
+      "optimizer_and_vm_wall_seconds": 0.10019558299999998
+    }
+  ]
+}

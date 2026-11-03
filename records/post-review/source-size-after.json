@@ -1,0 +1,40 @@
+{
+  "stage": "after source-size fix",
+  "limit_bytes": 4194304,
+  "modes": [
+    {
+      "flags": [],
+      "optimizer_exit": 0,
+      "output_bytes": 4194304,
+      "byte_identical_original": true,
+      "optimizer_seconds": 0.094640792,
+      "vm_exit": 0,
+      "vm_stdout": "{\"ncols\":2,\"rows\":[[0,0]],\"cycles\":27}\n",
+      "vm_stderr": ""
+    },
+    {
+      "flags": [
+        "--joins-only"
+      ],
+      "optimizer_exit": 0,
+      "output_bytes": 4194304,
+      "byte_identical_original": true,
+      "optimizer_seconds": 0.08484687499999999,
+      "vm_exit": 0,
+      "vm_stdout": "{\"ncols\":2,\"rows\":[[0,0]],\"cycles\":27}\n",
+      "vm_stderr": ""
+    },
+    {
+      "flags": [
+        "--no-sorted-order"
+      ],
+      "optimizer_exit": 0,
+      "output_bytes": 4194304,
+      "byte_identical_original": true,
+      "optimizer_seconds": 0.08974912499999999,
+      "vm_exit": 0,
+      "vm_stdout": "{\"ncols\":2,\"rows\":[[0,0]],\"cycles\":27}\n",
+      "vm_stderr": ""
+    }
+  ]
+}
